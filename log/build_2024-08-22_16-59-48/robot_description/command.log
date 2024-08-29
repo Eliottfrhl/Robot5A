@@ -1,6 +1,0 @@
-Invoking command in '/home/eliott/robot_ws/build/robot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/eliott/robot_ws/src/robot_description -DCMAKE_INSTALL_PREFIX=/home/eliott/robot_ws/install/robot_description
-Invoked command in '/home/eliott/robot_ws/build/robot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/eliott/robot_ws/src/robot_description -DCMAKE_INSTALL_PREFIX=/home/eliott/robot_ws/install/robot_description
-Invoking command in '/home/eliott/robot_ws/build/robot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/eliott/robot_ws/build/robot_description -- -j12 -l12
-Invoked command in '/home/eliott/robot_ws/build/robot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/eliott/robot_ws/build/robot_description -- -j12 -l12
-Invoking command in '/home/eliott/robot_ws/build/robot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/eliott/robot_ws/build/robot_description
-Invoked command in '/home/eliott/robot_ws/build/robot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/eliott/robot_ws/build/robot_description

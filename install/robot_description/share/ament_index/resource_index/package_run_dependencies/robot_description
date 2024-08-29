@@ -1,1 +1,0 @@
-rclcpp;urdf;xacro;gazebo_ros;ros2_control;controller_manager;joint_state_controller;joint_trajectory_controller;robot_state_publisher;rviz2
