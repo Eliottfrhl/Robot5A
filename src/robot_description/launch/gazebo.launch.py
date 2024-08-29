@@ -100,9 +100,9 @@ def generate_launch_description():
         [
             gazebo,
             node_robot_state_publisher,
-            node_joint_state_publisher,
+            #node_joint_state_publisher,
             spawn_entity,
-            ros2_control_node,
+            #ros2_control_node,
             RegisterEventHandler(
                 event_handler=OnProcessExit(
                     target_action=spawn_entity,

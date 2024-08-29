@@ -7,6 +7,8 @@ find_package(rclcpp REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(control_msgs REQUIRED)
+
 
 # Include directories
 include_directories(include)
@@ -15,7 +17,8 @@ include_directories(include)
 add_executable(moveit_node src/moveit_node.cpp)
 
 # Link libraries
-ament_target_dependencies(moveit_node
+ament_target_dependencies(
+  moveit_node
   rclcpp
   moveit_ros_planning_interface
   geometry_msgs
