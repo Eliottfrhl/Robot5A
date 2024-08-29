@@ -1,0 +1,35 @@
+# ROS2 build and install directories
+/build/
+/install/
+/log/
+
+# Colcon build directories
+/colcon/
+.colcon/
+/install/
+.log/
+build/
+install/
+log/
+
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# ROS2 workspace directories
+.deps/
+CMakeLists.txt.user
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Ignore packages that shouldn't be in version control
+ament_workspace/
+ament_tools/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.swp
+*~

@@ -1,0 +1,176 @@
+[0.000000] (-) TimerEvent: {}
+[0.000120] (robot_description) JobQueued: {'identifier': 'robot_description', 'dependencies': OrderedDict()}
+[0.000169] (robot_description) JobStarted: {'identifier': 'robot_description'}
+[0.004939] (robot_description) JobProgress: {'identifier': 'robot_description', 'progress': 'cmake'}
+[0.007002] (robot_description) Command: {'cmd': ['/usr/bin/cmake', '/home/eliott/robot_ws/src/robot_description', '-DCMAKE_INSTALL_PREFIX=/home/eliott/robot_ws/install/robot_description'], 'cwd': '/home/eliott/robot_ws/build/robot_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'eliott'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/eliott'), ('OLDPWD', '/home/eliott/ros2_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '2464'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/eliott/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'eliott'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'eliott'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/eliott-Nitro-AN515-57:@/tmp/.ICE-unix/1788,unix/eliott-Nitro-AN515-57:/tmp/.ICE-unix/1788'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/88bb6d6a_e085_49f1_a23e_2755174cdc47'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.IHMQS2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.107'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/eliott/robot_ws/build/robot_description'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.031140] (robot_description) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099453] (-) TimerEvent: {}
+[0.150137] (robot_description) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.199609] (-) TimerEvent: {}
+[0.276132] (robot_description) StdoutLine: {'line': b'-- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.299705] (-) TimerEvent: {}
+[0.372258] (robot_description) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.382029] (robot_description) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.399471] (robot_description) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.399768] (-) TimerEvent: {}
+[0.430453] (robot_description) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.459330] (robot_description) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.499963] (-) TimerEvent: {}
+[0.552421] (robot_description) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.559803] (robot_description) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.600126] (-) TimerEvent: {}
+[0.694305] (robot_description) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.700225] (-) TimerEvent: {}
+[0.716589] (robot_description) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.745221] (robot_description) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.765980] (robot_description) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.800386] (-) TimerEvent: {}
+[0.852217] (robot_description) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.852371] (robot_description) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.900481] (-) TimerEvent: {}
+[0.906791] (robot_description) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[0.907544] (robot_description) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.000577] (-) TimerEvent: {}
+[1.007954] (robot_description) StdoutLine: {'line': b'-- Found urdf: 2.6.0 (/opt/ros/humble/share/urdf/cmake)\n'}
+[1.062613] (robot_description) StdoutLine: {'line': b'-- Found xacro: 2.0.8 (/opt/ros/humble/share/xacro/cmake)\n'}
+[1.066386] (robot_description) StdoutLine: {'line': b'-- Found gazebo_ros: 3.7.0 (/opt/ros/humble/share/gazebo_ros/cmake)\n'}
+[1.083175] (robot_description) StdoutLine: {'line': b'-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") \n'}
+[1.084521] (robot_description) StdoutLine: {'line': b"-- Checking for module 'bullet>=2.82'\n"}
+[1.097236] (robot_description) StdoutLine: {'line': b'--   Found bullet, version 3.05\n'}
+[1.100683] (-) TimerEvent: {}
+[1.200930] (-) TimerEvent: {}
+[1.206264] (robot_description) StdoutLine: {'line': b'-- Found fcl: /usr/include (found suitable version "0.7.0", minimum required is "0.5.0") \n'}
+[1.245646] (robot_description) StdoutLine: {'line': b'-- Found assimp: /usr/include (found version "5.2.0") \n'}
+[1.301049] (-) TimerEvent: {}
+[1.307471] (robot_description) StdoutLine: {'line': b'-- Found DART: /usr/include (Required is at least version "6.6") found components: dart \n'}
+[1.342624] (robot_description) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time \n'}
+[1.401143] (-) TimerEvent: {}
+[1.412753] (robot_description) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") \n'}
+[1.425835] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.458220] (robot_description) StdoutLine: {'line': b'-- Searching for dependencies of ignition-math6\n'}
+[1.465182] (robot_description) StdoutLine: {'line': b'-- Looking for OGRE...\n'}
+[1.466209] (robot_description) StdoutLine: {'line': b'-- OGRE_PREFIX_WATCH changed.\n'}
+[1.474617] (robot_description) StdoutLine: {'line': b"-- Checking for module 'OGRE'\n"}
+[1.485642] (robot_description) StdoutLine: {'line': b'--   Found OGRE, version 1.9.0\n'}
+[1.501237] (-) TimerEvent: {}
+[1.508267] (robot_description) StdoutLine: {'line': b'-- Found Ogre Ghadamon (1.9.0)\n'}
+[1.513908] (robot_description) StdoutLine: {'line': b'-- Found OGRE: optimized;/usr/lib/x86_64-linux-gnu/libOgreMain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreMain.so\n'}
+[1.520483] (robot_description) StdoutLine: {'line': b'-- Looking for OGRE_Paging...\n'}
+[1.524812] (robot_description) StdoutLine: {'line': b'-- Found OGRE_Paging: optimized;/usr/lib/x86_64-linux-gnu/libOgrePaging.so;debug;/usr/lib/x86_64-linux-gnu/libOgrePaging.so\n'}
+[1.524886] (robot_description) StdoutLine: {'line': b'-- Looking for OGRE_Terrain...\n'}
+[1.528780] (robot_description) StdoutLine: {'line': b'-- Found OGRE_Terrain: optimized;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so\n'}
+[1.528898] (robot_description) StdoutLine: {'line': b'-- Looking for OGRE_Property...\n'}
+[1.532823] (robot_description) StdoutLine: {'line': b'-- Found OGRE_Property: optimized;/usr/lib/x86_64-linux-gnu/libOgreProperty.so;debug;/usr/lib/x86_64-linux-gnu/libOgreProperty.so\n'}
+[1.532980] (robot_description) StdoutLine: {'line': b'-- Looking for OGRE_RTShaderSystem...\n'}
+[1.536453] (robot_description) StdoutLine: {'line': b'-- Found OGRE_RTShaderSystem: optimized;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so\n'}
+[1.536546] (robot_description) StdoutLine: {'line': b'-- Looking for OGRE_Volume...\n'}
+[1.540164] (robot_description) StdoutLine: {'line': b'-- Found OGRE_Volume: optimized;/usr/lib/x86_64-linux-gnu/libOgreVolume.so;debug;/usr/lib/x86_64-linux-gnu/libOgreVolume.so\n'}
+[1.540236] (robot_description) StdoutLine: {'line': b'-- Looking for OGRE_Overlay...\n'}
+[1.543693] (robot_description) StdoutLine: {'line': b'-- Found OGRE_Overlay: optimized;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so\n'}
+[1.601349] (-) TimerEvent: {}
+[1.611721] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.617147] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-transport8 -- found version 8.2.1\n'}
+[1.617403] (robot_description) StdoutLine: {'line': b'-- Searching for dependencies of ignition-transport8\n'}
+[1.630499] (robot_description) StdoutLine: {'line': b'-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") \n'}
+[1.637976] (robot_description) StdoutLine: {'line': b'-- Config-file not installed for ZeroMQ -- checking for pkg-config\n'}
+[1.641339] (robot_description) StdoutLine: {'line': b"-- Checking for module 'libzmq >= 4'\n"}
+[1.657417] (robot_description) StdoutLine: {'line': b'--   Found libzmq , version 4.3.4\n'}
+[1.677476] (robot_description) StdoutLine: {'line': b'-- Found ZeroMQ: TRUE (Required is at least version "4") \n'}
+[1.682625] (robot_description) StdoutLine: {'line': b"-- Checking for module 'uuid'\n"}
+[1.691098] (robot_description) StdoutLine: {'line': b'--   Found uuid, version 2.37.2\n'}
+[1.701465] (-) TimerEvent: {}
+[1.710422] (robot_description) StdoutLine: {'line': b'-- Found UUID: TRUE  \n'}
+[1.714824] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.8.1\n'}
+[1.715203] (robot_description) StdoutLine: {'line': b'-- Searching for dependencies of ignition-msgs5\n'}
+[1.726609] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.731210] (robot_description) StdoutLine: {'line': b"-- Checking for module 'tinyxml2'\n"}
+[1.739664] (robot_description) StdoutLine: {'line': b'--   Found tinyxml2, version 9.0.0\n'}
+[1.761623] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.8.1\n'}
+[1.765089] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-common3 -- found version 3.14.0\n'}
+[1.765409] (robot_description) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common3\n'}
+[1.766435] (robot_description) StdoutLine: {'line': b'-- Looking for dlfcn.h - found\n'}
+[1.767125] (robot_description) StdoutLine: {'line': b'-- Looking for libdl - found\n'}
+[1.768196] (robot_description) StdoutLine: {'line': b'-- Found DL: TRUE  \n'}
+[1.778187] (robot_description) StdoutLine: {'line': b'-- Found tinyobjloader: /usr/lib/x86_64-linux-gnu/cmake/tinyobjloader/tinyobjloader-config.cmake (found version "2.0.0") \n'}
+[1.779867] (robot_description) StdoutLine: {'line': b'-- Searching for <ignition-common3> component [graphics]\n'}
+[1.782774] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-common3-graphics -- found version 3.14.0\n'}
+[1.783146] (robot_description) StdoutLine: {'line': b'-- Searching for dependencies of ignition-common3-graphics\n'}
+[1.783363] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.788173] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-fuel_tools4 -- found version 4.4.0\n'}
+[1.788329] (robot_description) StdoutLine: {'line': b'-- Searching for dependencies of ignition-fuel_tools4\n'}
+[1.801593] (-) TimerEvent: {}
+[1.838782] (robot_description) StdoutLine: {'line': b'-- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  \n'}
+[1.850200] (robot_description) StdoutLine: {'line': b"-- Checking for module 'jsoncpp'\n"}
+[1.857875] (robot_description) StdoutLine: {'line': b'--   Found jsoncpp, version 1.9.5\n'}
+[1.876864] (robot_description) StdoutLine: {'line': b'-- Found JSONCPP: TRUE  \n'}
+[1.881699] (robot_description) StdoutLine: {'line': b"-- Checking for module 'libzip'\n"}
+[1.890828] (robot_description) StdoutLine: {'line': b'--   Found libzip, version 1.7.3\n'}
+[1.901693] (-) TimerEvent: {}
+[1.910190] (robot_description) StdoutLine: {'line': b'-- Found ZIP: TRUE  \n'}
+[1.910463] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-common3 -- found version 3.14.0\n'}
+[1.910985] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-math6 -- found version 6.15.1\n'}
+[1.911298] (robot_description) StdoutLine: {'line': b'-- Looking for ignition-msgs5 -- found version 5.8.1\n'}
+[1.918831] (robot_description) StdoutLine: {'line': b'-- Gazebo version: 11.10\n'}
+[1.919093] (robot_description) StdoutLine: {'line': b"-- Checking for module 'tbb'\n"}
+[1.928076] (robot_description) StdoutLine: {'line': b'--   Found tbb, version 2021.5.0\n'}
+[1.952067] (robot_description) StdoutLine: {'line': b'-- Found ros2_control: 2.42.0 (/opt/ros/humble/share/ros2_control/cmake)\n'}
+[1.954257] (robot_description) StdoutLine: {'line': b'-- Found ros2_controllers: 2.37.0 (/opt/ros/humble/share/ros2_controllers/cmake)\n'}
+[1.957120] (robot_description) StdoutLine: {'line': b'-- Found robot_state_publisher: 3.0.3 (/opt/ros/humble/share/robot_state_publisher/cmake)\n'}
+[2.000457] (robot_description) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)\n'}
+[2.001756] (-) TimerEvent: {}
+[2.003193] (robot_description) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[2.003264] (robot_description) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[2.101859] (-) TimerEvent: {}
+[2.202156] (-) TimerEvent: {}
+[2.248497] (robot_description) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.261048] (robot_description) StdoutLine: {'line': b'-- Generating done\n'}
+[2.265311] (robot_description) StdoutLine: {'line': b'-- Build files have been written to: /home/eliott/robot_ws/build/robot_description\n'}
+[2.274430] (robot_description) CommandEnded: {'returncode': 0}
+[2.274976] (robot_description) JobProgress: {'identifier': 'robot_description', 'progress': 'build'}
+[2.275585] (robot_description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/eliott/robot_ws/build/robot_description', '--', '-j12', '-l12'], 'cwd': '/home/eliott/robot_ws/build/robot_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'eliott'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/eliott'), ('OLDPWD', '/home/eliott/ros2_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '2464'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/eliott/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'eliott'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'eliott'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/eliott-Nitro-AN515-57:@/tmp/.ICE-unix/1788,unix/eliott-Nitro-AN515-57:/tmp/.ICE-unix/1788'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/88bb6d6a_e085_49f1_a23e_2755174cdc47'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.IHMQS2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.107'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/eliott/robot_ws/build/robot_description'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.302243] (-) TimerEvent: {}
+[2.310426] (robot_description) CommandEnded: {'returncode': 0}
+[2.340804] (robot_description) JobProgress: {'identifier': 'robot_description', 'progress': 'install'}
+[2.354236] (robot_description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/eliott/robot_ws/build/robot_description'], 'cwd': '/home/eliott/robot_ws/build/robot_description', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'eliott'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/eliott'), ('OLDPWD', '/home/eliott/ros2_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '2464'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/eliott/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'eliott'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'eliott'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/eliott-Nitro-AN515-57:@/tmp/.ICE-unix/1788,unix/eliott-Nitro-AN515-57:/tmp/.ICE-unix/1788'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/88bb6d6a_e085_49f1_a23e_2755174cdc47'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.IHMQS2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.107'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/eliott/robot_ws/build/robot_description'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.360100] (robot_description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.360192] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//launch\n'}
+[2.360232] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//launch/gazebo.launch.py\n'}
+[2.360295] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//urdf\n'}
+[2.360346] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//urdf/r5a_v_ros.urdf.xacro\n'}
+[2.360384] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes\n'}
+[2.360444] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link5.STL\n'}
+[2.402458] (-) TimerEvent: {}
+[2.501572] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link3.STL\n'}
+[2.502532] (-) TimerEvent: {}
+[2.571557] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/base_link.STL\n'}
+[2.602729] (-) TimerEvent: {}
+[2.619342] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link2.STL\n'}
+[2.702943] (-) TimerEvent: {}
+[2.787869] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link1.STL\n'}
+[2.803098] (-) TimerEvent: {}
+[2.903339] (-) TimerEvent: {}
+[2.951877] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link4.STL\n'}
+[3.003410] (-) TimerEvent: {}
+[3.103616] (-) TimerEvent: {}
+[3.136828] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//config\n'}
+[3.137023] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//config/controller.yaml\n'}
+[3.137112] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/eliott/robot_ws/install/robot_description/share/robot_description/urdf/r5a_v_ros.urdf.xacro\n'}
+[3.137176] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/ament_index/resource_index/package_run_dependencies/robot_description\n'}
+[3.137269] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/ament_index/resource_index/parent_prefix_path/robot_description\n'}
+[3.137365] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/ament_prefix_path.sh\n'}
+[3.137455] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/ament_prefix_path.dsv\n'}
+[3.137551] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/path.sh\n'}
+[3.137643] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/path.dsv\n'}
+[3.137742] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.bash\n'}
+[3.137842] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.sh\n'}
+[3.137931] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.zsh\n'}
+[3.138025] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.dsv\n'}
+[3.138118] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/package.dsv\n'}
+[3.138243] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/ament_index/resource_index/packages/robot_description\n'}
+[3.138356] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/cmake/robot_descriptionConfig.cmake\n'}
+[3.138442] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/cmake/robot_descriptionConfig-version.cmake\n'}
+[3.138525] (robot_description) StdoutLine: {'line': b'-- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/package.xml\n'}
+[3.139991] (robot_description) CommandEnded: {'returncode': 0}
+[3.203691] (-) TimerEvent: {}
+[3.235315] (robot_description) JobEnded: {'identifier': 'robot_description', 'rc': 0}
+[3.242581] (-) EventReactorShutdown: {}

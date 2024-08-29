@@ -1,0 +1,18 @@
+[100%] Built target moveit_node
+-- Install configuration: ""
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/lib/robot_control/moveit_node
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/ament_index/resource_index/package_run_dependencies/robot_control
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/ament_index/resource_index/parent_prefix_path/robot_control
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/ament_prefix_path.sh
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/path.sh
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/path.dsv
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.bash
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.sh
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.zsh
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.dsv
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/package.dsv
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/ament_index/resource_index/packages/robot_control
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/cmake/robot_controlConfig.cmake
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/cmake/robot_controlConfig-version.cmake
+-- Up-to-date: /home/eliott/robot_ws/install/robot_control/share/robot_control/package.xml

@@ -1,0 +1,22 @@
+[35m[1mConsolidate compiler generated dependencies of target moveit_node[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/moveit_node.dir/src/moveit_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable moveit_node[0m
+[100%] Built target moveit_node
+-- Install configuration: ""
+-- Installing: /home/eliott/robot_ws/install/robot_control/lib/robot_control/moveit_node
+-- Set runtime path of "/home/eliott/robot_ws/install/robot_control/lib/robot_control/moveit_node" to ""
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/ament_index/resource_index/package_run_dependencies/robot_control
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/ament_index/resource_index/parent_prefix_path/robot_control
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/ament_prefix_path.sh
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/ament_prefix_path.dsv
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/path.sh
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/environment/path.dsv
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.bash
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.sh
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.zsh
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/local_setup.dsv
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/package.dsv
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/ament_index/resource_index/packages/robot_control
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/cmake/robot_controlConfig.cmake
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/cmake/robot_controlConfig-version.cmake
+-- Installing: /home/eliott/robot_ws/install/robot_control/share/robot_control/package.xml

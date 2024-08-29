@@ -1,0 +1,8 @@
+# Default initial positions for armr5's ros2_control fake system
+
+initial_positions:
+  R0_Yaw: 0
+  R1_Pitch: 0
+  R2_Pitch: 0
+  R3_Yaw: 0
+  R4_Pitch: 0

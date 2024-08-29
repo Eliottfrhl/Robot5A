@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(find robot_description)/config/gripper_controller.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="base_link">                                                                
+    <material>Gazebo/White</material>
+  </gazebo>                                         
+  
+  <gazebo reference="R5A_link1">
+    <material>Gazebo/White</material>
+  </gazebo>                 
+ 
+  <gazebo reference="R5A_link2">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="R5A_link3">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="R5A_link4">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="R5A_link5">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+</robot>

@@ -1,0 +1,136 @@
+[0.008s] Invoking command in '/home/eliott/robot_ws/build/robot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/eliott/robot_ws/src/robot_description -DCMAKE_INSTALL_PREFIX=/home/eliott/robot_ws/install/robot_description
+[0.031s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.150s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.276s] -- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)
+[0.372s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.382s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.399s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.430s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.459s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.552s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.560s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.694s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.717s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.745s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.766s] -- Looking for pthread.h
+[0.852s] -- Looking for pthread.h - found
+[0.852s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.907s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.907s] -- Found Threads: TRUE  
+[1.008s] -- Found urdf: 2.6.0 (/opt/ros/humble/share/urdf/cmake)
+[1.063s] -- Found xacro: 2.0.8 (/opt/ros/humble/share/xacro/cmake)
+[1.066s] -- Found gazebo_ros: 3.7.0 (/opt/ros/humble/share/gazebo_ros/cmake)
+[1.083s] -- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") 
+[1.084s] -- Checking for module 'bullet>=2.82'
+[1.097s] --   Found bullet, version 3.05
+[1.206s] -- Found fcl: /usr/include (found suitable version "0.7.0", minimum required is "0.5.0") 
+[1.246s] -- Found assimp: /usr/include (found version "5.2.0") 
+[1.307s] -- Found DART: /usr/include (Required is at least version "6.6") found components: dart 
+[1.343s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time 
+[1.413s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[1.426s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.458s] -- Searching for dependencies of ignition-math6
+[1.465s] -- Looking for OGRE...
+[1.466s] -- OGRE_PREFIX_WATCH changed.
+[1.475s] -- Checking for module 'OGRE'
+[1.486s] --   Found OGRE, version 1.9.0
+[1.508s] -- Found Ogre Ghadamon (1.9.0)
+[1.514s] -- Found OGRE: optimized;/usr/lib/x86_64-linux-gnu/libOgreMain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreMain.so
+[1.520s] -- Looking for OGRE_Paging...
+[1.525s] -- Found OGRE_Paging: optimized;/usr/lib/x86_64-linux-gnu/libOgrePaging.so;debug;/usr/lib/x86_64-linux-gnu/libOgrePaging.so
+[1.525s] -- Looking for OGRE_Terrain...
+[1.529s] -- Found OGRE_Terrain: optimized;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+[1.529s] -- Looking for OGRE_Property...
+[1.533s] -- Found OGRE_Property: optimized;/usr/lib/x86_64-linux-gnu/libOgreProperty.so;debug;/usr/lib/x86_64-linux-gnu/libOgreProperty.so
+[1.533s] -- Looking for OGRE_RTShaderSystem...
+[1.536s] -- Found OGRE_RTShaderSystem: optimized;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so
+[1.536s] -- Looking for OGRE_Volume...
+[1.540s] -- Found OGRE_Volume: optimized;/usr/lib/x86_64-linux-gnu/libOgreVolume.so;debug;/usr/lib/x86_64-linux-gnu/libOgreVolume.so
+[1.540s] -- Looking for OGRE_Overlay...
+[1.544s] -- Found OGRE_Overlay: optimized;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so
+[1.612s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.617s] -- Looking for ignition-transport8 -- found version 8.2.1
+[1.617s] -- Searching for dependencies of ignition-transport8
+[1.630s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") 
+[1.638s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[1.641s] -- Checking for module 'libzmq >= 4'
+[1.657s] --   Found libzmq , version 4.3.4
+[1.677s] -- Found ZeroMQ: TRUE (Required is at least version "4") 
+[1.683s] -- Checking for module 'uuid'
+[1.691s] --   Found uuid, version 2.37.2
+[1.710s] -- Found UUID: TRUE  
+[1.715s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[1.715s] -- Searching for dependencies of ignition-msgs5
+[1.727s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.731s] -- Checking for module 'tinyxml2'
+[1.740s] --   Found tinyxml2, version 9.0.0
+[1.762s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[1.765s] -- Looking for ignition-common3 -- found version 3.14.0
+[1.765s] -- Searching for dependencies of ignition-common3
+[1.766s] -- Looking for dlfcn.h - found
+[1.767s] -- Looking for libdl - found
+[1.768s] -- Found DL: TRUE  
+[1.778s] -- Found tinyobjloader: /usr/lib/x86_64-linux-gnu/cmake/tinyobjloader/tinyobjloader-config.cmake (found version "2.0.0") 
+[1.780s] -- Searching for <ignition-common3> component [graphics]
+[1.783s] -- Looking for ignition-common3-graphics -- found version 3.14.0
+[1.783s] -- Searching for dependencies of ignition-common3-graphics
+[1.783s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.788s] -- Looking for ignition-fuel_tools4 -- found version 4.4.0
+[1.788s] -- Searching for dependencies of ignition-fuel_tools4
+[1.839s] -- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  
+[1.850s] -- Checking for module 'jsoncpp'
+[1.858s] --   Found jsoncpp, version 1.9.5
+[1.877s] -- Found JSONCPP: TRUE  
+[1.882s] -- Checking for module 'libzip'
+[1.891s] --   Found libzip, version 1.7.3
+[1.910s] -- Found ZIP: TRUE  
+[1.910s] -- Looking for ignition-common3 -- found version 3.14.0
+[1.911s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.911s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[1.919s] -- Gazebo version: 11.10
+[1.919s] -- Checking for module 'tbb'
+[1.928s] --   Found tbb, version 2021.5.0
+[1.952s] -- Found ros2_control: 2.42.0 (/opt/ros/humble/share/ros2_control/cmake)
+[1.954s] -- Found ros2_controllers: 2.37.0 (/opt/ros/humble/share/ros2_controllers/cmake)
+[1.957s] -- Found robot_state_publisher: 3.0.3 (/opt/ros/humble/share/robot_state_publisher/cmake)
+[2.000s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[2.003s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[2.003s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[2.248s] -- Configuring done
+[2.261s] -- Generating done
+[2.265s] -- Build files have been written to: /home/eliott/robot_ws/build/robot_description
+[2.274s] Invoked command in '/home/eliott/robot_ws/build/robot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/eliott/robot_ws/src/robot_description -DCMAKE_INSTALL_PREFIX=/home/eliott/robot_ws/install/robot_description
+[2.276s] Invoking command in '/home/eliott/robot_ws/build/robot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/eliott/robot_ws/build/robot_description -- -j12 -l12
+[2.310s] Invoked command in '/home/eliott/robot_ws/build/robot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/eliott/robot_ws/build/robot_description -- -j12 -l12
+[2.354s] Invoking command in '/home/eliott/robot_ws/build/robot_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/eliott/robot_ws/build/robot_description
+[2.360s] -- Install configuration: ""
+[2.360s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//launch
+[2.360s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//launch/gazebo.launch.py
+[2.360s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//urdf
+[2.360s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//urdf/r5a_v_ros.urdf.xacro
+[2.360s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes
+[2.360s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link5.STL
+[2.502s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link3.STL
+[2.571s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/base_link.STL
+[2.619s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link2.STL
+[2.788s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link1.STL
+[2.952s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//meshes/R5A_link4.STL
+[3.137s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//config
+[3.137s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description//config/controller.yaml
+[3.137s] -- Up-to-date: /home/eliott/robot_ws/install/robot_description/share/robot_description/urdf/r5a_v_ros.urdf.xacro
+[3.137s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/ament_index/resource_index/package_run_dependencies/robot_description
+[3.137s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/ament_index/resource_index/parent_prefix_path/robot_description
+[3.137s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/ament_prefix_path.sh
+[3.137s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/ament_prefix_path.dsv
+[3.137s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/path.sh
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/environment/path.dsv
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.bash
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.sh
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.zsh
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/local_setup.dsv
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/package.dsv
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/ament_index/resource_index/packages/robot_description
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/cmake/robot_descriptionConfig.cmake
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/cmake/robot_descriptionConfig-version.cmake
+[3.138s] -- Installing: /home/eliott/robot_ws/install/robot_description/share/robot_description/package.xml
+[3.140s] Invoked command in '/home/eliott/robot_ws/build/robot_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/eliott/robot_ws/build/robot_description
