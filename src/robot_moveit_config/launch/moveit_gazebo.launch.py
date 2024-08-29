@@ -24,13 +24,15 @@ def generate_launch_description():
         .planning_pipelines(pipelines=["ompl"])
         .to_moveit_configs()
     )
-
+    config_dict = moveit_config.to_dict()
+    use_sim_time = {"use_sim_time":True}
+    config_dict.update(use_sim_time)
     # Launch the Move Group node
     move_group_node = Node(
         package="moveit_ros_move_group",
         executable="move_group",
         output="screen",
-        parameters=[moveit_config.to_dict()],
+        parameters=[config_dict],
     )
 
     # Launch RViz with MoveIt configuration

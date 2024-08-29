@@ -30,7 +30,7 @@ def generate_launch_description():
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[{"robot_description": robot_urdf}],
+        parameters=[{"robot_description": robot_urdf},{"use_sim_time":True}],
     )
 
     # Node to spawn the entity in Gazebo
