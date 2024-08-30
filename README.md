@@ -17,17 +17,25 @@ Source the ROS2 and project setup files:
 source /opt/ros/humble/setup.bash
 source install/setup.bash
 ```
-Launch the Gazebo simulation with the robotic arm:
 
+Launch the Gazebo simulation with the robotic arm:
 
 ```bash
 ros2 launch robot_description gazebo.launch.py
 ```
 
-Launch MoveIt2 with Gazebo for motion planning and control:
+Move the arm using RViz
+
+Launch MoveIt2 with RViz for motion planning and control:
 
 ```bash
 ros2 launch robot_moveit_config moveit_gazebo.launch.py
+```
+
+Move the arm using a C++ Node
+
+```bash
+ros2 launch robot_control moveit_control2.launch.py
 ```
 
 ## Project Architecture
