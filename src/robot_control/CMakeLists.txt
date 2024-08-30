@@ -14,20 +14,35 @@ find_package(control_msgs REQUIRED)
 include_directories(include)
 
 # Add executable
-add_executable(moveit_node src/moveit_node.cpp)
+add_executable(moveit_control src/moveit_control.cpp)
+add_executable(moveit_control2 src/moveit_control2.cpp)
 
 # Link libraries
 ament_target_dependencies(
-  moveit_node
+  moveit_control
   rclcpp
   moveit_ros_planning_interface
   geometry_msgs
   tf2_ros
 )
 
+# Link libraries
+ament_target_dependencies(moveit_control2
+  rclcpp
+  moveit_ros_planning_interface
+  geometry_msgs
+)
+
 # Install targets
 install(TARGETS
-  moveit_node
+  moveit_control
+  moveit_control2
   DESTINATION lib/${PROJECT_NAME})
+
+# Install launch files
+install(DIRECTORY launch config
+  DESTINATION share/${PROJECT_NAME}/
+)
+
 
 ament_package()
