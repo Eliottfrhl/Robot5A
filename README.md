@@ -26,8 +26,6 @@ ros2 launch robot_description gazebo.launch.py
 
 Move the arm using RViz
 
-Launch MoveIt2 with RViz for motion planning and control:
-
 ```bash
 ros2 launch robot_moveit_config moveit_gazebo.launch.py
 ```
