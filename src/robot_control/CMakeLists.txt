@@ -16,6 +16,17 @@ include_directories(include)
 # Add executable
 add_executable(moveit_control src/moveit_control.cpp)
 add_executable(moveit_control2 src/moveit_control2.cpp)
+add_executable(end_pose_node src/end_pose_node.cpp)
+
+# Link libraries
+ament_target_dependencies(
+  end_pose_node
+  rclcpp
+  geometry_msgs
+  tf2_ros
+  tf2_geometry_msgs
+)
+
 
 # Link libraries
 ament_target_dependencies(
@@ -37,6 +48,7 @@ ament_target_dependencies(moveit_control2
 install(TARGETS
   moveit_control
   moveit_control2
+  end_pose_node
   DESTINATION lib/${PROJECT_NAME})
 
 # Install launch files

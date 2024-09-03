@@ -20,13 +20,13 @@ int main(int argc, char * argv[])
 
   // Set a target Pose
   geometry_msgs::msg::Pose target_pose;
-  target_pose.orientation.x = 0.0;
-  target_pose.orientation.y = 0.0;
-  target_pose.orientation.z = 1.0;
-  target_pose.orientation.w = 0.0;
-  target_pose.position.x = 0.006755;
-  target_pose.position.y = 0.000008;
-  target_pose.position.z = 0.777374;
+  target_pose.orientation.x = -0.303061;
+  target_pose.orientation.y = -0.566473;
+  target_pose.orientation.z = 0.624680;
+  target_pose.orientation.w = 0.443889;
+  target_pose.position.x = -0.018829;
+  target_pose.position.y = -0.252053;
+  target_pose.position.z = 0.578420;
   move_group_interface.setPoseTarget(target_pose, "R5A_link5");  // Replace with your end-effector link
 
   // Plan to the target pose
