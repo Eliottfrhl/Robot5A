@@ -1,0 +1,7 @@
+camera:
+  - id: 0
+    transform: # Matrice de transformation de la caméra dans le repère de la base
+      - [1.0, 0.0, 0.0, 0.0]
+      - [0.0, 1.0, 0.0, 0.0]
+      - [0.0, 0.0, 1.0, 0.0]
+      - [0.0, 0.0, 0.0, 1.0]
