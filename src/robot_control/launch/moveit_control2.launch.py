@@ -26,7 +26,7 @@ def generate_launch_description():
     # Launch your C++ node that controls the robot
     control_node = Node(
         package="robot_control",  # Replace with your package name
-        executable="moveit_control2",  # Replace with your executable name
+        executable="moveit_control_simple",  # Replace with your executable name
         output="screen",
         parameters=[config_dict],
     )
