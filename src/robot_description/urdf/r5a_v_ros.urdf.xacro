@@ -418,7 +418,7 @@
       <robot_param>robot_description</robot_param>
       <robot_param_node>robot_state_publisher</robot_param_node>
       <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
-      <parameters>$(find robot_description)/config/controllers.yaml</parameters>
+      <parameters>$(find robot_description)/config/controller.yaml</parameters>
       <controller_manager_name>controller_manager</controller_manager_name>
     </plugin>
   </gazebo>
