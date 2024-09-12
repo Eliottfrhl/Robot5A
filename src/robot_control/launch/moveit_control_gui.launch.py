@@ -22,24 +22,13 @@ def generate_launch_description():
         .to_moveit_configs()
     )
     config_dict = moveit_config.to_dict()
-    use_sim_time = {"use_sim_time":True}
-    config_dict.update(use_sim_time)
 
-    # Launch the Move Group node
-    move_group_node = Node(
-        package="moveit_ros_move_group",
-        executable="move_group",
+    # Launch the new C++ GUI node that controls the robot
+    gui_node = Node(
+        package="robot_control",  # Your package name
+        executable="moveit_control_gui",  # New executable name
         output="screen",
-        parameters=[config_dict],
+        parameters=[config_dict],  # Pass the same MoveIt config to the GUI node
     )
 
-    # Launch your C++ node that controls the robot
-    control_node = Node(
-        package="robot_control",  # Replace with your package name
-        executable="moveit_control_simple",  # Replace with your executable name
-        output="screen",
-        parameters=[config_dict],
-    )
-
-    return LaunchDescription([move_group_node, control_node])
-
+    return LaunchDescription([gui_node])
