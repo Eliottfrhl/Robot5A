@@ -81,3 +81,7 @@ This package configures MoveIt2 for the robotic arm, including motion planning a
     * warehouse_db.launch.py: Launch file for the warehouse database.
 
 - .setup_assistant: setup assistant configuration for this project in particular.
+
+# Notes to myself
+
+export robot_description folder as gazebo resource path for materials
