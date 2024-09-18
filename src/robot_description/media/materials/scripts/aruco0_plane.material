@@ -1,0 +1,14 @@
+material Aruco0_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture aruco0.png
+        scale 1 1
+      }
+    }
+  }
+}

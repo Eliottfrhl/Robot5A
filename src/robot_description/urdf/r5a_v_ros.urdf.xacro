@@ -340,6 +340,8 @@
       velocity="1" />
   </joint>
 
+  <xacro:include filename="aruco.urdf.xacro" />
+
   <gazebo reference="base_link">                                                                
     <material>Gazebo/White</material>
   </gazebo>                                         

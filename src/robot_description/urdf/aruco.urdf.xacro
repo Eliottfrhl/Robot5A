@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<link name="aruco_plane">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.001"/> <!-- 10cm x 10cm square with minimal depth (1mm) -->
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.001"/> <!-- Same as visual for collision --> 
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.001"/> <!-- A very small mass as it's just a thin plane -->
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+              iyy="0.0001" iyz="0.0" izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <!-- Fixed joint between R5A_link5 and the plane -->
+  <joint name="aruco_plane_joint" type="fixed">
+    <parent link="R5A_link5"/> <!-- Attach to R5A_link5 -->
+    <child link="aruco_plane"/> <!-- The new plane -->
+    <origin xyz="0 0 0.2" rpy="1.57 0 0"/> <!-- Move the plane to (0, 0, 0.2) relative to R5A_link5 -->
+  </joint>
+
+  <gazebo reference="aruco_plane">
+    <material>Aruco0_Plane_Material</material>
+  </gazebo>
+
+</robot>
