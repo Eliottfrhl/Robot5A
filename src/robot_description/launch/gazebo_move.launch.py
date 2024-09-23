@@ -18,8 +18,6 @@ def generate_launch_description():
 
     # Specify the name of the package and path to xacro file within the package
     pkg_name = "robot_description"
-    file_subpath = "urdf/r5a_v_ros.urdf.xacro"
-
     share_dir = get_package_share_directory(pkg_name)
 
     # Use xacro to process the file
@@ -32,14 +30,14 @@ def generate_launch_description():
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[{"robot_description": robot_urdf},{"use_sim_time":True}],
+        parameters=[{"robot_description":robot_urdf},{"use_sim_time":True}],
     )
 
     # Node to spawn the entity in Gazebo
     spawn_entity = Node(
         package="gazebo_ros",
         executable="spawn_entity.py",
-        arguments=["-topic", "/robot_description", "-entity", "armr5"],
+        arguments=["-topic","/robot_description","-entity","armr5"],
         output="screen",
     )
 
@@ -47,30 +45,10 @@ def generate_launch_description():
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("gazebo_ros"), "launch"),
+                os.path.join(get_package_share_directory("gazebo_ros"),"launch"),
                 "/gazebo.launch.py",
             ]
         ),
-    )
-
-    # Joint State Publisher
-    node_joint_state_publisher = Node(
-        name="joint_state_publisher",
-        package="joint_state_publisher",
-        executable="joint_state_publisher",
-        output="screen",
-    )
-
-    # Controller manager node
-    ros2_control_node = Node(
-        package="controller_manager",
-        executable="ros2_control_node",
-        parameters=[
-            os.path.join(
-                get_package_share_directory(pkg_name), "config", "controllers.yaml"
-            ),
-        ],
-        output="screen",
     )
 
     # Commands to load and start controllers after spawning the robot
@@ -130,9 +108,7 @@ def generate_launch_description():
         [
             gazebo,
             node_robot_state_publisher,
-            #node_joint_state_publisher,
             spawn_entity,
-            #ros2_control_node,
             RegisterEventHandler(
                 event_handler=OnProcessExit(
                     target_action=spawn_entity,
