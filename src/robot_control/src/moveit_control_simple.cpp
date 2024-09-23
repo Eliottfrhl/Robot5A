@@ -1,22 +1,22 @@
-#include <rclcpp/rclcpp.hpp>
-#include <moveit/move_group_interface/move_group_interface.h>
 #include <geometry_msgs/msg/pose_stamped.h>
+#include <moveit/move_group_interface/move_group_interface.h>
+#include <rclcpp/rclcpp.hpp>
 
-int main(int argc, char * argv[])
-{
+int main(int argc, char *argv[]) {
   // Initialize ROS and create the Node
   rclcpp::init(argc, argv);
   auto node = std::make_shared<rclcpp::Node>(
-    "moveit_control2",
-    rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true)
-  );
+      "moveit_control2",
+      rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(
+          true));
 
   // Create a ROS logger
   auto const logger = rclcpp::get_logger("moveit_control2");
 
   // Setup the MoveIt MoveGroup Interface
   using moveit::planning_interface::MoveGroupInterface;
-  auto move_group_interface = MoveGroupInterface(node, "arm");  // Replace with your planning group
+  auto move_group_interface =
+      MoveGroupInterface(node, "arm"); // Replace with your planning group
 
   // Set a target Pose
   geometry_msgs::msg::Pose target_pose;
@@ -27,11 +27,13 @@ int main(int argc, char * argv[])
   target_pose.position.x = -0.018829;
   target_pose.position.y = -0.252053;
   target_pose.position.z = 0.578420;
-  move_group_interface.setPoseTarget(target_pose, "R5A_link5");  // Replace with your end-effector link
+  move_group_interface.setPoseTarget(
+      target_pose, "R5A_link5"); // Replace with your end-effector link
 
   // Plan to the target pose
   moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-  bool success = (move_group_interface.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS);
+  bool success = (move_group_interface.plan(my_plan) ==
+                  moveit::core::MoveItErrorCode::SUCCESS);
 
   if (success) {
     RCLCPP_INFO(logger, "Plan successful! Executing...");
