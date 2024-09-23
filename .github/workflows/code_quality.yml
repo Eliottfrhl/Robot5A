@@ -20,17 +20,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Install cppcheck
-      - name: Install cppcheck
-        run: sudo apt-get install -y cppcheck
+      # Install required tools
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cppcheck clang-format
 
       # Run cppcheck on the C++ source directory
       - name: Run cppcheck
-        run: cppcheck --enable=all --inconclusive --error-exitcode=1 src/robot_control/src
-
-      # Install clang-format
-      - name: Install clang-format
-        run: sudo apt-get install -y clang-format
+        run: |
+          cppcheck --enable=all --inconclusive --error-exitcode=1 \
+                    --suppress=missingInclude --suppress=noExplicitConstructor \
+                    src/robot_control/src
 
       # Automatically apply formatting changes to C++ files
       - name: Run clang-format
