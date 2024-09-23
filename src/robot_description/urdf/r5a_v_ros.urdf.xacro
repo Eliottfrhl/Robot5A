@@ -435,19 +435,25 @@
     </plugin> 
   </gazebo>
 
-  <!--Camera--> 
-  <link name="camera_link"> 
-    <visual> 
-      <geometry> 
-        <box size="0.2 0.2 0.2"/> 
-      </geometry> 
-    </visual> 
-    <collision> 
-      <geometry> 
-        <box size="0.2 0.2 0.2"/> 
-      </geometry> 
-    </collision> 
-  </link> 
+<!-- Camera -->
+<link name="camera_link"> 
+  <visual> 
+    <geometry> 
+      <mesh filename="file://$(find robot_description)/meshes/3dCamera.DAE"/> 
+    </geometry>
+    <origin rpy="0 1.5708 0"/> <!-- Rotate 90 degrees around the Y-axis (1.5708 radians = 90 degrees) -->
+  </visual> 
+  <collision> 
+    <geometry> 
+      <mesh filename="file://$(find robot_description)/meshes/3dCamera.DAE"/> 
+    </geometry>
+    <origin rpy="0 1.5708 0"/> 
+  </collision> 
+</link>
+
+<gazebo reference="camera_link">
+  <material>Gazebo/Black</material>
+</gazebo>
   
   <joint name="camera_joint" type="fixed"> 
     <origin xyz="0.5 0.5 1" rpy="1.57 1.57 0"/> 
