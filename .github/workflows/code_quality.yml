@@ -40,7 +40,7 @@ jobs:
 
   # Python Linter job using flake8
   lint_python:
-    name: Lint Python Code
+    name: Format and Lint Python Code
     runs-on: ubuntu-latest
 
     steps:
@@ -54,11 +54,21 @@ jobs:
         with:
           python-version: '3.x'
 
-      # Install flake8 linter
-      - name: Install flake8
-        run: python -m pip install flake8
+      # Install black and flake8
+      - name: Install black and flake8
+        run: |
+          python -m pip install black flake8
 
-      # Run flake8 on the Python source directory
+      # Run black formatter before linting
+      - name: Run black formatter
+        run: |
+          black src/robot_description/launch
+          black src/robot_moveit_config/launch
+
+      # Run flake8 on the Python source directories
       - name: Run flake8
-        run: flake8 src/robot_description/launch
+        run: |
+          flake8 src/robot_description/launch
+          flake8 src/robot_moveit_config/launch
+
 
