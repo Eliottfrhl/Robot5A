@@ -13,7 +13,6 @@ import xacro
 from moveit_configs_utils import MoveItConfigsBuilder
 
 
-
 def generate_launch_description():
 
     # Specify the name of the package and path to xacro file within the package
@@ -30,14 +29,14 @@ def generate_launch_description():
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[{"robot_description":robot_urdf},{"use_sim_time":True}],
+        parameters=[{"robot_description": robot_urdf}, {"use_sim_time": True}],
     )
 
     # Node to spawn the entity in Gazebo
     spawn_entity = Node(
         package="gazebo_ros",
         executable="spawn_entity.py",
-        arguments=["-topic","/robot_description","-entity","armr5"],
+        arguments=["-topic", "/robot_description", "-entity", "armr5"],
         output="screen",
     )
 
@@ -45,7 +44,7 @@ def generate_launch_description():
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("gazebo_ros"),"launch"),
+                os.path.join(get_package_share_directory("gazebo_ros"), "launch"),
                 "/gazebo.launch.py",
             ]
         ),
@@ -79,8 +78,7 @@ def generate_launch_description():
     moveit_config = (
         MoveItConfigsBuilder("robot_moveit_config", package_name="robot_moveit_config")
         .robot_description(
-            file_path="config/r5a_v_ros.urdf.xacro",
-            mappings={"use_sim_time": "true"}
+            file_path="config/r5a_v_ros.urdf.xacro", mappings={"use_sim_time": "true"}
         )
         .robot_description_semantic("config/armr5.srdf")
         .robot_description_kinematics("config/kinematics.yaml")
@@ -93,7 +91,7 @@ def generate_launch_description():
         .to_moveit_configs()
     )
     config_dict = moveit_config.to_dict()
-    use_sim_time = {"use_sim_time":True}
+    use_sim_time = {"use_sim_time": True}
     config_dict.update(use_sim_time)
 
     # Launch the Move Group node

@@ -13,42 +13,36 @@ import xacro
 
 
 def generate_launch_description():
-
     # Specify the name of the package and path to xacro file within the package
     pkg_name = "robot_description"
     share_dir = get_package_share_directory(pkg_name)
-
     # Use xacro to process the file
-    xacro_file = os.path.join(share_dir,"urdf","r5a_v_ros.urdf.xacro")
+    xacro_file = os.path.join(share_dir, "urdf", "r5a_v_ros.urdf.xacro")
     robot_description_xacro = xacro.process_file(xacro_file)
     robot_urdf = robot_description_xacro.toxml()
-
     # Configure the robot_state_publisher node
     node_robot_state_publisher = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[{"robot_description": robot_urdf},{"use_sim_time": True}],
+        parameters=[{"robot_description": robot_urdf}, {"use_sim_time": True}],
     )
-
     # Node to spawn the entity in Gazebo
     spawn_entity = Node(
         package="gazebo_ros",
         executable="spawn_entity.py",
-        arguments=["-topic", "/robot_description","-entity","armr5"],
+        arguments=["-topic", "/robot_description", "-entity", "armr5"],
         output="screen",
     )
-
     # Include the Gazebo launch file
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("gazebo_ros"),"launch"),
+                os.path.join(get_package_share_directory("gazebo_ros"), "launch"),
                 "/gazebo.launch.py",
             ]
         ),
     )
-
     # Commands to load and start controllers after spawning the robot
     load_joint_states_controller = ExecuteProcess(
         cmd=[
@@ -61,7 +55,6 @@ def generate_launch_description():
         ],
         output="screen",
     )
-
     load_arm_controller = ExecuteProcess(
         cmd=[
             "ros2",
@@ -73,7 +66,6 @@ def generate_launch_description():
         ],
         output="screen",
     )
-
     return LaunchDescription(
         [
             gazebo,
