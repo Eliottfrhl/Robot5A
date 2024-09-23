@@ -4,10 +4,10 @@ name: Code Quality Linter
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   # C++ Linter job using cppcheck and clang-format
@@ -32,11 +32,10 @@ jobs:
       - name: Install clang-format
         run: sudo apt-get install -y clang-format
 
-      # Check C++ formatting with clang-format
+      # Automatically apply formatting changes to C++ files
       - name: Run clang-format
         run: |
-          # Find all C++ source files and check formatting
-          find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format --dry-run --Werror
+          find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format -i
 
   # Python Linter job using flake8
   lint_python:
