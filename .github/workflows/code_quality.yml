@@ -36,7 +36,8 @@ jobs:
       # Automatically apply formatting changes to C++ files
       - name: Run clang-format
         run: |
-          find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format -i
+          find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format --dry-run --Werror
+
 
   # Python Linter job using flake8
   lint_python:
