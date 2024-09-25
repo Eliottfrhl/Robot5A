@@ -9,6 +9,29 @@ This project involves the simulation and control of a robotic arm using ROS2 Hum
 - Simulation Environment: Gazebo
 - Motion Planning: MoveIt2
 
+## Requirements Instalation
+
+```bash
+sudo apt update && sudo apt install -y \
+ros-humble-ros2-control \
+ros-humble-ros2-controllers \
+ros-humble-joint-state-broadcaster \
+ros-humble-robot-state-publisher \
+ros-humble-controller-manager \
+ros-humble-joint-trajectory-controller \
+ros-humble-rqt \
+ros-humble-rqt-common-plugins \
+ros-humble-rqt-graph \
+ros-humble-gazebo-ros-pkgs \
+ros-humble-gazebo-ros2-control \
+ros-humble-xacro \
+ros-humble-diagnostic-updater \
+ros-humble-rviz2 \
+ros-humble-tf2-tools \
+ros-humble-ros2bag
+meshlab \
+```
+
 ## Usage
 
 Source the ROS2 and project setup files:
