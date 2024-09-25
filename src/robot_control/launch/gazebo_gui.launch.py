@@ -33,7 +33,7 @@ def generate_launch_description():
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory("gazebo_ros"), "launch", "gazebo.launch.py")]),
-        launch_arguments={"verbose": "true","use_sim_time":"true"}.items(),  # Add this line
+        launch_arguments={"use_sim_time":"true"}.items(),  # Add this line
     )
 
     # Spawn entity
