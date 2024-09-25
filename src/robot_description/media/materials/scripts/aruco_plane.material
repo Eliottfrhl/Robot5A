@@ -1,0 +1,239 @@
+material id0_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id0.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id1_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id1.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id2_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id2.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id3_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id3.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id4_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id4.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id5_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id5.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id6_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id6.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id7_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id7.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id8_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id8.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id9_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id9.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id10_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id10.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id11_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id11.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id12_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id12.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id13_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id13.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id14_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id14.png
+        scale 1 1
+      }
+    }
+  }
+}
+
+material id15_Plane_Material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture id15.png
+        scale 1 1
+      }
+    }
+  }
+}
