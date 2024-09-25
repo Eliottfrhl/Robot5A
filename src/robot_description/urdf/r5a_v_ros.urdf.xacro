@@ -370,6 +370,7 @@
     
     <hardware>
       <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      <param name="use_sim_time" type="bool">true</param>
     </hardware>
 
     <joint name="R0_Yaw">
@@ -422,6 +423,7 @@
       <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
       <parameters>$(find robot_description)/config/controller.yaml</parameters>
       <controller_manager_name>controller_manager</controller_manager_name>
+      <use_sim_time>true</use_sim_time>
     </plugin>
   </gazebo>
   
