@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="custom_world">
+    <!-- Include ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- Include sun for lighting -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- Include the simple box with package URI -->
+    <model name="my_mesh">
+      <pose>2.0 0 1.0  0 0 0</pose>
+      <static>true</static>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>src/robot_description/models/marker0/meshes/Marker0.dae</uri></mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>
