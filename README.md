@@ -1,6 +1,6 @@
 # Robotic Arm Simulation with ROS2 Humble
 
-![Robotic Arm](https://github.com/yourusername/robotic-arm-simulation/blob/main/images/robotic_arm.png)
+![Robotic Arm](images/rviz_view.png)
 
 ## Table of Contents
 
@@ -206,7 +206,7 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [ABMI](https://abmi-engineering.com/fr).
 
 ---
 
