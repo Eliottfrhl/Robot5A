@@ -1,9 +1,12 @@
 controller_manager:
   ros__parameters:
-    update_rate: 100 #Hz  
+    update_rate: 100 # Hz  
     use_sim_time: true
 
     arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
     joint_state_broadcaster:
@@ -41,6 +44,36 @@ arm_controller:
       R3_Yaw: {p: 100.0, i: 0.01, d: 1.0}
       R4_Pitch: {p: 100.0, i: 0.01, d: 1.0}
 
+gripper_controller:
+  ros__parameters:
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    joints:
+      - ServoGearB
+      - LeftGripper
+      - IdolGearB
+      - RightGripper
+      - LeftPivotArm
+      - RightPivotArm
 
+    state_publish_rate: 50.0 # Defaults to 50
+    action_monitor_rate: 20.0 # Defaults to 20
 
+    allow_partial_joints_goal: true # Defaults to false
+    hardware_state_has_offset: true
+    deduce_states_from_derivatives: true
 
+    constraints:
+      stopped_velocity_tolerance: 0.01 # Defaults to 0.01
+      goal_time: 0.0 # Defaults to 0.0 (start immediately)
+    
+    gains:
+      ServoGearB: {p: 50.0, i: 0.01, d: 0.5}
+      LeftGripper: {p: 50.0, i: 0.01, d: 0.5}
+      IdolGearB: {p: 50.0, i: 0.01, d: 0.5}
+      RightGripper: {p: 50.0, i: 0.01, d: 0.5}
+      LeftPivotArm: {p: 50.0, i: 0.01, d: 0.5}
+      RightPivotArm: {p: 50.0, i: 0.01, d: 0.5}
