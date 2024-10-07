@@ -20,6 +20,7 @@
 - [Architecture](#architecture)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
+- [Documentation](#documentation)
 - [License](#license)
 
 ## Project Description
@@ -206,6 +207,10 @@ Contributions are welcome! Please follow these steps:
     ```
 
 5. **Open a Pull Request**
+
+## Documentation
+
+All C++ nodes created under robot control package are documented using Doxygen check the **docs/html/index.html** for an interactive code docs 
 
 ## License
 
