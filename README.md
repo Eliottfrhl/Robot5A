@@ -1,6 +1,9 @@
 # Robotic Arm Simulation with ROS2 Humble
 
-![Robotic Arm](images/rviz_view.png)
+<p align="center">
+  <img src="images/rviz_view.png" alt="Robotic Arm" />
+</p>
+
 
 ## Table of Contents
 
