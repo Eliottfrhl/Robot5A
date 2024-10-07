@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - master
+      - feat/eliot
+      - feat/omar
   pull_request:
     branches:
       - master
