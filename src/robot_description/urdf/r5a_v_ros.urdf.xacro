@@ -340,6 +340,356 @@
       velocity="1" />
   </joint>
 
+
+  <link
+    name="R5A_GripperLeft_Link1">
+    <inertial>
+      <origin
+        xyz="-0.00659452357788465 -0.000394229793384326 2.33412007907905E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.00487858122952031" />
+      <inertia
+        ixx="2.28094324920984E-07"
+        ixy="1.6939216964308E-08"
+        ixz="-1.00081436396378E-10"
+        iyy="9.51062234425376E-07"
+        iyz="1.21242073786144E-09"
+        izz="1.15060635431211E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ServoGearB"
+    type="revolute">
+    <origin
+      xyz="0.014 -0.00039429 0.064999"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperLeft_Link1" />
+    <axis
+      xyz="0 -0.006066 -0.99998" />
+      <limit
+        lower="-1.5"
+        upper="1.5"
+        effort="5"
+        velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperLeft_Link2">
+    <inertial>
+      <origin
+        xyz="0.0121769148397689 0.0264987914633754 -0.000158443058812987"
+        rpy="0 0 0" />
+      <mass
+        value="0.0102851193663261" />
+      <inertia
+        ixx="3.24436687710476E-06"
+        ixy="-1.5451128797972E-06"
+        ixz="9.58011795509406E-09"
+        iyy="1.30527398272079E-06"
+        iyz="1.62739383329679E-08"
+        izz="3.9267289910886E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LeftGripper"
+    type="revolute">
+    <origin
+      xyz="-0.04 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="R5A_GripperLeft_Link1" />
+    <child
+      link="R5A_GripperLeft_Link2" />
+    <axis
+      xyz="0 -0.006066 -0.99998" />
+      <limit
+        lower="-1.5"
+        upper="1.5"
+        effort="5"
+        velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperRight_Link1">
+    <inertial>
+      <origin
+        xyz="0.00645173751342476 -0.000420742089629278 2.55112204819463E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.00500321973091749" />
+      <inertia
+        ixx="2.29355330577419E-07"
+        ixy="-1.79692415236578E-08"
+        ixz="1.09050530561434E-10"
+        iyy="9.57608070635847E-07"
+        iyz="1.21374586203517E-09"
+        izz="1.15767989130765E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="IdolGearB"
+    type="revolute">
+    <origin
+      xyz="-0.014 -0.00039429 0.064999"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperRight_Link1" />
+    <axis
+      xyz="0 -0.006066 -0.99998" />
+      <limit
+        lower="-1.5"
+        upper="1.5"
+        effort="5"
+        velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperRight_Link12">
+    <inertial>
+      <origin
+        xyz="-0.0121769121022422 0.0264987629996978 -0.000158239935640828"
+        rpy="0 0 0" />
+      <mass
+        value="0.0102851432058251" />
+      <inertia
+        ixx="3.24437190589206E-06"
+        ixy="1.54511360510839E-06"
+        ixz="-9.56821825774594E-09"
+        iyy="1.3052751101257E-06"
+        iyz="1.63061443850097E-08"
+        izz="3.92673308798734E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RightGripper"
+    type="revolute">
+    <origin
+      xyz="0.04 -8.7393E-05 0"
+      rpy="0 0 0" />
+    <parent
+      link="R5A_GripperRight_Link1" />
+    <child
+      link="R5A_GripperRight_Link12" />
+    <axis
+      xyz="0 -0.006066 -0.99998" />
+      <limit
+        lower="-1.5"
+        upper="1.5"
+        effort="5"
+        velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperLeft_Link3">
+    <inertial>
+      <origin
+        xyz="-0.0199999997525655 3.145952191419E-06 -1.90838667814405E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00167027391699935" />
+      <inertia
+        ixx="1.05068364831453E-08"
+        ixy="4.70838754646646E-11"
+        ixz="-2.8561858514888E-13"
+        iyy="3.09836744743031E-07"
+        iyz="5.57882383977291E-12"
+        izz="3.1075637533632E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LeftPivotArm"
+    type="revolute">
+    <origin
+      xyz="0.007 -0.00051561 0.084998"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperLeft_Link3" />
+    <axis
+      xyz="0 0.006066 0.99998" />
+      <limit
+        lower="-1.5"
+        upper="1.5"
+        effort="5"
+        velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperRight_Link3">
+    <inertial>
+      <origin
+        xyz="0.0199999522632083 -4.36966718125875E-05 2.65070677342503E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.00167027391699936" />
+      <inertia
+        ixx="1.05082579798441E-08"
+        ixy="6.53984435711306E-10"
+        ixz="-3.96716935939432E-12"
+        iyy="3.09835323298639E-07"
+        iyz="5.5874465381491E-12"
+        izz="3.10756375284014E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RigtPivotArm"
+    type="revolute">
+    <origin
+      xyz="-0.007 -0.00051561 0.084998"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperRight_Link3" />
+    <axis
+      xyz="0 -0.006066 -0.99998" />
+      <limit
+        lower="-1.5"
+        upper="1.5"
+        effort="5"
+        velocity="1" />
+  </joint>
+
   <gazebo reference="base_link">                                                                
     <material>Gazebo/White</material>
   </gazebo>                                         
@@ -364,12 +714,37 @@
     <material>Gazebo/Black</material>
   </gazebo>
 
+  <gazebo reference="R5A_GripperRight_Link1">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperRight_Link12">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperRight_Link3">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperLeft_Link1">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperLeft_Link2">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperLeft_Link3">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <ros2_control name="GazeboSystem" type="system">
-    
+
     <hardware>
       <plugin>gazebo_ros2_control/GazeboSystem</plugin>
     </hardware>
-
+  
+    <!-- Arm Joints -->
     <joint name="R0_Yaw">
       <command_interface name="position"/>
       <state_interface name="position">
@@ -401,7 +776,7 @@
       </state_interface>
       <state_interface name="velocity"/>
     </joint>
-
+  
     <joint name="R4_Pitch">
       <command_interface name="position"/>
       <state_interface name="position">
@@ -409,8 +784,58 @@
       </state_interface>
       <state_interface name="velocity"/>
     </joint>
-
+  
+    <!-- Gripper Joints -->
+    <joint name="ServoGearB">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  
+    <joint name="LeftGripper">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  
+    <joint name="IdolGearB">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  
+    <joint name="RightGripper">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  
+    <joint name="LeftPivotArm">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  
+    <joint name="RightPivotArm">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  
   </ros2_control>
+  
 
   <gazebo>
     <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
@@ -432,6 +857,12 @@
         <joint_name>R2_Pitch</joint_name>
         <joint_name>R3_Yaw</joint_name>
         <joint_name>R4_Pitch</joint_name>
+        <joint_name>ServoGearB</joint_name>
+        <joint_name>LeftGripper</joint_name>
+        <joint_name>IdolGearB</joint_name>
+        <joint_name>RightGripp</joint_name>
+        <joint_name>LeftPivotArm</joint_name>
+        <joint_name>RigtPivotArm</joint_name>
     </plugin> 
   </gazebo>
 
