@@ -343,23 +343,23 @@
   <xacro:include filename="aruco.urdf.xacro" />
 
   <gazebo reference="base_link">                                                                
-    <material>Gazebo/White</material>
+    <material>Gazebo/Yellow</material>
   </gazebo>                                         
   
   <gazebo reference="R5A_link1">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Yellow</material>
   </gazebo>                 
                           
   <gazebo reference="R5A_link2">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Yellow</material>
   </gazebo>
 
   <gazebo reference="R5A_link3">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Yellow</material>
   </gazebo>
 
   <gazebo reference="R5A_link4">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Yellow</material>
   </gazebo>
 
   <gazebo reference="R5A_link5">
@@ -454,7 +454,7 @@
   </link> 
   
   <joint name="camera_joint" type="fixed"> 
-    <origin xyz="0.5 0.5 1" rpy="1.57 1.57 0"/> 
+    <origin xyz="0.6 0 0.3" rpy="0 0 3.14159"/> 
       <parent link="base_link"/> <child link="camera_link"/> 
   </joint> 
   
