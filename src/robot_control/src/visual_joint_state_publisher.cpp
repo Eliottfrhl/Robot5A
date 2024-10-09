@@ -16,6 +16,7 @@
 #include <map>
 #include <cmath>
 #include <stdexcept>
+#include <Eigen/Dense>
 
 /**
  * @class VisualJointStatePublisher
@@ -53,6 +54,7 @@ private:
     std::shared_ptr<tf2_ros::TransformListener> tf_listener_; ///< TF2 Listener
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_pub_; ///< Joint state publisher
     rclcpp::TimerBase::SharedPtr timer_; ///< Timer for periodic updates
+    tf2::Transform camera_transform_; ///< Transform for the camera in the base frame
 
     /**
      * @brief Loads marker configuration from a YAML file
@@ -62,6 +64,13 @@ private:
     void load_config(const std::string& config_file);
 
     /**
+     * @brief Loads camera transform from a YAML file
+     * @param config_file Path to the YAML configuration file
+     * @throw std::runtime_error if there's an error in loading or parsing the file
+     */
+    void load_camera_transform(const std::string& config_file);
+
+    /**
      * @brief Callback function for the timer
      *
      * Estimates joint states based on current marker poses and publishes them.
@@ -69,11 +78,12 @@ private:
     void timer_callback();
 
     /**
-     * @brief Computes the average transform from a vector of transforms
+     * @brief Computes the weighted average transform from a vector of transforms and their weights
      * @param transforms Vector of transforms to average
-     * @return The average transform
+     * @param weights Vector of weights corresponding to each transform
+     * @return The weighted average transform
      */
-    tf2::Transform average_transforms(const std::vector<tf2::Transform>& transforms);
+    tf2::Transform weighted_average_transforms(const std::vector<tf2::Transform>& transforms, const std::vector<double>& weights);
 
     /**
      * @brief Computes the rotation angle about a given axis
@@ -82,6 +92,13 @@ private:
      * @return The rotation angle in radians
      */
     double get_rotation_angle_about_axis(const tf2::Quaternion& q, const tf2::Vector3& axis);
+
+    /**
+     * @brief Computes a weight based on how directly the marker faces the camera
+     * @param transform The transform of the marker
+     * @return A weight value (higher for markers directly facing the camera)
+     */
+    double compute_weight(const tf2::Transform& transform);
 };
 
 VisualJointStatePublisher::VisualJointStatePublisher()
@@ -89,14 +106,19 @@ VisualJointStatePublisher::VisualJointStatePublisher()
 {
     // Declare and get parameters
     this->declare_parameter<std::string>("config_file", "src/robot_control/config/aruco_to_link.yaml");
-    this->declare_parameter<std::vector<std::string>>("joint_names", 
+    this->declare_parameter<std::string>("camera_config_file", "src/robot_control/config/transform.yaml");
+    this->declare_parameter<std::vector<std::string>>("joint_names",
         std::vector<std::string>{"R0_Yaw", "R1_Pitch", "R2_Pitch", "R3_Yaw", "R4_Pitch"});
 
     std::string config_file = this->get_parameter("config_file").as_string();
+    std::string camera_config_file = this->get_parameter("camera_config_file").as_string();
     joint_names_ = this->get_parameter("joint_names").as_string_array();
 
     // Load marker configurations
     load_config(config_file);
+
+    // Load camera transform
+    load_camera_transform(camera_config_file);
 
     // Initialize TF buffer and listener
     tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
@@ -141,16 +163,6 @@ void VisualJointStatePublisher::load_config(const std::string& config_file)
 
             marker_info_map_[marker_info.id] = marker_info;
             link_to_markers_[marker_info.parent_link].push_back(marker_info.id);
-
-            // Corrected Logging: Extract RPY from quaternion using tf2::Matrix3x3
-            tf2::Matrix3x3 mat(rot);
-            double roll, pitch, yaw;
-            mat.getRPY(roll, pitch, yaw);
-
-            RCLCPP_DEBUG(this->get_logger(), "Loaded Marker ID: %d, Parent Link: %s, Translation: [%f, %f, %f], Rotation (RPY): [%f, %f, %f]",
-                marker_info.id, marker_info.parent_link.c_str(),
-                trans.x(), trans.y(), trans.z(),
-                roll, pitch, yaw);
         }
 
         RCLCPP_INFO(this->get_logger(), "Loaded %zu ArUco marker configurations.", marker_info_map_.size());
@@ -167,9 +179,49 @@ void VisualJointStatePublisher::load_config(const std::string& config_file)
     }
 }
 
+void VisualJointStatePublisher::load_camera_transform(const std::string& config_file)
+{
+    try
+    {
+        YAML::Node config = YAML::LoadFile(config_file);
+        const YAML::Node& camera_node = config["camera"][0];
+        const YAML::Node& transform_matrix = camera_node["transform"];
+
+        if (transform_matrix.size() != 4 || transform_matrix[0].size() != 4)
+        {
+            throw std::runtime_error("Invalid transformation matrix for the camera.");
+        }
+
+        tf2::Matrix3x3 rotation(
+            transform_matrix[0][0].as<double>(), transform_matrix[0][1].as<double>(), transform_matrix[0][2].as<double>(),
+            transform_matrix[1][0].as<double>(), transform_matrix[1][1].as<double>(), transform_matrix[1][2].as<double>(),
+            transform_matrix[2][0].as<double>(), transform_matrix[2][1].as<double>(), transform_matrix[2][2].as<double>());
+        tf2::Vector3 translation(
+            transform_matrix[0][3].as<double>(),
+            transform_matrix[1][3].as<double>(),
+            transform_matrix[2][3].as<double>());
+
+        camera_transform_.setBasis(rotation);
+        camera_transform_.setOrigin(translation);
+
+        RCLCPP_INFO(this->get_logger(), "Loaded camera transform from configuration.");
+    }
+    catch (const YAML::Exception& e)
+    {
+        RCLCPP_ERROR(this->get_logger(), "YAML parsing error in '%s': %s", config_file.c_str(), e.what());
+        throw;
+    }
+    catch (const std::exception& e)
+    {
+        RCLCPP_ERROR(this->get_logger(), "Error loading camera transform from '%s': %s", config_file.c_str(), e.what());
+        throw;
+    }
+}
+
 void VisualJointStatePublisher::timer_callback()
 {
     std::map<std::string, std::vector<tf2::Transform>> link_poses;
+    std::map<std::string, std::vector<double>> link_weights;
     rclcpp::Time now = this->get_clock()->now();
 
     // Gather all link poses from markers
@@ -184,15 +236,19 @@ void VisualJointStatePublisher::timer_callback()
         }
         catch (tf2::TransformException& ex)
         {
-            RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 5000,
-                "Could not transform from 'world' to '%s': %s", marker_frame.c_str(), ex.what());
             continue;
         }
 
         tf2::Transform world_to_marker_tf;
         tf2::fromMsg(world_to_marker_msg.transform, world_to_marker_tf);
         tf2::Transform world_to_link_tf = world_to_marker_tf * marker_info.marker_to_link_tf;
+
+        double weight = compute_weight(world_to_marker_tf);
         link_poses[marker_info.parent_link].push_back(world_to_link_tf);
+        link_weights[marker_info.parent_link].push_back(weight);
+
+        // Debugging log
+        RCLCPP_DEBUG(this->get_logger(), "Marker %d weight: %f", marker_id, weight);
     }
 
     // Average poses for each link
@@ -201,7 +257,7 @@ void VisualJointStatePublisher::timer_callback()
     {
         if (!poses.empty())
         {
-            link_average_poses[link_name] = average_transforms(poses);
+            link_average_poses[link_name] = weighted_average_transforms(poses, link_weights[link_name]);
         }
     }
 
@@ -241,9 +297,16 @@ void VisualJointStatePublisher::timer_callback()
 
         // Compute joint angles constrained to specific axes
         double R0_Yaw_angle = get_rotation_angle_about_axis(base_to_link1.getRotation(), tf2::Vector3(0, 1, 0));
-        double R1_Pitch_angle = get_rotation_angle_about_axis(link1_to_link2.getRotation(), tf2::Vector3(-1, 0, 0));
-        double R2_Pitch_angle = get_rotation_angle_about_axis(link2_to_link3.getRotation(), tf2::Vector3(-1, 0, 0));
+        double R1_Pitch_angle = get_rotation_angle_about_axis(link1_to_link2.getRotation(), tf2::Vector3(1, 0, 0));
+        double R2_Pitch_angle = get_rotation_angle_about_axis(link2_to_link3.getRotation(), tf2::Vector3(1, 0, 0));
         double R3_Yaw_angle = get_rotation_angle_about_axis(link3_to_link4.getRotation(), tf2::Vector3(0, -1, 0));
+
+        // Correct R0_Yaw angle by adding Pi
+        R0_Yaw_angle += M_PI;
+        if (R0_Yaw_angle > M_PI)
+        {
+            R0_Yaw_angle -= 2 * M_PI; // Normalize the angle to the range [-π, π]
+        }
 
         // Assign joint angles
         std::vector<double> joint_positions(joint_names_.size(), 0.0); // Initialize with zeros
@@ -283,27 +346,29 @@ void VisualJointStatePublisher::timer_callback()
     }
 }
 
-tf2::Transform VisualJointStatePublisher::average_transforms(const std::vector<tf2::Transform>& transforms)
+tf2::Transform VisualJointStatePublisher::weighted_average_transforms(const std::vector<tf2::Transform>& transforms, const std::vector<double>& weights)
 {
     if (transforms.empty())
     {
         return tf2::Transform::getIdentity();
     }
 
-    // Average positions
+    // Weighted average positions
     tf2::Vector3 avg_origin(0, 0, 0);
-    for (const auto& tf : transforms)
+    double total_weight = 0.0;
+    for (size_t i = 0; i < transforms.size(); ++i)
     {
-        avg_origin += tf.getOrigin();
+        avg_origin += weights[i] * transforms[i].getOrigin();
+        total_weight += weights[i];
     }
-    avg_origin /= static_cast<double>(transforms.size());
+    avg_origin /= total_weight;
 
-    // Average quaternions with hemisphere consistency
+    // Weighted average quaternions with hemisphere consistency
     double qx = 0.0, qy = 0.0, qz = 0.0, qw = 0.0;
     tf2::Quaternion first_q = transforms[0].getRotation();
-    for (const auto& tf : transforms)
+    for (size_t i = 0; i < transforms.size(); ++i)
     {
-        tf2::Quaternion q = tf.getRotation();
+        tf2::Quaternion q = transforms[i].getRotation();
 
         // Ensure all quaternions are on the same hemisphere
         if (q.dot(first_q) < 0.0)
@@ -311,10 +376,10 @@ tf2::Transform VisualJointStatePublisher::average_transforms(const std::vector<t
             q = tf2::Quaternion(-q.x(), -q.y(), -q.z(), -q.w());
         }
 
-        qx += q.x();
-        qy += q.y();
-        qz += q.z();
-        qw += q.w();
+        qx += weights[i] * q.x();
+        qy += weights[i] * q.y();
+        qz += weights[i] * q.z();
+        qw += weights[i] * q.w();
     }
 
     double norm = std::sqrt(qx*qx + qy*qy + qz*qz + qw*qw);
@@ -353,6 +418,24 @@ double VisualJointStatePublisher::get_rotation_angle_about_axis(const tf2::Quate
     theta -= M_PI;
 
     return theta;
+}
+
+double VisualJointStatePublisher::compute_weight(const tf2::Transform& transform)
+{
+    // Compute weight based on how directly the marker faces the camera
+    tf2::Vector3 camera_z_axis = camera_transform_.getBasis().getColumn(2).normalized();
+    tf2::Vector3 marker_direction = transform.getBasis().getColumn(2).normalized(); // Z direction of the marker
+
+    // Calculate the dot product and ensure it's within a valid range
+    double dot_product = marker_direction.dot(camera_z_axis);
+    double weight = std::max(0.1, dot_product); // Set a minimum weight of 0.1
+
+    // Log marker and camera direction for debugging
+    RCLCPP_DEBUG(this->get_logger(), "Marker direction: (%f, %f, %f)", marker_direction.x(), marker_direction.y(), marker_direction.z());
+    RCLCPP_DEBUG(this->get_logger(), "Camera Z-axis direction: (%f, %f, %f)", camera_z_axis.x(), camera_z_axis.y(), camera_z_axis.z());
+    RCLCPP_DEBUG(this->get_logger(), "Computed weight: %f", weight);
+
+    return weight;
 }
 
 /**
