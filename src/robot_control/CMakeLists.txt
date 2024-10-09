@@ -50,7 +50,11 @@ ament_target_dependencies(
   Eigen3
 )
 
-target_link_libraries(object_detector yaml-cpp)  # Explicitly link yaml-cpp
+target_link_libraries(object_detector
+  yaml-cpp
+  ${OpenCV_LIBS}
+  Eigen3::Eigen
+)
 
 # Link libraries for moveit_control_simple
 ament_target_dependencies(moveit_control_simple
@@ -75,9 +79,13 @@ ament_target_dependencies(visual_joint_state_publisher
   tf2_ros
   tf2_geometry_msgs
   yaml-cpp
+  Eigen3
 )
 
-target_link_libraries(visual_joint_state_publisher yaml-cpp)  # Explicitly link yaml-cpp
+target_link_libraries(visual_joint_state_publisher
+  yaml-cpp
+  Eigen3::Eigen
+)
 
 # Install targets
 install(TARGETS
