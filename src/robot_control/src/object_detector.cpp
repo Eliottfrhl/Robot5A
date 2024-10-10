@@ -24,6 +24,10 @@ public:
 
         // Read the camera-to-fixed frame transformation
         readTransforms("src/robot_control/config/transform.yaml");
+
+        // Initialize image dimensions
+        image_width_ = 800;  // Set this to your camera's image width
+        image_height_ = 800; // Set this to your camera's image height
     }
 
 private:
@@ -50,16 +54,15 @@ private:
 
     // Function to parse a transformation from a YAML node
     Eigen::Matrix4d parseTransform(const YAML::Node& node) {
-        Eigen::Matrix4d transform;
-        for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
+        Eigen::Matrix4d transform = Eigen::Matrix4d::Identity();
+        for (int i = 0; i < node.size(); ++i) {
+            for (int j = 0; j < node[i].size(); ++j) {
                 transform(i, j) = node[i][j].as<double>();
             }
         }
         return transform;
     }
 
-    // Image callback to process received images
     void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
         cv::Mat frame;
         try {
@@ -70,10 +73,6 @@ private:
             return;
         }
 
-        // Resize image
-        cv::Size newSize(640, frame.cols * 640 / frame.rows);
-        cv::resize(frame, frame, newSize);
-
         // Detect ArUco markers
         std::vector<int> markerIds;
         std::vector<std::vector<cv::Point2f>> markerCorners, rejectedCandidates;
@@ -81,23 +80,18 @@ private:
         cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
         cv::aruco::detectMarkers(frame, dictionary, markerCorners, markerIds, detectorParams, rejectedCandidates);
 
-        float markerLength = 1.0; // Arbitrary unit for marker size
-        cv::Mat objPoints(4, 1, CV_32FC3);
-        objPoints.ptr<cv::Vec3f>(0)[0] = cv::Vec3f(-markerLength / 2.f, markerLength / 2.f, 0);
-        objPoints.ptr<cv::Vec3f>(0)[1] = cv::Vec3f(markerLength / 2.f, markerLength / 2.f, 0);
-        objPoints.ptr<cv::Vec3f>(0)[2] = cv::Vec3f(markerLength / 2.f, -markerLength / 2.f, 0);
-        objPoints.ptr<cv::Vec3f>(0)[3] = cv::Vec3f(-markerLength / 2.f, -markerLength / 2.f, 0);
-
-        size_t nMarkers = markerCorners.size();
-        std::vector<cv::Vec3d> rvecs(nMarkers), tvecs(nMarkers);
+        // Set the marker length in meters
+        float markerLength = 0.0425f; // Adjust this value to match your actual marker size
 
         cv::Mat outputImage = frame.clone();
         if (!markerIds.empty()) {
-            for (size_t i = 0; i < nMarkers; i++) {
-                // Solve for pose of each marker
-                cv::solvePnP(objPoints, markerCorners[i], camMatrix_, distCoeffs_, rvecs[i], tvecs[i]);
-                cv::drawFrameAxes(outputImage, camMatrix_, distCoeffs_, rvecs[i], tvecs[i], markerLength * 1.5f, 2);
+            size_t nMarkers = markerIds.size();
+            std::vector<cv::Vec3d> rvecs, tvecs;
 
+            // Estimate pose of markers
+            cv::aruco::estimatePoseSingleMarkers(markerCorners, markerLength, camMatrix_, distCoeffs_, rvecs, tvecs);
+
+            for (size_t i = 0; i < nMarkers; i++) {
                 // Convert rotation vector to rotation matrix
                 cv::Mat rotation_matrix;
                 cv::Rodrigues(rvecs[i], rotation_matrix);
@@ -143,7 +137,7 @@ private:
                 // Prepare the TransformStamped message
                 geometry_msgs::msg::TransformStamped transformStamped;
                 transformStamped.header.stamp = this->now();
-                transformStamped.header.frame_id = "world"; // Assuming the fixed frame is named "fixed_frame"
+                transformStamped.header.frame_id = "world"; // Adjust as per your fixed frame
                 transformStamped.child_frame_id = "aruco_" + std::to_string(markerIds[i]);
                 transformStamped.transform.translation.x = fixed_to_aruco(0, 3);
                 transformStamped.transform.translation.y = fixed_to_aruco(1, 3);
@@ -170,13 +164,15 @@ private:
         cv::waitKey(1);
     }
 
+
     rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription_; // Subscription for image data
     cv::Mat camMatrix_, distCoeffs_; // Camera calibration matrices
     tf2_ros::TransformBroadcaster tf_broadcaster_; // TF broadcaster for transformations
     Eigen::Matrix4d camera_transform_; // Transformation from camera to fixed frame
+    int image_width_;  // Image width (from camera settings)
+    int image_height_; // Image height (from camera settings)
 };
 
-// Main function
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv); // Initialize ROS2
     auto node = std::make_shared<ArucoDetector>(); // Create node
