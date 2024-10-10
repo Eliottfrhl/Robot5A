@@ -13,8 +13,20 @@
 #include <thread>
 #include <cmath>  // For M_PI
 
+/**
+ * @brief A GUI class to control a robotic arm using MoveIt.
+ * 
+ * This class provides a graphical user interface to control a robotic arm. 
+ * It allows the user to move the robot to predefined positions, random poses, 
+ * or positions based on TF frames.
+ */
 class MoveItControlGui : public QWidget {
 public:
+    /**
+     * @brief Constructor to initialize the MoveItControlGui class.
+     * 
+     * @param node Shared pointer to an rclcpp::Node instance.
+     */
     MoveItControlGui(rclcpp::Node::SharedPtr node)
         : node_(node),
           move_group_interface_(node_, "arm"),
@@ -51,7 +63,7 @@ public:
         layout->addWidget(move_to_tf_btn);
         layout->addWidget(refresh_frames_btn);
 
-        // Connect buttons
+        // Connect buttons to respective actions
         connect(move_to_home_btn, &QPushButton::clicked, this, [this]() {
             moveToPosition(0.006755, 0.000006, 0.777373, 0.0, 0.0, 1.0, 0.0);  // Home position
         });
@@ -70,6 +82,9 @@ public:
         refreshTfFrames();
     }
 
+    /**
+     * @brief Destructor to clean up resources.
+     */
     ~MoveItControlGui()
     {
         // Shutdown the executor
@@ -80,18 +95,27 @@ public:
     }
 
 private:
-    rclcpp::Node::SharedPtr node_;
-    moveit::planning_interface::MoveGroupInterface move_group_interface_;
-    tf2_ros::Buffer tf_buffer_;
-    tf2_ros::TransformListener tf_listener_;
-    QComboBox *tf_frame_selector_;
-    QLabel *status_label_;
+    rclcpp::Node::SharedPtr node_;  ///< Shared pointer to the ROS node
+    moveit::planning_interface::MoveGroupInterface move_group_interface_;  ///< Interface to control the robot arm
+    tf2_ros::Buffer tf_buffer_;  ///< Buffer to store TF transforms
+    tf2_ros::TransformListener tf_listener_;  ///< Listener to receive TF transforms
+    QComboBox *tf_frame_selector_;  ///< Dropdown to select TF frames
+    QLabel *status_label_;  ///< Label to display the status of the robot
 
-    // Executor and thread
-    rclcpp::executors::SingleThreadedExecutor::SharedPtr executor_;
-    std::thread executor_thread_;
+    rclcpp::executors::SingleThreadedExecutor::SharedPtr executor_;  ///< Executor to manage ROS callbacks
+    std::thread executor_thread_;  ///< Thread to run the executor
 
-    // Generic function to move to a position
+    /**
+     * @brief Moves the robot to a specified position.
+     * 
+     * @param x X-coordinate of the target position.
+     * @param y Y-coordinate of the target position.
+     * @param z Z-coordinate of the target position.
+     * @param qx X-component of the orientation quaternion.
+     * @param qy Y-component of the orientation quaternion.
+     * @param qz Z-component of the orientation quaternion.
+     * @param qw W-component of the orientation quaternion.
+     */
     void moveToPosition(double x, double y, double z, double qx, double qy, double qz, double qw) {
         RCLCPP_INFO(node_->get_logger(), "Moving to position: x=%.3f, y=%.3f, z=%.3f", x, y, z);
 
@@ -106,11 +130,6 @@ private:
 
         move_group_interface_.setPoseTarget(target_pose, "R5A_link5");
         move_group_interface_.setStartStateToCurrentState();
-        // Uncomment and adjust tolerances if needed
-        // move_group_interface_.setGoalPositionTolerance(0.01);
-        // move_group_interface_.setGoalOrientationTolerance(0.1);
-        RCLCPP_INFO(node_->get_logger(), "Orientation tolerance: %f", move_group_interface_.getGoalOrientationTolerance());
-        RCLCPP_INFO(node_->get_logger(), "Position tolerance: %f", move_group_interface_.getGoalPositionTolerance());
 
         moveit::planning_interface::MoveGroupInterface::Plan my_plan;
         bool success = (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS);
@@ -124,6 +143,9 @@ private:
         }
     }
 
+    /**
+     * @brief Moves the robot to a position based on a selected TF frame.
+     */
     void moveToTf() {
         QString selected_frame = tf_frame_selector_->currentText();
         if (selected_frame.isEmpty()) {
@@ -166,19 +188,14 @@ private:
         }
     }
 
-    // Function to move to a random pose
+    /**
+     * @brief Moves the robot to a random reachable pose.
+     */
     void moveToRandomPose() {
         RCLCPP_INFO(node_->get_logger(), "Moving to a random reachable pose...");
 
         // Set a random valid joint configuration
         move_group_interface_.setRandomTarget();
-
-        // Get the target pose after setting the random target
-        geometry_msgs::msg::PoseStamped random_pose = move_group_interface_.getCurrentPose();
-        RCLCPP_INFO(node_->get_logger(), "Random target pose: x=%.3f, y=%.3f, z=%.3f",
-                    random_pose.pose.position.x,
-                    random_pose.pose.position.y,
-                    random_pose.pose.position.z);
 
         // Plan and execute
         moveit::planning_interface::MoveGroupInterface::Plan my_plan;
@@ -193,7 +210,9 @@ private:
         }
     }
 
-    // Function to refresh the list of available TF frames
+    /**
+     * @brief Refreshes the list of available TF frames.
+     */
     void refreshTfFrames() {
         RCLCPP_INFO(node_->get_logger(), "Refreshing list of TF frames...");
 
@@ -215,6 +234,14 @@ private:
     }
 };
 
+/**
+ * @brief Main function to initialize the ROS node and start the GUI application.
+ * 
+ * @param argc Argument count.
+ * @param argv Argument vector.
+ * 
+ * @return Exit code of the application.
+ */
 int main(int argc, char *argv[]) {
     rclcpp::init(argc, argv);
 
