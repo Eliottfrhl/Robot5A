@@ -18,7 +18,9 @@
   <depend>cv_bridge</depend>
   <depend>sensor_msgs</depend>
   <depend>yaml-cpp</depend>
-  <depend>opencv4</depend> <!-- Changed from opencv to opencv4 -->
+  <depend>opencv</depend> <!-- Updated dependency -->
+  <depend>eigen3_cmake_module</depend> <!-- Ensure Eigen3 is properly found -->
+  <depend>eigen3</depend> <!-- Added for Eigen3 -->
 
   <!-- Qt5 dependencies -->
   <depend>qtbase5-dev</depend>
@@ -27,7 +29,6 @@
 
   <!-- Additional dependencies for visual_joint_state_publisher -->
   <depend>tf2</depend> <!-- Already implicitly included via tf2_ros -->
-
 
   <!-- Export dependencies -->
   <export>
