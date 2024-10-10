@@ -343,23 +343,23 @@
   <xacro:include filename="aruco.urdf.xacro" />
 
   <gazebo reference="base_link">                                                                
-    <material>Gazebo/Yellow</material>
+    <material>Gazebo/White</material>
   </gazebo>                                         
   
   <gazebo reference="R5A_link1">
-    <material>Gazebo/Yellow</material>
+    <material>Gazebo/White</material>
   </gazebo>                 
                           
   <gazebo reference="R5A_link2">
-    <material>Gazebo/Yellow</material>
+    <material>Gazebo/White</material>
   </gazebo>
 
   <gazebo reference="R5A_link3">
-    <material>Gazebo/Yellow</material>
+    <material>Gazebo/White</material>
   </gazebo>
 
   <gazebo reference="R5A_link4">
-    <material>Gazebo/Yellow</material>
+    <material>Gazebo/White</material>
   </gazebo>
 
   <gazebo reference="R5A_link5">
