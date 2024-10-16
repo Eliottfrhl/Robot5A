@@ -4,8 +4,8 @@ camera_matrix: !!opencv-matrix
    rows: 3
    cols: 3
    dt: d
-   data: [ 476.1904, 0., 400.,
-           0., 476.1904, 400.,
+   data: [ 1143.81, 0., 960.,
+           0., 1143.81, 540.,
            0., 0., 1. ]
 distortion_coefficients: !!opencv-matrix
    rows: 1

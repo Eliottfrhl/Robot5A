@@ -26,8 +26,8 @@ public:
         readTransforms("src/robot_control/config/transform.yaml");
 
         // Initialize image dimensions
-        image_width_ = 800;  // Set this to your camera's image width
-        image_height_ = 800; // Set this to your camera's image height
+        image_width_ = 1920;  // Set this to your camera's image width
+        image_height_ = 1080; // Set this to your camera's image height
     }
 
 private:
