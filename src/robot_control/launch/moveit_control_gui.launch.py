@@ -1,5 +1,5 @@
 """
-@file gui_node_launch.py
+@file moveit_control_gui.launch.py
 @brief Launch file for the GUI node controlling the robot.
 
 This launch file initializes the MoveIt configurations and launches the GUI node

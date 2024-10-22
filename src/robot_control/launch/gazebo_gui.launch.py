@@ -1,5 +1,5 @@
 """
-@file robot_launch.py
+@file gazebo_gui.launch.py
 @brief Launch file for setting up the robot simulation and MoveIt configurations.
 
 This launch file initializes the robot simulation in Gazebo, spawns the robot entity,

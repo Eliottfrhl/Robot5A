@@ -1,5 +1,5 @@
 """
-@file move_group_and_control_node_launch.py
+@file moveit_control.launch.py
 @brief Launch file for Move Group and robot control nodes.
 
 This launch file initializes the MoveIt configurations, launches the Move Group node,

@@ -1,4 +1,4 @@
-/// @file camera_calibrator.cpp
+/// @file cam_calibrator.cpp
 /// @brief Node that calibrates the camera using chessboard images.
 
 #include "rclcpp/rclcpp.hpp"

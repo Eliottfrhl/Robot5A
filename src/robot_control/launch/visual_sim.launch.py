@@ -1,5 +1,5 @@
 """
-@file robot_launch.py
+@file visual_sim.launch.py
 @brief Launch file for setting up the robot simulation with visual servoing components.
 
 This launch file initializes the robot simulation in Gazebo with a custom world that includes a spotlight,

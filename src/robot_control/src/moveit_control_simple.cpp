@@ -1,24 +1,32 @@
+/// @file moveit_control_simple.cpp
+/// @brief Simple ROS2 node using MoveIt to move a robot arm to a target pose.
+
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
-#include <geometry_msgs/msg/pose_stamped.h>
+#include <geometry_msgs/msg/pose_stamped.hpp>
 
+/// @brief Main function that initializes the node and moves the robot arm to a target pose.
+/// @param argc Argument count.
+/// @param argv Argument vector.
+/// @return Exit status code.
 int main(int argc, char * argv[])
 {
-  // Initialize ROS and create the Node
+  // Initialize ROS 2 and create the node
   rclcpp::init(argc, argv);
   auto node = std::make_shared<rclcpp::Node>(
     "moveit_control2",
     rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true)
   );
 
-  // Create a ROS logger
+  // Create a ROS 2 logger
   auto const logger = rclcpp::get_logger("moveit_control2");
 
-  // Setup the MoveIt MoveGroup Interface
+  // Setup the MoveIt MoveGroupInterface
   using moveit::planning_interface::MoveGroupInterface;
-  auto move_group_interface = MoveGroupInterface(node, "arm");  // Replace with your planning group
+  /// Replace "arm" with your planning group name
+  auto move_group_interface = MoveGroupInterface(node, "arm");
 
-  // Set a target Pose
+  // Set a target pose
   geometry_msgs::msg::Pose target_pose;
   target_pose.orientation.x = -0.303061;
   target_pose.orientation.y = -0.566473;
@@ -27,7 +35,8 @@ int main(int argc, char * argv[])
   target_pose.position.x = -0.018829;
   target_pose.position.y = -0.252053;
   target_pose.position.z = 0.578420;
-  move_group_interface.setPoseTarget(target_pose, "R5A_link5");  // Replace with your end-effector link
+  /// Replace "R5A_link5" with your end-effector link name
+  move_group_interface.setPoseTarget(target_pose, "R5A_link5");
 
   // Plan to the target pose
   moveit::planning_interface::MoveGroupInterface::Plan my_plan;
@@ -40,7 +49,7 @@ int main(int argc, char * argv[])
     RCLCPP_ERROR(logger, "Planning failed!");
   }
 
-  // Shutdown ROS
+  // Shutdown ROS 2
   rclcpp::shutdown();
   return 0;
 }

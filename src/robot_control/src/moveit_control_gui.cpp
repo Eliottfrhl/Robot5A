@@ -1,3 +1,6 @@
+/// @file moveit_control_gui.cpp
+/// @brief A ROS2 node providing a GUI to control a robotic arm using MoveIt.
+
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/executors/single_threaded_executor.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
