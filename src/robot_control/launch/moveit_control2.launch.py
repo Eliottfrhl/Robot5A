@@ -1,5 +1,5 @@
 """
-@file moveit_control_simple_launch.py
+@file moveit_control2.launch.py
 @brief Launch file for the robot control node.
 
 This launch file initializes the MoveIt configurations and starts the robot control node

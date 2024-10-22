@@ -1,4 +1,4 @@
-/// @file aruco_detector.cpp
+/// @file object_detector.cpp
 /// @brief Node that detects ArUco markers in images and broadcasts their poses as TF transforms.
 
 #include "rclcpp/rclcpp.hpp"
