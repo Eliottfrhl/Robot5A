@@ -12,7 +12,7 @@ find_package(ros2_controllers REQUIRED)  # This will bring in joint_state_contro
 find_package(robot_state_publisher REQUIRED)
 
 # Install directories
-install(DIRECTORY launch urdf meshes config
+install(DIRECTORY launch urdf meshes config worlds media
   DESTINATION share/${PROJECT_NAME}/
 )
 

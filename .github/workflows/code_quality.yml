@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - master
-      - feat/eliot
+      - feat/eliott
       - feat/omar
   pull_request:
     branches:
@@ -39,7 +39,7 @@ jobs:
       - name: Run clang-format
         run: |
           find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format --dry-run --Werror
-
+          find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format -i
 
   # Python Linter job using flake8
   lint_python:
@@ -73,5 +73,3 @@ jobs:
         run: |
           flake8 src/robot_description/launch
           flake8 src/robot_moveit_config/launch
-
-

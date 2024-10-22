@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package format="3">
   <name>robot_control</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="eliott@todo.todo">eliott</maintainer>
-  <license>TODO: License declaration</license>
+  <version>0.0.1</version>
+  <description>Robot Control Package</description>
+  <maintainer email="eliott@todo.todo">Eliott</maintainer>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -13,22 +13,24 @@
   <depend>moveit_ros_planning_interface</depend>
   <depend>geometry_msgs</depend>
   <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
   <depend>control_msgs</depend>
   <depend>cv_bridge</depend>
   <depend>sensor_msgs</depend>
   <depend>yaml-cpp</depend>
+  <depend>opencv</depend> <!-- Updated dependency -->
+  <depend>eigen3_cmake_module</depend> <!-- Ensure Eigen3 is properly found -->
+  <depend>eigen3</depend> <!-- Added for Eigen3 -->
 
-  <!-- OpenCV dependency -->
-  <depend>opencv</depend>
-
-  <!-- Qt5 dependency -->
+  <!-- Qt5 dependencies -->
   <depend>qtbase5-dev</depend>
   <depend>qt5-qmake</depend>
   <depend>libqt5widgets5</depend>
 
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  <!-- Additional dependencies for visual_joint_state_publisher -->
+  <depend>tf2</depend> <!-- Already implicitly included via tf2_ros -->
 
+  <!-- Export dependencies -->
   <export>
     <build_type>ament_cmake</build_type>
   </export>

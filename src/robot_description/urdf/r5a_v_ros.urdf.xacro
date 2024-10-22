@@ -340,6 +340,8 @@
       velocity="1" />
   </joint>
 
+  <xacro:include filename="aruco.urdf.xacro" />
+
   <gazebo reference="base_link">                                                                
     <material>Gazebo/White</material>
   </gazebo>                                         
@@ -368,6 +370,7 @@
     
     <hardware>
       <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      <param name="use_sim_time" type="bool">true</param>
     </hardware>
 
     <joint name="R0_Yaw">
@@ -420,6 +423,7 @@
       <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
       <parameters>$(find robot_description)/config/controller.yaml</parameters>
       <controller_manager_name>controller_manager</controller_manager_name>
+      <use_sim_time>true</use_sim_time>
     </plugin>
   </gazebo>
   
@@ -468,13 +472,13 @@
       <camera name="head1">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>800</width>
-          <height>800</height>
+          <width>1920</width>
+          <height>1080</height>
           <format>R8G8B8</format>
         </image>
         <clip>
           <near>0.02</near>
-          <far>300</far>
+          <far>300</far> 
         </clip>
         <noise>
           <type>gaussian</type>

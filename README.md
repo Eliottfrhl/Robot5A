@@ -218,4 +218,8 @@ This project is licensed under the [ABMI](https://abmi-engineering.com/fr).
 
 ---
 
-*Developed by [Eliot & Omar](https://github.com/Eliottfrhl)*
+*Developed by [Eliott & Omar](https://github.com/Eliottfrhl)*
+
+# Notes to myself
+
+export robot_description folder as gazebo resource path for materials

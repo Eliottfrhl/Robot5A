@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="custom_world_with_spotlight">
+    <!-- Include a ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Include a sun for lighting -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Define a spotlight -->
+    <light name="spot_light" type="spot">
+      <pose>1 0 0.55 0 1.45 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
+      <diffuse>1.0 1.0 1.0 1.0</diffuse>
+      <specular>0.1 0.1 0.1 1.0</specular>
+      <attenuation>
+        <range>10.0</range>
+        <constant>0.3</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0.5</inner_angle>
+        <outer_angle>1.0</outer_angle>
+        <falloff>1.0</falloff>
+      </spot>
+      <cast_shadows>true</cast_shadows>
+    </light>
+  </world>
+</sdf>

@@ -1,3 +1,11 @@
+"""
+@file moveit_control2.launch.py
+@brief Launch file for the robot control node.
+
+This launch file initializes the MoveIt configurations and starts the robot control node
+that interfaces with the MoveIt planning framework.
+"""
+
 import os
 from launch import LaunchDescription
 from launch_ros.actions import Node
@@ -5,6 +13,14 @@ from moveit_configs_utils import MoveItConfigsBuilder
 
 
 def generate_launch_description():
+    """
+    @brief Generates the launch description for the robot control node.
+
+    This function loads the MoveIt configurations and initializes the robot control node.
+
+    @return LaunchDescription object containing the robot control node.
+    """
+
     # Load the MoveIt configuration using MoveItConfigsBuilder
     moveit_config = (
         MoveItConfigsBuilder("robot_moveit_config", package_name="robot_moveit_config")
