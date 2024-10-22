@@ -1,9 +1,26 @@
+"""
+@file gui_node_launch.py
+@brief Launch file for the GUI node controlling the robot.
+
+This launch file initializes the MoveIt configurations and launches the GUI node
+that controls the robot using the MoveIt planning framework.
+"""
+
 import os
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from moveit_configs_utils import MoveItConfigsBuilder
 
 def generate_launch_description():
+    """
+    @brief Generates the launch description for the GUI node.
+
+    This function loads the MoveIt configurations and initializes the GUI node
+    that interfaces with the robot control package.
+
+    @return LaunchDescription object containing the GUI node.
+    """
+
     # Load the MoveIt configuration using MoveItConfigsBuilder
     moveit_config = (
         MoveItConfigsBuilder("robot_moveit_config", package_name="robot_moveit_config")
@@ -25,10 +42,10 @@ def generate_launch_description():
 
     # Launch the new C++ GUI node that controls the robot
     gui_node = Node(
-        package="robot_control",  # Your package name
-        executable="moveit_control_gui",  # New executable name
+        package="robot_control",  # Package name containing the GUI node
+        executable="moveit_control_gui",  # Executable name of the GUI node
         output="screen",
-        parameters=[config_dict,{"use_sim_time": True}],  # Pass the same MoveIt config to the GUI node
+        parameters=[config_dict, {"use_sim_time": True}],  # Pass MoveIt config to the GUI node
     )
 
     return LaunchDescription([gui_node])

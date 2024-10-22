@@ -1,3 +1,12 @@
+"""
+@file robot_launch.py
+@brief Launch file for setting up the robot simulation with visual servoing components.
+
+This launch file initializes the robot simulation in Gazebo with a custom world that includes a spotlight,
+spawns the robot entity, sets up the MoveIt configuration, and starts the necessary nodes and controllers
+for the robot operation, including visual servoing components like the object detector and visual joint state publisher nodes.
+"""
+
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
@@ -8,20 +17,29 @@ from launch_ros.actions import Node, SetParameter
 import xacro
 from moveit_configs_utils import MoveItConfigsBuilder
 
-
 def generate_launch_description():
+    """
+    @brief Generates the launch description for the robot simulation with visual servoing components.
+
+    This function sets up the robot description, launches Gazebo with a custom world file,
+    spawns the robot entity, configures MoveIt, and starts the necessary nodes and controllers,
+    including the GUI node, object detector node, and visual joint state publisher node.
+
+    @return LaunchDescription object containing all the nodes and configurations to launch.
+    """
+
     # Package Directories
-    pkg_name = "robot_description"
-    robot_moveit_config = "robot_moveit_config"
-    share_dir = get_package_share_directory(pkg_name)
-    moveit_config_pkg_path = get_package_share_directory(robot_moveit_config)
+    pkg_name = "robot_description"  # Name of the robot description package
+    robot_moveit_config = "robot_moveit_config"  # Name of the MoveIt configuration package
+    share_dir = get_package_share_directory(pkg_name)  # Path to the robot description package
+    moveit_config_pkg_path = get_package_share_directory(robot_moveit_config)  # Path to the MoveIt config package
 
     # Load and process URDF/XACRO file
-    xacro_file = os.path.join(share_dir, "urdf", "r5a_v_ros.urdf.xacro")
-    robot_description_config = xacro.process_file(xacro_file)
-    robot_description = {"robot_description": robot_description_config.toxml()}
+    xacro_file = os.path.join(share_dir, "urdf", "r5a_v_ros.urdf.xacro")  # Path to the XACRO file
+    robot_description_config = xacro.process_file(xacro_file)  # Process the XACRO file
+    robot_description = {"robot_description": robot_description_config.toxml()}  # Convert to XML format
 
-    # Robot State Publisher
+    # Robot State Publisher Node
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
@@ -29,15 +47,20 @@ def generate_launch_description():
         parameters=[robot_description, {"use_sim_time": True}],
     )
 
-    # Gazebo launch with a custom world file that includes a spot light
-    world_file_path = os.path.join(share_dir, "worlds", "spotlight.world")
+    # Gazebo launch with a custom world file that includes a spotlight
+    world_file_path = os.path.join(share_dir, "worlds", "spotlight.world")  # Path to the custom world file
     gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory("gazebo_ros"), "launch", "gazebo.launch.py")]),
+        PythonLaunchDescriptionSource([
+            os.path.join(
+                get_package_share_directory("gazebo_ros"),
+                "launch",
+                "gazebo.launch.py"
+            )
+        ]),
         launch_arguments={"use_sim_time": "true", "world": world_file_path}.items(),
     )
 
-    # Spawn entity
+    # Spawn Entity Node
     spawn_entity = Node(
         package="gazebo_ros",
         executable="spawn_entity.py",
@@ -45,7 +68,7 @@ def generate_launch_description():
         output="screen",
     )
 
-    # MoveIt configuration
+    # MoveIt Configuration
     moveit_config = (
         MoveItConfigsBuilder(robot_moveit_config, package_name=robot_moveit_config)
         .robot_description(file_path=xacro_file, mappings={"use_sim_time": "true"})
@@ -65,26 +88,44 @@ def generate_launch_description():
         parameters=[moveit_config.to_dict(), {"use_sim_time": True}],
     )
 
-    # Load controllers
+    # Load Controllers
     load_joint_state_controller = ExecuteProcess(
-        cmd=["ros2", "control", "load_controller", "--set-state", "active", "joint_state_broadcaster"],
+        cmd=[
+            "ros2",
+            "control",
+            "load_controller",
+            "--set-state",
+            "active",
+            "joint_state_broadcaster"
+        ],
         output="screen",
     )
 
     load_arm_controller = ExecuteProcess(
-        cmd=["ros2", "control", "load_controller", "--set-state", "active", "arm_controller"],
+        cmd=[
+            "ros2",
+            "control",
+            "load_controller",
+            "--set-state",
+            "active",
+            "arm_controller"
+        ],
         output="screen",
     )
 
-    # Launch the new C++ GUI node that controls the robot
+    # Launch the GUI Node
     gui_node = Node(
-        package="robot_control",  # Your package name
-        executable="moveit_control_gui",  # New executable name
+        package="robot_control",  # Package name containing the GUI node
+        executable="moveit_control_gui",  # Executable name of the GUI node
         output="screen",
-        parameters=[moveit_config.to_dict(),{"use_sim_time": True},{"moveit_current_state_monitor.joint_state_qos": "sensor_data"}],  # Pass the same MoveIt config to the GUI node
+        parameters=[
+            moveit_config.to_dict(),
+            {"use_sim_time": True},
+            {"moveit_current_state_monitor.joint_state_qos": "sensor_data"}
+        ],  # Pass MoveIt config to the GUI node
     )
 
-    # Launch object detector node
+    # Launch Object Detector Node
     object_detector_node = Node(
         package="robot_control",
         executable="object_detector",
@@ -92,7 +133,7 @@ def generate_launch_description():
         parameters=[{"use_sim_time": True}],
     )
 
-    # Launch visual joint state publisher node
+    # Launch Visual Joint State Publisher Node
     visual_joint_state_publisher_node = Node(
         package="robot_control",
         executable="visual_joint_state_publisher",
@@ -100,8 +141,9 @@ def generate_launch_description():
         parameters=[{"use_sim_time": True}],
     )
 
+    # Return the LaunchDescription
     return LaunchDescription([
-        SetParameter(name='use_sim_time', value=True),
+        SetParameter(name='use_sim_time', value=True),  # Enable simulation time
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=spawn_entity,
