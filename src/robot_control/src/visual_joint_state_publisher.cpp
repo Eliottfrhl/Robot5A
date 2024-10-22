@@ -1,7 +1,5 @@
-/**
- * @file visual_joint_state_publisher.cpp
- * @brief ROS2 node for estimating joint states using ArUco marker detections
- */
+/// @file visual_joint_state_publisher.cpp
+/// @brief ROS2 node for estimating joint states using ArUco marker detections.
 
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/joint_state.hpp"
@@ -18,86 +16,68 @@
 #include <stdexcept>
 #include <Eigen/Dense>
 
-/**
- * @class VisualJointStatePublisher
- * @brief Estimates and publishes joint states based on ArUco marker detections
- *
- * This class uses ArUco marker detections to estimate the joint states of a robot.
- * It reads marker configurations from a YAML file and uses TF2 to get marker poses.
- */
+/// @class VisualJointStatePublisher
+/// @brief Estimates and publishes joint states based on ArUco marker detections.
+///
+/// This class uses ArUco marker detections to estimate the joint states of a robot.
+/// It reads marker configurations from a YAML file and uses TF2 to get marker poses.
 class VisualJointStatePublisher : public rclcpp::Node
 {
 public:
-    /**
-     * @brief Constructor for VisualJointStatePublisher
-     *
-     * Initializes the node, loads configuration, sets up TF listener and publisher.
-     */
+    /// @brief Constructor for VisualJointStatePublisher.
+    ///
+    /// Initializes the node, loads configuration, sets up TF listener and publisher.
     VisualJointStatePublisher();
 
 private:
-    /**
-     * @struct MarkerInfo
-     * @brief Stores information about an ArUco marker
-     */
+    /// @struct MarkerInfo
+    /// @brief Stores information about an ArUco marker.
     struct MarkerInfo
     {
-        int id; ///< Marker ID
-        std::string parent_link; ///< Name of the parent link
-        tf2::Transform marker_to_link_tf; ///< Transform from marker to link
+        int id;                               ///< Marker ID.
+        std::string parent_link;              ///< Name of the parent link.
+        tf2::Transform marker_to_link_tf;     ///< Transform from marker to link.
     };
 
-    std::map<int, MarkerInfo> marker_info_map_; ///< Map of marker ID to MarkerInfo
-    std::map<std::string, std::vector<int>> link_to_markers_; ///< Map of link name to marker IDs
-    std::vector<std::string> joint_names_; ///< Names of the joints
-    std::shared_ptr<tf2_ros::Buffer> tf_buffer_; ///< TF2 Buffer
-    std::shared_ptr<tf2_ros::TransformListener> tf_listener_; ///< TF2 Listener
-    rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_pub_; ///< Joint state publisher
-    rclcpp::TimerBase::SharedPtr timer_; ///< Timer for periodic updates
-    tf2::Transform camera_transform_; ///< Transform for the camera in the base frame
+    std::map<int, MarkerInfo> marker_info_map_;                 ///< Map of marker ID to MarkerInfo.
+    std::map<std::string, std::vector<int>> link_to_markers_;   ///< Map of link name to marker IDs.
+    std::vector<std::string> joint_names_;                      ///< Names of the joints.
+    std::shared_ptr<tf2_ros::Buffer> tf_buffer_;                ///< TF2 Buffer.
+    std::shared_ptr<tf2_ros::TransformListener> tf_listener_;   ///< TF2 Listener.
+    rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_pub_;  ///< Joint state publisher.
+    rclcpp::TimerBase::SharedPtr timer_;                        ///< Timer for periodic updates.
+    tf2::Transform camera_transform_;                           ///< Transform for the camera in the base frame.
 
-    /**
-     * @brief Loads marker configuration from a YAML file
-     * @param config_file Path to the YAML configuration file
-     * @throw std::runtime_error if there's an error in loading or parsing the file
-     */
+    /// @brief Loads marker configuration from a YAML file.
+    /// @param config_file Path to the YAML configuration file.
+    /// @throw std::runtime_error if there's an error in loading or parsing the file.
     void load_config(const std::string& config_file);
 
-    /**
-     * @brief Loads camera transform from a YAML file
-     * @param config_file Path to the YAML configuration file
-     * @throw std::runtime_error if there's an error in loading or parsing the file
-     */
+    /// @brief Loads camera transform from a YAML file.
+    /// @param config_file Path to the YAML configuration file.
+    /// @throw std::runtime_error if there's an error in loading or parsing the file.
     void load_camera_transform(const std::string& config_file);
 
-    /**
-     * @brief Callback function for the timer
-     *
-     * Estimates joint states based on current marker poses and publishes them.
-     */
+    /// @brief Callback function for the timer.
+    ///
+    /// Estimates joint states based on current marker poses and publishes them.
     void timer_callback();
 
-    /**
-     * @brief Computes the weighted average transform from a vector of transforms and their weights
-     * @param transforms Vector of transforms to average
-     * @param weights Vector of weights corresponding to each transform
-     * @return The weighted average transform
-     */
+    /// @brief Computes the weighted average transform from a vector of transforms and their weights.
+    /// @param transforms Vector of transforms to average.
+    /// @param weights Vector of weights corresponding to each transform.
+    /// @return The weighted average transform.
     tf2::Transform weighted_average_transforms(const std::vector<tf2::Transform>& transforms, const std::vector<double>& weights);
 
-    /**
-     * @brief Computes the rotation angle about a given axis
-     * @param q The rotation as a quaternion
-     * @param axis The axis of rotation
-     * @return The rotation angle in radians
-     */
+    /// @brief Computes the rotation angle about a given axis.
+    /// @param q The rotation as a quaternion.
+    /// @param axis The axis of rotation.
+    /// @return The rotation angle in radians.
     double get_rotation_angle_about_axis(const tf2::Quaternion& q, const tf2::Vector3& axis);
 
-    /**
-     * @brief Computes a weight based on how directly the marker faces the camera
-     * @param transform The transform of the marker
-     * @return A weight value (higher for markers directly facing the camera)
-     */
+    /// @brief Computes a weight based on how directly the marker faces the camera.
+    /// @param transform The transform of the marker.
+    /// @return A weight value (higher for markers directly facing the camera).
     double compute_weight(const tf2::Transform& transform);
 };
 
@@ -438,12 +418,12 @@ double VisualJointStatePublisher::compute_weight(const tf2::Transform& transform
     return weight;
 }
 
-/**
- * @brief Main function
- * @param argc Number of command-line arguments
- * @param argv Array of command-line arguments
- * @return 0 on successful execution
- */
+/// @brief Main function.
+///
+/// Initializes the node and starts spinning.
+/// @param argc Number of command-line arguments.
+/// @param argv Array of command-line arguments.
+/// @return 0 on successful execution.
 int main(int argc, char** argv)
 {
     rclcpp::init(argc, argv);

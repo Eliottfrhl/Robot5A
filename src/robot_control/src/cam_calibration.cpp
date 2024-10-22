@@ -1,3 +1,6 @@
+/// @file camera_calibrator.cpp
+/// @brief Node that calibrates the camera using chessboard images.
+
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "cv_bridge/cv_bridge.h"
@@ -8,10 +11,11 @@
 #include <iostream>
 #include <fstream>
 
-// Define the CameraCalibrator class inheriting from rclcpp::Node
+/// @class CameraCalibrator
+/// @brief A ROS2 node that calibrates the camera using images of a chessboard pattern.
 class CameraCalibrator : public rclcpp::Node {
 public:
-    // Constructor for the class
+    /// @brief Constructor for the CameraCalibrator class.
     CameraCalibrator() : Node("camera_calibrator"), detected_chessboard_count_(0) {
         // Subscribe to the image topic
         image_subscription_ = this->create_subscription<sensor_msgs::msg::Image>(
@@ -30,7 +34,8 @@ public:
     }
 
 private:
-    // Callback for receiving images
+    /// @brief Callback function for receiving images.
+    /// @param msg The image message received.
     void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
         RCLCPP_INFO(this->get_logger(), "Image received.");
 
@@ -80,7 +85,7 @@ private:
         }
     }
 
-    // Function to calibrate the camera
+    /// @brief Function to calibrate the camera using the collected image points and object points.
     void calibrateCamera() {
         if (obj_points_.empty() || img_points_.empty()) {
             RCLCPP_ERROR(this->get_logger(), "Insufficient data for calibration. No chessboards were detected.");
@@ -118,33 +123,36 @@ private:
             RCLCPP_ERROR(this->get_logger(), "Unknown error during camera calibration: %s", e.what());
         }
 
-        rclcpp::shutdown();  // Shutdown the node after calibration
+        rclcpp::shutdown();  ///< Shutdown the node after calibration
     }
 
     // Declaration of member variables
-    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription_;  // Image subscription
-    std::vector<std::vector<cv::Point3f>> obj_points_;  // 3D object points
-    std::vector<std::vector<cv::Point2f>> img_points_;  // 2D image points
-    std::vector<cv::Point3f> objp_;  // Object points for a chessboard
-    int detected_chessboard_count_;  // Counter for detected chessboards
-    const int num_corners_x = 7;  // Number of corners along X-axis
-    const int num_corners_y = 7;  // Number of corners along Y-axis
-    int img_width_ = 800;  // Image width
-    int img_height_ = 800;  // Image height
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription_;  ///< Subscription to the image topic.
+    std::vector<std::vector<cv::Point3f>> obj_points_;  ///< 3D points in real-world space for all images.
+    std::vector<std::vector<cv::Point2f>> img_points_;  ///< 2D points in image plane for all images.
+    std::vector<cv::Point3f> objp_;  ///< 3D points for a single chessboard pattern.
+    int detected_chessboard_count_;  ///< Counter for the number of detected chessboards.
+    const int num_corners_x = 7;  ///< Number of inner corners along the X-axis in the chessboard.
+    const int num_corners_y = 7;  ///< Number of inner corners along the Y-axis in the chessboard.
+    int img_width_ = 800;  ///< Width of the images used for calibration.
+    int img_height_ = 800;  ///< Height of the images used for calibration.
 };
 
-// Main function
+/// @brief Main function that initializes the CameraCalibrator node and starts spinning.
+/// @param argc Argument count.
+/// @param argv Argument vector.
+/// @return Exit status code.
 int main(int argc, char **argv) {
-    rclcpp::init(argc, argv);  // ROS2 initialization
+    rclcpp::init(argc, argv);  ///< ROS2 initialization
 
     try {
-        auto node = std::make_shared<CameraCalibrator>();  // Create CameraCalibrator node
+        auto node = std::make_shared<CameraCalibrator>();  ///< Create CameraCalibrator node
         RCLCPP_INFO(node->get_logger(), "Node started, waiting for images...");
-        rclcpp::spin(node);  // Execute the node
+        rclcpp::spin(node);  ///< Execute the node
     } catch (const std::exception& e) {
         RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Error during node execution: %s", e.what());
     }
 
-    rclcpp::shutdown();  // Shutdown ROS2
+    rclcpp::shutdown();  ///< Shutdown ROS2
     return 0;
 }

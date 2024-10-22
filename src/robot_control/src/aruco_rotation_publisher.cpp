@@ -1,4 +1,5 @@
-// aruco_rotation_publisher.cpp
+/// @file aruco_rotation_publisher.cpp
+/// @brief Node that publishes Euler angles (roll, pitch, yaw) for ArUco markers based on TF transformations.
 
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/transform_stamped.hpp"
@@ -9,9 +10,12 @@
 #include <string>
 #include <vector>
 
+/// @class ArucoRotationPublisher
+/// @brief Publishes Euler angles of ArUco markers relative to a target frame.
 class ArucoRotationPublisher : public rclcpp::Node
 {
 public:
+    /// @brief Constructor for ArucoRotationPublisher.
     ArucoRotationPublisher()
     : Node("aruco_rotation_publisher")
     {
@@ -35,17 +39,18 @@ public:
     }
 
 private:
-    std::shared_ptr<tf2_ros::Buffer> tf_buffer_; ///< TF2 Buffer
-    std::shared_ptr<tf2_ros::TransformListener> tf_listener_; ///< TF2 Listener
-    rclcpp::TimerBase::SharedPtr timer_; ///< Timer for periodic updates
+    std::shared_ptr<tf2_ros::Buffer> tf_buffer_; ///< TF2 Buffer for managing transformations.
+    std::shared_ptr<tf2_ros::TransformListener> tf_listener_; ///< TF2 Listener to listen to TF messages.
+    rclcpp::TimerBase::SharedPtr timer_; ///< Timer for periodic updates.
 
-    // Map of marker ID to publishers
+    /// @brief Map of marker ID to their respective publishers.
     std::map<int, rclcpp::Publisher<geometry_msgs::msg::Vector3Stamped>::SharedPtr> publishers_;
 
+    /// @brief Callback function called at each timer interval to publish Euler angles.
     void timer_callback()
     {
         rclcpp::Time now = this->get_clock()->now();
-        std::string target_frame = "world"; // Adjust if your fixed frame has a different name
+        std::string target_frame = "world"; ///< Adjust if your fixed frame has a different name.
 
         for (int marker_id = 0; marker_id <= 15; ++marker_id)
         {
@@ -88,6 +93,10 @@ private:
     }
 };
 
+/// @brief Main function that initializes the node and spins.
+/// @param argc Argument count.
+/// @param argv Argument vector.
+/// @return Exit status code.
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);

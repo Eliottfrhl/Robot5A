@@ -1,3 +1,6 @@
+/// @file aruco_detector.cpp
+/// @brief Node that detects ArUco markers in images and broadcasts their poses as TF transforms.
+
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "cv_bridge/cv_bridge.h"
@@ -5,15 +8,19 @@
 #include "tf2_ros/transform_broadcaster.h"
 #include <opencv2/opencv.hpp>
 #include <opencv2/aruco.hpp>
+#include <opencv2/video/tracking.hpp>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <yaml-cpp/yaml.h>
 #include <Eigen/Dense>
+#include <map>
 
-// Define the class ArucoDetector that inherits from rclcpp::Node
+/// @class ArucoDetector
+/// @brief Detects ArUco markers in images and publishes their poses using TF.
 class ArucoDetector : public rclcpp::Node {
 public:
+    /// @brief Constructor for ArucoDetector.
     ArucoDetector() : Node("aruco_detector"), tf_broadcaster_(this) {
         // Create a subscription for receiving images
         image_subscription_ = this->create_subscription<sensor_msgs::msg::Image>(
@@ -21,30 +28,31 @@ public:
 
         // Read camera calibration parameters
         readCameraCalibration("src/robot_control/config/camera_calibration.yaml", camMatrix_, distCoeffs_);
-
-        // Read the camera-to-fixed frame transformation
         readTransforms("src/robot_control/config/transform.yaml");
 
         // Initialize image dimensions
-        image_width_ = 1920;  // Set this to your camera's image width
-        image_height_ = 1080; // Set this to your camera's image height
+        image_width_ = 1920;
+        image_height_ = 1080;
     }
 
 private:
-    // Function to read camera calibration from a YAML file
+    /// @brief Reads camera calibration parameters from a file.
+    /// @param filename Path to the calibration file.
+    /// @param camMatrix Output camera matrix.
+    /// @param distCoeffs Output distortion coefficients.
     void readCameraCalibration(const std::string& filename, cv::Mat& camMatrix, cv::Mat& distCoeffs) {
         cv::FileStorage fs(filename, cv::FileStorage::READ);
         if (!fs.isOpened()) {
             RCLCPP_ERROR(this->get_logger(), "Failed to open camera calibration file: %s", filename.c_str());
             return;
         }
-
         fs["camera_matrix"] >> camMatrix;
         fs["distortion_coefficients"] >> distCoeffs;
         fs.release();
     }
 
-    // Function to read the camera-to-fixed frame transformation
+    /// @brief Reads transformation matrices from a YAML file.
+    /// @param filename Path to the YAML file.
     void readTransforms(const std::string& filename) {
         YAML::Node config = YAML::LoadFile(filename);
         if (config["camera"]) {
@@ -52,7 +60,9 @@ private:
         }
     }
 
-    // Function to parse a transformation from a YAML node
+    /// @brief Parses a transformation matrix from a YAML node.
+    /// @param node YAML node containing the transform.
+    /// @return The transformation matrix as an Eigen::Matrix4d.
     Eigen::Matrix4d parseTransform(const YAML::Node& node) {
         Eigen::Matrix4d transform = Eigen::Matrix4d::Identity();
         for (int i = 0; i < node.size(); ++i) {
@@ -102,7 +112,6 @@ private:
     void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
         cv::Mat frame;
         try {
-            // Convert ROS message to OpenCV image
             frame = cv_bridge::toCvCopy(msg, "bgr8")->image;
         } catch (cv_bridge::Exception& e) {
             RCLCPP_ERROR(this->get_logger(), "cv_bridge exception: %s", e.what());
@@ -125,7 +134,7 @@ private:
         }
 
         // Set the marker length in meters
-        float markerLength = 0.0425f; // Adjust this value to match your actual marker size
+        float markerLength = 0.0425f;
 
         cv::Mat outputImage = frame.clone();
         if (!markerIds.empty()) {
@@ -163,7 +172,7 @@ private:
                 // Prepare the TransformStamped message
                 geometry_msgs::msg::TransformStamped transformStamped;
                 transformStamped.header.stamp = this->now();
-                transformStamped.header.frame_id = "world"; // Adjust as per your fixed frame
+                transformStamped.header.frame_id = "world";
                 transformStamped.child_frame_id = "aruco_" + std::to_string(markerIds[i]);
                 transformStamped.transform.translation.x = fixed_to_aruco(0, 3);
                 transformStamped.transform.translation.y = fixed_to_aruco(1, 3);
@@ -190,19 +199,24 @@ private:
         cv::waitKey(1);
     }
 
+    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription_; ///< Subscription to the image topic.
+    cv::Mat camMatrix_, distCoeffs_; ///< Camera calibration parameters.
+    tf2_ros::TransformBroadcaster tf_broadcaster_; ///< TF broadcaster for publishing transforms.
+    Eigen::Matrix4d camera_transform_; ///< Transformation from camera to fixed frame.
+    int image_width_, image_height_; ///< Dimensions of the image.
 
-    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription_; // Subscription for image data
-    cv::Mat camMatrix_, distCoeffs_; // Camera calibration matrices
-    tf2_ros::TransformBroadcaster tf_broadcaster_; // TF broadcaster for transformations
-    Eigen::Matrix4d camera_transform_; // Transformation from camera to fixed frame
-    int image_width_;  // Image width (from camera settings)
-    int image_height_; // Image height (from camera settings)
+    /// @brief Kalman filters for each marker.
+    std::map<int, cv::KalmanFilter> kalman_filters_;
 };
 
+/// @brief Main function that initializes and spins the ArucoDetector node.
+/// @param argc Argument count.
+/// @param argv Argument vector.
+/// @return Exit status code.
 int main(int argc, char **argv) {
-    rclcpp::init(argc, argv); // Initialize ROS2
-    auto node = std::make_shared<ArucoDetector>(); // Create node
-    rclcpp::spin(node); // Run node
-    rclcpp::shutdown(); // Shutdown ROS2
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<ArucoDetector>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
     return 0;
 }
