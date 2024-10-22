@@ -63,6 +63,42 @@ private:
         return transform;
     }
 
+    /// @brief Initializes the Kalman filter for a given marker ID.
+    /// @param marker_id The ID of the ArUco marker.
+    void initializeKalmanFilter(int marker_id) {
+        // Initialize Kalman filter with state dimension 3 and measurement dimension 3
+        cv::KalmanFilter kf(3, 3); 
+        kf.transitionMatrix = cv::Mat::eye(3, 3, CV_32F); // Identity transition matrix
+        kf.measurementMatrix = cv::Mat::eye(3, 3, CV_32F);
+        kf.processNoiseCov = cv::Mat::eye(3, 3, CV_32F) * 1e-4; // Initial process noise covariance
+        kf.measurementNoiseCov = cv::Mat::eye(3, 3, CV_32F) * 1e-4; // Initial measurement noise covariance
+        kf.errorCovPost = cv::Mat::eye(3, 3, CV_32F);
+        kalman_filters_[marker_id] = kf;
+    }
+
+    /// @brief Applies Kalman filter to smooth the rotation vector for a given marker.
+    /// @param marker_id The ID of the ArUco marker.
+    /// @param rvec The rotation vector to be smoothed.
+    /// @return The smoothed rotation vector.
+    cv::Vec3d applyKalmanFilter(int marker_id, const cv::Vec3d& rvec) {
+        if (kalman_filters_.find(marker_id) == kalman_filters_.end()) {
+            initializeKalmanFilter(marker_id);
+        }
+
+        auto& kf = kalman_filters_[marker_id];
+
+        // Predict step
+        cv::Mat prediction = kf.predict();
+
+        // Measurement update
+        cv::Mat measurement = (cv::Mat_<float>(3, 1) << rvec[0], rvec[1], rvec[2]);
+        cv::Mat estimated = kf.correct(measurement);
+
+        return cv::Vec3d(estimated.at<float>(0), estimated.at<float>(1), estimated.at<float>(2));
+    }
+
+    /// @brief Callback function for processing received images.
+    /// @param msg The image message received.
     void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
         cv::Mat frame;
         try {
