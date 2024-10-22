@@ -145,29 +145,6 @@ private:
                 cv::Mat rotation_matrix;
                 cv::Rodrigues(rvecs[i], rotation_matrix);
 
-                // Extract the column vectors of the rotation matrix
-                cv::Mat col1 = rotation_matrix.col(0);
-                cv::Mat col2 = rotation_matrix.col(1);
-                cv::Mat col3 = rotation_matrix.col(2);
-
-                cv::Vec3d v1(col1.at<double>(0, 0), col1.at<double>(1, 0), col1.at<double>(2, 0));
-                cv::Vec3d v2(col2.at<double>(0, 0), col2.at<double>(1, 0), col2.at<double>(2, 0));
-                cv::Vec3d v3(col3.at<double>(0, 0), col3.at<double>(1, 0), col3.at<double>(2, 0));
-
-                // Compute the scalar triple product
-                cv::Vec3d cross_product = v1.cross(v2);
-                double scalar_triple_product = cross_product.dot(v3);
-
-                // Determine the handedness and correct if necessary
-                if (scalar_triple_product < 0) {
-                    RCLCPP_WARN(this->get_logger(), "Negative scalar triple product detected for marker ID: %d", markerIds[i]);
-                    // The coordinate system is left-handed; correct it
-                    rotation_matrix.col(2) = -rotation_matrix.col(2);
-
-                    // Recompute the rotation vector from the corrected rotation matrix
-                    cv::Rodrigues(rotation_matrix, rvecs[i]);
-                }
-
                 // Draw axis for each marker
                 cv::aruco::drawAxis(outputImage, camMatrix_, distCoeffs_, rvecs[i], tvecs[i], markerLength * 1.5f);
 
