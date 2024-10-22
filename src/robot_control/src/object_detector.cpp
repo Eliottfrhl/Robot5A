@@ -116,6 +116,14 @@ private:
         cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
         cv::aruco::detectMarkers(frame, dictionary, markerCorners, markerIds, detectorParams, rejectedCandidates);
 
+        // Refine corner locations to sub-pixel accuracy using cornerSubPix
+        if (!markerCorners.empty()) {
+            cv::Mat gray;
+            cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+            cv::TermCriteria criteria(cv::TermCriteria::EPS + cv::TermCriteria::MAX_ITER, 100, 0.001);
+            cv::cornerSubPix(gray, markerCorners[0], cv::Size(5, 5), cv::Size(-1, -1), criteria);
+        }
+
         // Set the marker length in meters
         float markerLength = 0.0425f; // Adjust this value to match your actual marker size
 
@@ -128,6 +136,11 @@ private:
             cv::aruco::estimatePoseSingleMarkers(markerCorners, markerLength, camMatrix_, distCoeffs_, rvecs, tvecs);
 
             for (size_t i = 0; i < nMarkers; i++) {
+                int marker_id = markerIds[i];
+
+                // Apply Kalman filter to smooth the rotation vector
+                rvecs[i] = applyKalmanFilter(marker_id, rvecs[i]);
+
                 // Convert rotation vector to rotation matrix
                 cv::Mat rotation_matrix;
                 cv::Rodrigues(rvecs[i], rotation_matrix);
