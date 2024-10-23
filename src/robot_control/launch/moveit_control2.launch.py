@@ -11,6 +11,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from moveit_configs_utils import MoveItConfigsBuilder
 
+
 def generate_launch_description():
     """
     @brief Generates the launch description for the robot control node.
@@ -24,8 +25,7 @@ def generate_launch_description():
     moveit_config = (
         MoveItConfigsBuilder("robot_moveit_config", package_name="robot_moveit_config")
         .robot_description(
-            file_path="config/r5a_v_ros.urdf.xacro",
-            mappings={"use_sim_time": "true"}
+            file_path="config/r5a_v_ros.urdf.xacro", mappings={"use_sim_time": "true"}
         )
         .robot_description_semantic("config/armr5.srdf")
         .robot_description_kinematics("config/kinematics.yaml")
