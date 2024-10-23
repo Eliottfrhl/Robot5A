@@ -147,8 +147,8 @@ private:
             for (size_t i = 0; i < nMarkers; i++) {
                 int marker_id = markerIds[i];
 
-                // Apply Kalman filter to smooth the rotation vector
-                rvecs[i] = applyKalmanFilter(marker_id, rvecs[i]);
+                // Apply Kalman filter to smooth the rotation vector (not working well)
+                // rvecs[i] = applyKalmanFilter(marker_id, rvecs[i]);
 
                 // Convert rotation vector to rotation matrix
                 cv::Mat rotation_matrix;
