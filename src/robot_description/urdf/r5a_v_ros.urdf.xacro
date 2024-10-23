@@ -460,7 +460,7 @@
   </gazebo>
 
   <joint name="camera_joint1" type="fixed"> 
-    <origin xyz="0.5 0.5 1" rpy="1.57 1.57 0"/> 
+    <origin xyz="1.2 0.0 0.45" rpy="0 0 3.14159"/> 
     <parent link="base_link"/> 
     <child link="camera_link1"/> 
   </joint> 
@@ -524,7 +524,7 @@
   </gazebo>
 
   <joint name="camera_joint2" type="fixed"> 
-    <origin xyz="-0.5 0.5 1" rpy="1.57 1.57 0"/> <!-- Adjust xyz to place in front of the first camera --> 
+    <origin xyz="-0.5 0.5 1" rpy="0 0.7854 -0.7854"/> <!-- Adjust xyz to place in front of the first camera --> 
     <parent link="base_link"/> 
     <child link="camera_link2"/> 
   </joint> 
@@ -536,8 +536,8 @@
       <camera name="head2">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>800</width>
-          <height>800</height>
+          <width>1920</width>
+          <height>1080</height>
           <format>R8G8B8</format>
         </image>
         <clip>

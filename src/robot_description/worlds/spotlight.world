@@ -12,8 +12,28 @@
     </include>
 
     <!-- Define a spotlight -->
-    <light name="spot_light" type="spot">
+    <light name="spot_light1" type="spot">
       <pose>1 0 0.55 0 1.45 0</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
+      <diffuse>1.0 1.0 1.0 1.0</diffuse>
+      <specular>0.1 0.1 0.1 1.0</specular>
+      <attenuation>
+        <range>10.0</range>
+        <constant>0.3</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>0 0 -1</direction>
+      <spot>
+        <inner_angle>0.5</inner_angle>
+        <outer_angle>1.0</outer_angle>
+        <falloff>1.0</falloff>
+      </spot>
+      <cast_shadows>true</cast_shadows>
+    </light>
+
+    <!-- Define a spotlight -->
+    <light name="spot_light2" type="spot">
+      <pose>-0.7 0.7 0.85 0 1.1854 2.35</pose> <!-- Position: x, y, z; Orientation: roll, pitch, yaw -->
       <diffuse>1.0 1.0 1.0 1.0</diffuse>
       <specular>0.1 0.1 0.1 1.0</specular>
       <attenuation>
