@@ -159,19 +159,10 @@ private:
     }
   }
 
+  
   /**
    * @brief Moves the robot to a position based on a selected TF frame.
    */
-  void moveToTf() {
-    QString selected_frame = tf_frame_selector_->currentText();
-    if (selected_frame.isEmpty()) {
-      RCLCPP_ERROR(node_->get_logger(), "No TF frame selected.");
-      status_label_->setText("Status: No TF frame selected.");
-      return;
-    }
-  }
-
-  // Function to move to a position broadcasted by a TF frame
   void moveToTf() {
     QString selected_frame = tf_frame_selector_->currentText();
     if (selected_frame.isEmpty()) {
@@ -204,48 +195,6 @@ private:
     }
   }
 
-  // Function to refresh the list of available TF frames
-  void refreshTfFrames() {
-    RCLCPP_INFO(node_->get_logger(), "Refreshing list of TF frames...");
-
-    // Get all frames from the TF buffer
-    std::vector<std::string> frame_list;
-    tf_buffer_._getFrameStrings(frame_list); // Fetch frames into vector
-    tf_frame_selector_->clear();
-
-    RCLCPP_INFO(node_->get_logger(),
-                "Moving to position from TF broadcaster: %s",
-                selected_frame.toStdString().c_str());
-
-    try {
-      // Look up the transform between "base_link" and the selected frame
-      geometry_msgs::msg::TransformStamped transformStamped =
-          tf_buffer_.lookupTransform(
-              "base_link",                  // Target frame (robot base frame)
-              selected_frame.toStdString(), // Source frame from dropdown
-              tf2::TimePointZero);
-
-      // Extract translation and add 0.1 units to the Z axis (move above the TF
-      // frame)
-      double target_x = transformStamped.transform.translation.x;
-      double target_y = transformStamped.transform.translation.y;
-      double target_z = transformStamped.transform.translation.z +
-                        0.1; // Move 0.1 units above the frame
-
-      // Set orientation to point downwards. Rotate 180 degrees around X-axis
-      tf2::Quaternion orientation_down;
-      orientation_down.setRPY(M_PI, 0, 0); // 180-degree rotation around X-axis
-
-      // Move the robot to the new position and orientation
-      moveToPosition(target_x, target_y, target_z, orientation_down.x(),
-                     orientation_down.y(), orientation_down.z(),
-                     orientation_down.w());
-
-    } catch (tf2::TransformException &ex) {
-      RCLCPP_ERROR(node_->get_logger(), "TF Exception: %s", ex.what());
-      status_label_->setText("Status: TF Exception occurred.");
-    }
-  }
 
   /**
    * @brief Moves the robot to a random reachable pose.
