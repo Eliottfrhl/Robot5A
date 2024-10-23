@@ -280,7 +280,6 @@ private:
             status_label_->setText("Status: TF frames updated.");
         }
     }
-  }
 };
 
 /**
