@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - master
+      - feat/eliott
+      - feat/omar
   pull_request:
     branches:
       - master
@@ -36,6 +38,7 @@ jobs:
       # Automatically apply formatting changes to C++ files
       - name: Run clang-format
         run: |
+          find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format --dry-run --Werror
           find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format -i
 
   # Python Linter job using flake8
@@ -62,8 +65,8 @@ jobs:
       # Run black formatter before linting
       - name: Run black formatter
         run: |
-          black src/robot_description/launch
-          black src/robot_moveit_config/launch
+          black --check src/robot_description/launch
+          black --check src/robot_moveit_config/launch
 
       # Run flake8 on the Python source directories
       - name: Run flake8

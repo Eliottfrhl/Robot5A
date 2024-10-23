@@ -21,6 +21,7 @@ import xacro
 
 
 def generate_launch_description():
+
     """
     @brief Generates the launch description for the robot simulation.
 
@@ -59,7 +60,6 @@ def generate_launch_description():
             {"use_sim_time": True},
         ],  # Parameters
     )
-
     # Node to spawn the entity in Gazebo
     spawn_entity = Node(
         package="gazebo_ros",  # Package containing the node
@@ -72,7 +72,6 @@ def generate_launch_description():
         ],  # Arguments for spawning
         output="screen",
     )
-
     # Include the Gazebo launch file
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -115,7 +114,6 @@ def generate_launch_description():
         ],  # Command to load and activate joint_state_broadcaster
         output="screen",
     )
-
     load_arm_controller = ExecuteProcess(
         cmd=[
             "ros2",
@@ -128,14 +126,13 @@ def generate_launch_description():
         output="screen",
     )
 
+
     # Return the LaunchDescription with all the nodes and event handlers
     return LaunchDescription(
         [
             gazebo,
             node_robot_state_publisher,
-            # node_joint_state_publisher,  # Uncomment if joint_state_publisher is needed
             spawn_entity,
-            # ros2_control_node,  # Uncomment if ros2_control_node is needed
             RegisterEventHandler(
                 event_handler=OnProcessExit(
                     target_action=spawn_entity,

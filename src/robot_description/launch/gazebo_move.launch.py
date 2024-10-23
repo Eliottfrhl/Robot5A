@@ -25,7 +25,6 @@ from moveit_configs_utils import MoveItConfigsBuilder
 def generate_launch_description():
     """
     @brief Generates the launch description for the robot simulation and MoveIt setup.
-
     This function sets up the robot description, launches Gazebo, spawns the robot entity,
     configures MoveIt, and starts the necessary nodes and controllers.
 
@@ -83,26 +82,6 @@ def generate_launch_description():
                 "/gazebo.launch.py",
             ]
         ),
-    )
-
-    # Joint State Publisher Node
-    node_joint_state_publisher = Node(
-        name="joint_state_publisher",  # Name of the node
-        package="joint_state_publisher",  # Package containing the node
-        executable="joint_state_publisher",  # Executable name
-        output="screen",
-    )
-
-    # Controller manager node
-    ros2_control_node = Node(
-        package="controller_manager",  # Package containing the node
-        executable="ros2_control_node",  # Executable name
-        parameters=[
-            os.path.join(
-                get_package_share_directory(pkg_name), "config", "controllers.yaml"
-            ),
-        ],  # Parameters including path to controllers configuration
-        output="screen",
     )
 
     # Commands to load and start controllers after spawning the robot
@@ -163,9 +142,7 @@ def generate_launch_description():
         [
             gazebo,
             node_robot_state_publisher,
-            # node_joint_state_publisher,  # Uncomment if joint_state_publisher is needed
             spawn_entity,
-            # ros2_control_node,  # Uncomment if ros2_control_node is needed
             RegisterEventHandler(
                 event_handler=OnProcessExit(
                     target_action=spawn_entity,

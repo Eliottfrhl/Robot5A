@@ -35,6 +35,7 @@ int main(int argc, char *argv[]) {
   target_pose.position.x = -0.018829;
   target_pose.position.y = -0.252053;
   target_pose.position.z = 0.578420;
+
   /// Replace "R5A_link5" with your end-effector link name
   move_group_interface.setPoseTarget(target_pose, "R5A_link5");
 

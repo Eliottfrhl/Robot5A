@@ -166,6 +166,49 @@ private:
       status_label_->setText("Status: No TF frame selected.");
       return;
     }
+  }
+
+  // Function to move to a position broadcasted by a TF frame
+  void moveToTf() {
+    QString selected_frame = tf_frame_selector_->currentText();
+    if (selected_frame.isEmpty()) {
+      RCLCPP_ERROR(node_->get_logger(), "No TF frame selected.");
+      status_label_->setText("Status: No TF frame selected.");
+      return;
+    }
+
+    RCLCPP_INFO(node_->get_logger(),
+                "Moving to position from TF broadcaster: %s",
+                selected_frame.toStdString().c_str());
+
+    try {
+      geometry_msgs::msg::TransformStamped transformStamped =
+          tf_buffer_.lookupTransform(
+              "base_link",                  // Target frame
+              selected_frame.toStdString(), // Source frame from dropdown
+              tf2::TimePointZero);
+
+      moveToPosition(transformStamped.transform.translation.x,
+                     transformStamped.transform.translation.y,
+                     transformStamped.transform.translation.z,
+                     transformStamped.transform.rotation.x,
+                     transformStamped.transform.rotation.y,
+                     transformStamped.transform.rotation.z,
+                     transformStamped.transform.rotation.w);
+    } catch (tf2::TransformException &ex) {
+      RCLCPP_ERROR(node_->get_logger(), "TF Exception: %s", ex.what());
+      status_label_->setText("Status: TF Exception occurred.");
+    }
+  }
+
+  // Function to refresh the list of available TF frames
+  void refreshTfFrames() {
+    RCLCPP_INFO(node_->get_logger(), "Refreshing list of TF frames...");
+
+    // Get all frames from the TF buffer
+    std::vector<std::string> frame_list;
+    tf_buffer_._getFrameStrings(frame_list); // Fetch frames into vector
+    tf_frame_selector_->clear();
 
     RCLCPP_INFO(node_->get_logger(),
                 "Moving to position from TF broadcaster: %s",
