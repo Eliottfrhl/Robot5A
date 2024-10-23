@@ -79,7 +79,6 @@ private:
     return transform;
   }
 
-
   /// @brief Callback function for processing received images.
   /// @param msg The image message received.
   void imageCallback(const sensor_msgs::msg::Image::SharedPtr msg) {
@@ -115,7 +114,7 @@ private:
     if (!markerIds.empty()) {
       size_t nMarkers = markerIds.size();
       std::vector<cv::Vec3d> rvecs, tvecs;
-      
+
       // Set the marker length in meters
       float markerLength = 0.0425f;
 

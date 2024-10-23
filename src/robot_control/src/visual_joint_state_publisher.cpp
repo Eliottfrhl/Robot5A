@@ -250,7 +250,8 @@ void VisualJointStatePublisher::timer_callback() {
   std::map<std::string, tf2::Transform> link_average_poses;
   for (const auto &[link_name, poses] : link_poses) {
     if (!poses.empty()) {
-      RCLCPP_DEBUG(this->get_logger(), "Processing link: %s", link_name.c_str());
+      RCLCPP_DEBUG(this->get_logger(), "Processing link: %s",
+                   link_name.c_str());
       link_average_poses[link_name] =
           weighted_average_transforms(poses, link_weights[link_name]);
     }

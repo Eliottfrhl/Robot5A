@@ -33,7 +33,10 @@ public:
   MoveItControlGui(rclcpp::Node::SharedPtr node)
       : node_(node), move_group_interface_(node_, "arm"),
         tf_buffer_(node_->get_clock()), tf_listener_(tf_buffer_),
-        executor_(std::make_shared<rclcpp::executors::SingleThreadedExecutor>()) {  // Initialisation dans la liste d'initialisation
+        executor_(std::make_shared<
+                  rclcpp::executors::
+                      SingleThreadedExecutor>()) { // Initialisation dans la
+                                                   // liste d'initialisation
     executor_->add_node(node_);
 
     // Start the executor in a separate thread
