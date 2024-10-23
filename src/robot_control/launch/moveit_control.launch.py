@@ -33,8 +33,7 @@ def generate_launch_description():
         .joint_limits("config/joint_limits.yaml")
         .trajectory_execution("config/moveit_controllers.yaml")
         .planning_scene_monitor(
-            publish_robot_description=True,
-            publish_robot_description_semantic=True
+            publish_robot_description=True, publish_robot_description_semantic=True
         )
         .planning_pipelines(pipelines=["ompl"])
         .to_moveit_configs()

@@ -1,16 +1,16 @@
 /// @file moveit_control_simple.cpp
 /// @brief Simple ROS2 node using MoveIt to move a robot arm to a target pose.
 
-#include <rclcpp/rclcpp.hpp>
-#include <moveit/move_group_interface/move_group_interface.h>
 #include <geometry_msgs/msg/pose_stamped.hpp>
+#include <moveit/move_group_interface/move_group_interface.h>
+#include <rclcpp/rclcpp.hpp>
 
-/// @brief Main function that initializes the node and moves the robot arm to a target pose.
+/// @brief Main function that initializes the node and moves the robot arm to a
+/// target pose.
 /// @param argc Argument count.
 /// @param argv Argument vector.
 /// @return Exit status code.
-int main(int argc, char * argv[])
-{
+int main(int argc, char *argv[]) {
   // Initialize ROS 2 and create the node
   rclcpp::init(argc, argv);
   auto node = std::make_shared<rclcpp::Node>(

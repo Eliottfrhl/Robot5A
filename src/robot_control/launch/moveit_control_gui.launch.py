@@ -45,7 +45,10 @@ def generate_launch_description():
         package="robot_control",  # Package name containing the GUI node
         executable="moveit_control_gui",  # Executable name of the GUI node
         output="screen",
-        parameters=[config_dict, {"use_sim_time": True}],  # Pass MoveIt config to the GUI node
+        parameters=[
+            config_dict,
+            {"use_sim_time": True},
+        ],  # Pass MoveIt config to the GUI node
     )
 
     return LaunchDescription([gui_node])
