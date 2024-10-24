@@ -21,7 +21,6 @@ import xacro
 
 
 def generate_launch_description():
-
     """
     @brief Generates the launch description for the robot simulation.
 
@@ -125,7 +124,6 @@ def generate_launch_description():
         ],  # Command to load and activate arm_controller
         output="screen",
     )
-
 
     # Return the LaunchDescription with all the nodes and event handlers
     return LaunchDescription(
