@@ -159,7 +159,6 @@ private:
     }
   }
 
-  
   /**
    * @brief Moves the robot to a position based on a selected TF frame.
    */
@@ -194,7 +193,6 @@ private:
       status_label_->setText("Status: TF Exception occurred.");
     }
   }
-
 
   /**
    * @brief Moves the robot to a random reachable pose.
