@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="armr5" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+  <xacro:include filename="aruco.urdf.xacro" />
   <link name="world"></link>
-
   <joint name="base_joint" type="fixed">
     <origine xyz="0 0 0" rpy="0 0 0"/>
     <parent link="world"/>
@@ -19,10 +18,10 @@
         value="1.54608760930939" />
       <inertia
         ixx="0.00335325507409126"
-        ixy="-2.74339673314697E-05"
-        ixz="6.86594556641863E-08"
+        ixy="-2.743396733147E-05"
+        ixz="6.86594556642029E-08"
         iyy="0.00381821146815156"
-        iyz="-1.94234209654721E-06"
+        iyz="-1.9423420965472E-06"
         izz="0.00646111115889031" />
     </inertial>
     <visual>
@@ -53,16 +52,16 @@
     name="R5A_link1">
     <inertial>
       <origin
-        xyz="-0.000863539879134232 0.0792884229151366 0.000217126309188392"
+        xyz="-0.000863539879134213 0.0792884229151367 0.000217126309188408"
         rpy="0 0 0" />
       <mass
         value="2.08660345546666" />
       <inertia
         ixx="0.00705202984610834"
-        ixy="4.18495769538317E-07"
-        ixz="-5.35090527847856E-08"
+        ixy="4.18495769536855E-07"
+        ixz="-5.35090527857546E-08"
         iyy="0.00650257727022909"
-        iyz="-7.95450001919316E-07"
+        iyz="-7.95450001919519E-07"
         izz="0.00859235014286563" />
     </inertial>
     <visual>
@@ -111,17 +110,17 @@
     name="R5A_link2">
     <inertial>
       <origin
-        xyz="0.000590340031700868 0.0792749789345379 -1.60575865215957E-05"
+        xyz="0.000590340031700784 0.0792749789345383 -1.60575865215828E-05"
         rpy="0 0 0" />
       <mass
         value="1.92247082198063" />
       <inertia
-        ixx="0.00487699383852878"
-        ixy="-3.6797699062717E-05"
-        ixz="1.05680472821036E-06"
-        iyy="0.002932746016665"
-        iyz="-4.85804534873411E-08"
-        izz="0.00503562271238705" />
+        ixx="0.00487699383852877"
+        ixy="-3.67976990627086E-05"
+        ixz="1.05680472821134E-06"
+        iyy="0.00293274601666501"
+        iyz="-4.85804534901831E-08"
+        izz="0.00503562271238706" />
     </inertial>
     <visual>
       <origin
@@ -151,14 +150,14 @@
     name="R1_Pitch"
     type="revolute">
     <origin
-      xyz="-0.00310901547925539 0.1655 0"
+      xyz="-0.00310901547925538 0.1655 0"
       rpy="0 0 0" />
     <parent
       link="R5A_link1" />
     <child
       link="R5A_link2" />
     <axis
-      xyz="-1 0 0" />
+      xyz="-0.999934112328875 0 -0.011479155067573" />
     <limit
       lower="-1.5"
       upper="1.5"
@@ -169,16 +168,16 @@
     name="R5A_link3">
     <inertial>
       <origin
-        xyz="-0.000315549279166808 0.0424449594079959 0.000423163095624355"
+        xyz="-0.000315549279166789 0.042444959407996 0.00042316309562433"
         rpy="0 0 0" />
       <mass
-        value="0.749292336081854" />
+        value="0.749292336081855" />
       <inertia
         ixx="0.00200425601332893"
-        ixy="9.17956375018228E-06"
-        ixz="-2.55766332055333E-08"
-        iyy="0.00069735819745095"
-        iyz="-7.84063656624613E-06"
+        ixy="9.1795637501825E-06"
+        ixz="-2.55766332056785E-08"
+        iyy="0.000697358197450952"
+        iyz="-7.84063656624641E-06"
         izz="0.00196480563389349" />
     </inertial>
     <visual>
@@ -217,7 +216,7 @@
       link="R5A_link3" />
     <axis
       xyz="-1 0 0" />
-   <limit
+    <limit
       lower="-1.5"
       upper="1.5"
       effort="5"
@@ -227,17 +226,17 @@
     name="R5A_link4">
     <inertial>
       <origin
-        xyz="-0.000206047771173058 0.0454873904143689 -0.000219105733635074"
+        xyz="-0.000206047771187218 0.0454873904143415 -0.000219105733632293"
         rpy="0 0 0" />
       <mass
-        value="0.355077243317324" />
+        value="0.355077243317478" />
       <inertia
-        ixx="0.000669805200122677"
-        ixy="-4.71996739328152E-07"
-        ixz="-1.57736445618108E-07"
-        iyy="0.000358674558440702"
-        iyz="-5.41990969302289E-08"
-        izz="0.00076811625156356" />
+        ixx="0.000669805200123062"
+        ixy="-4.71996739637697E-07"
+        ixz="-1.57736445584604E-07"
+        iyy="0.000358674558440891"
+        iyz="-5.41990968682589E-08"
+        izz="0.000768116251564114" />
     </inertial>
     <visual>
       <origin
@@ -274,7 +273,7 @@
     <child
       link="R5A_link4" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 -0.999718303067734 -0.0237342476470231" />
     <limit
       lower="-1.5"
       upper="1.5"
@@ -285,17 +284,17 @@
     name="R5A_link5">
     <inertial>
       <origin
-        xyz="-0.000304982815722917 0.000214555031841958 0.0238812711123602"
+        xyz="-0.000347552332670687 0.000167028378251888 0.0138173380766619"
         rpy="0 0 0" />
       <mass
-        value="0.232244400597819" />
+        value="0.198451767848984" />
       <inertia
-        ixx="0.000120322215361587"
-        ixy="-9.01049257248474E-08"
-        ixz="2.57785604684289E-07"
-        iyy="9.55044143695027E-05"
-        iyz="-7.60482494086889E-08"
-        izz="6.98522198363616E-05" />
+        ixx="0.000113354976202718"
+        ixy="-9.1633661632938E-08"
+        ixz="2.54500165125599E-07"
+        iyy="8.47211726683811E-05"
+        iyz="4.4543875805716E-08"
+        izz="6.47134110451793E-05" />
     </inertial>
     <visual>
       <origin
@@ -308,7 +307,7 @@
       <material
         name="">
         <color
-          rgba="1 1 1 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -325,23 +324,368 @@
     name="R4_Pitch"
     type="revolute">
     <origin
-      xyz="0 0.095 0"
-      rpy="1.5708 0 3.1416" />
+      xyz="0 0.0950000000000002 0"
+      rpy="1.5707963267949 0 3.14159265358979" />
     <parent
       link="R5A_link4" />
     <child
       link="R5A_link5" />
     <axis
-      xyz="-1 0 0" />
+      xyz="-0.995634790742834 0.0933346852058426 0" />
     <limit
       lower="-1.5"
       upper="1.5"
       effort="5"
       velocity="1" />
   </joint>
-
-  <xacro:include filename="aruco.urdf.xacro" />
-
+  <link
+    name="R5A_GripperLeft_Link1">
+    <inertial>
+      <origin
+        xyz="-0.00659452357779758 -0.000394229793377554 2.33412007890428E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.00487858122952023" />
+      <inertia
+        ixx="2.28094324920978E-07"
+        ixy="1.69392169643129E-08"
+        ixz="-1.00081436396101E-10"
+        iyy="9.51062234425361E-07"
+        iyz="1.21242073786193E-09"
+        izz="1.15060635431209E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ServoGearB"
+    type="revolute">
+    <origin
+      xyz="0.0140000000000435 -0.000394292596204153 0.0649988040916903"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperLeft_Link1" />
+    <axis
+      xyz="0 -0.006066039941515 -0.99998160141046" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="5"
+      velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperLeft_Link2">
+    <inertial>
+      <origin
+        xyz="0.0121769148397674 0.0264987914633908 -0.00015844305881356"
+        rpy="0 0 0" />
+      <mass
+        value="0.010285119366326" />
+      <inertia
+        ixx="3.24436687710476E-06"
+        ixy="-1.54511287979719E-06"
+        ixz="9.58011795509873E-09"
+        iyy="1.30527398272079E-06"
+        iyz="1.62739383329718E-08"
+        izz="3.9267289910886E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LeftGripper"
+    type="revolute">
+    <origin
+      xyz="-0.0399999995050676 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="R5A_GripperLeft_Link1" />
+    <child
+      link="R5A_GripperLeft_Link2" />
+    <axis
+      xyz="0 -0.00606603994152109 -0.99998160141046" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="5"
+      velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperRight_Link1">
+    <inertial>
+      <origin
+        xyz="0.00645173751362635 -0.000420742089632498 2.55112204775943E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0050032197309173" />
+      <inertia
+        ixx="2.29355330577406E-07"
+        ixy="-1.79692415236652E-08"
+        ixz="1.09050530560748E-10"
+        iyy="9.5760807063583E-07"
+        iyz="1.21374586203625E-09"
+        izz="1.15767989130762E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="IdolGearB"
+    type="revolute">
+    <origin
+      xyz="-0.014 -0.00039429 0.064999"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperRight_Link1" />
+    <axis
+      xyz="0 -0.006066 -0.99998" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="5"
+      velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperRight_Link12">
+    <inertial>
+      <origin
+        xyz="-0.0121769121022437 0.0264987629997102 -0.000158239935641401"
+        rpy="0 0 0" />
+      <mass
+        value="0.010285143205825" />
+      <inertia
+        ixx="3.24437190589205E-06"
+        ixy="1.54511360510839E-06"
+        ixz="-9.56821825775037E-09"
+        iyy="1.30527511012569E-06"
+        iyz="1.63061443850165E-08"
+        izz="3.92673308798733E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RightGripper"
+    type="revolute">
+    <origin
+      xyz="0.0399999045264166 -8.73933436228436E-05 0"
+      rpy="0 0 0" />
+    <parent
+      link="R5A_GripperRight_Link1" />
+    <child
+      link="R5A_GripperRight_Link12" />
+    <axis
+      xyz="0 -0.00606603994152205 -0.99998160141046" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="5"
+      velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperLeft_Link3">
+    <inertial>
+      <origin
+        xyz="-0.0199999997525652 3.14595219752523E-06 -1.9083866895607E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.00167027391699932" />
+      <inertia
+        ixx="1.0506836483145E-08"
+        ixy="4.70838754646716E-11"
+        ixz="-2.85618585168146E-13"
+        iyy="3.09836744743029E-07"
+        iyz="5.57882383972831E-12"
+        izz="3.10756375336318E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperLeft_Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LeftPivotArm"
+    type="revolute">
+    <origin
+      xyz="0.007000000000237 -0.000515613395019377 0.0849984361199003"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperLeft_Link3" />
+    <axis
+      xyz="0 0.00606603994152107 0.99998160141046" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="5"
+      velocity="1" />
+  </joint>
+  <link
+    name="R5A_GripperRight_Link3">
+    <inertial>
+      <origin
+        xyz="0.0199999522633234 -4.36966718082576E-05 2.65070677277451E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.00167027391699932" />
+      <inertia
+        ixx="1.05082579798437E-08"
+        ixy="6.53984435711288E-10"
+        ixz="-3.96716935937682E-12"
+        iyy="3.09835323298637E-07"
+        iyz="5.58744653817654E-12"
+        izz="3.10756375284011E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RigtPivotArm"
+    type="revolute">
+    <origin
+      xyz="-0.00699999999995929 -0.000515613394988563 0.0849984361199004"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="R5A_link5" />
+    <child
+      link="R5A_GripperRight_Link3" />
+    <axis
+      xyz="0 -0.00606603994152203 -0.99998160141046" />
+    <limit
+      lower="-1.5"
+      upper="1.5"
+      effort="5"
+      velocity="1" />
+  </joint>
   <gazebo reference="base_link">                                                                
     <material>Gazebo/White</material>
   </gazebo>                                         
