@@ -513,7 +513,7 @@
       velocity="1" />
   </joint>
   <link
-    name="R5A_GripperRight_Link12">
+    name="R5A_GripperRight_Link2">
     <inertial>
       <origin
         xyz="-0.0121769121022437 0.0264987629997102 -0.000158239935641401"
