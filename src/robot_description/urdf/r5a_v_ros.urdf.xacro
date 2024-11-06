@@ -534,7 +534,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link12.STL" />
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link2.STL" />
       </geometry>
       <material
         name="">
@@ -548,7 +548,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link12.STL" />
+          filename="file://$(find robot_description)/meshes/R5A_GripperRight_Link2.STL" />
       </geometry>
     </collision>
   </link>
@@ -561,7 +561,7 @@
     <parent
       link="R5A_GripperRight_Link1" />
     <child
-      link="R5A_GripperRight_Link12" />
+      link="R5A_GripperRight_Link2" />
     <axis
       xyz="0 -0.00606603994152205 -0.99998160141046" />
     <limit
