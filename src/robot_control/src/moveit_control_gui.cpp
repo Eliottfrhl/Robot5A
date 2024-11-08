@@ -108,6 +108,9 @@ private:
   rclcpp::Node::SharedPtr node_; ///< Shared pointer to the ROS node
   moveit::planning_interface::MoveGroupInterface
       move_group_interface_;  ///< Interface to control the robot arm
+  moveit::planning_interface::MoveGroupInterface 
+      gripper_move_group_; ///< Interface to control the robot gripper
+
   tf2_ros::Buffer tf_buffer_; ///< Buffer to store TF transforms
   tf2_ros::TransformListener
       tf_listener_;              ///< Listener to receive TF transforms

@@ -1,8 +1,14 @@
 # Default initial positions for armr5's ros2_control fake system
 
 initial_positions:
+  IdolGearB: 0
+  LeftGripper: 0
+  LeftPivotArm: 0
   R0_Yaw: 0
   R1_Pitch: 0
   R2_Pitch: 0
   R3_Yaw: 0
   R4_Pitch: 0
+  RightGripper: 0
+  RightPivotArm: 0
+  ServoGearB: 0
