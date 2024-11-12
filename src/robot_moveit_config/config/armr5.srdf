@@ -189,7 +189,23 @@
     <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_8" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_9" reason="Never"/>
 
-
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="R5A_link1" link2="R5A_link2" reason="Adjacent"/>
+    <disable_collisions link1="R5A_link1" link2="R5A_link3" reason="Never"/>
+    <disable_collisions link1="R5A_link1" link2="R5A_link4" reason="Never"/>
+    <disable_collisions link1="R5A_link1" link2="R5A_link5" reason="Never"/>
+    <disable_collisions link1="R5A_link1" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="R5A_link2" link2="R5A_link3" reason="Adjacent"/>
+    <disable_collisions link1="R5A_link2" link2="R5A_link4" reason="Never"/>
+    <disable_collisions link1="R5A_link2" link2="R5A_link5" reason="Never"/>
+    <disable_collisions link1="R5A_link2" link2="base_link" reason="Never"/>
+    <disable_collisions link1="R5A_link3" link2="R5A_link4" reason="Adjacent"/>
+    <disable_collisions link1="R5A_link3" link2="R5A_link5" reason="Never"/>
+    <disable_collisions link1="R5A_link3" link2="base_link" reason="Never"/>
+    <disable_collisions link1="R5A_link4" link2="R5A_link5" reason="Adjacent"/>
+    <disable_collisions link1="R5A_link4" link2="base_link" reason="Never"/>
+    <disable_collisions link1="R5A_link5" link2="base_link" reason="Never"/>
+    
      <!-- Disable collisions between ArUco planes and corresponding robot links -->
     
     <!-- ArUco planes 0 to 3 with base_link and R5A_link1 -->
