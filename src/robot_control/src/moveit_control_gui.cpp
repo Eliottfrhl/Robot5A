@@ -264,10 +264,10 @@ private:
     // Adjust these values based on your gripper's URDF joint limits
     target_joint_values["LeftGripper"] = 0.02;       // Open position value
     target_joint_values["RightGripper"] = 0.02;      // Open position value
-    target_joint_values["LeftPivotArm"] = 0.0;
-    target_joint_values["RightPivotArm"] = 0.0;
-    target_joint_values["IdolGearB"] = 0.0;
-    target_joint_values["ServoGearB"] = 0.0;
+    target_joint_values["LeftPivotArm"] = 0.01;
+    target_joint_values["RightPivotArm"] = 0.01;
+    target_joint_values["IdolGearB"] = 0.05;
+    target_joint_values["ServoGearB"] = 0.05;
 
     gripper_move_group_.setJointValueTarget(target_joint_values);
 

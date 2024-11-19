@@ -30,12 +30,7 @@ arm_controller:
 gripper_controller:
   ros__parameters:
     joints:
-      - IdolGearB
-      - RightGripper
-      - LeftPivotArm
-      - RightPivotArm
-      - ServoGearB
-      - LeftGripper
+      - ServoGear
     command_interfaces:
       - position
     state_interfaces:

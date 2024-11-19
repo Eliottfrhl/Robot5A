@@ -379,7 +379,7 @@
     </collision>
   </link>
   <joint
-    name="ServoGearB"
+    name="ServoGear"
     type="revolute">
     <origin
       xyz="0.0140000000000435 -0.000394292596204153 0.0649988040916903"
@@ -453,6 +453,7 @@
       upper="1.5"
       effort="5"
       velocity="1" />
+    <mimic joint="ServoGear" multiplier="-1"/>
   </joint>
   <link
     name="R5A_GripperRight_Link1">
@@ -495,7 +496,7 @@
     </collision>
   </link>
   <joint
-    name="IdolGearB"
+    name="PassifGear"
     type="revolute">
     <origin
       xyz="-0.014 -0.00039429 0.064999"
@@ -511,6 +512,7 @@
       upper="1.5"
       effort="5"
       velocity="1" />
+    <mimic joint="ServoGear" multiplier="-1"/>  
   </joint>
   <link
     name="R5A_GripperRight_Link2">
@@ -569,6 +571,7 @@
       upper="1.5"
       effort="5"
       velocity="1" />
+    <mimic joint="ServoGear" multiplier="1"/>
   </joint>
   <link
     name="R5A_GripperLeft_Link3">
@@ -627,6 +630,7 @@
       upper="1.5"
       effort="5"
       velocity="1" />
+    <mimic joint="ServoGear" multiplier="-1"/>
   </joint>
   <link
     name="R5A_GripperRight_Link3">
@@ -685,6 +689,7 @@
       upper="1.5"
       effort="5"
       velocity="1" />
+    <mimic joint="ServoGear" multiplier="-1"/>
   </joint>
   <gazebo reference="base_link">                                                                
     <material>Gazebo/White</material>
@@ -709,6 +714,31 @@
   <gazebo reference="R5A_link5">
     <material>Gazebo/Black</material>
   </gazebo>
+
+  <gazebo reference="R5A_GripperRight_Link1">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperRight_Link2">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperRight_Link3">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperLeft_Link1">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperLeft_Link2">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="R5A_GripperLeft_Link3">
+    <material>Gazebo/White</material>
+  </gazebo>
+
 
   <ros2_control name="GazeboSystem" type="system">
     
@@ -757,6 +787,54 @@
       <state_interface name="velocity"/>
     </joint>
 
+    <joint name="ServoGear">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="LeftGripper">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="LeftPivotArm">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="PassifGear">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="RightGripper">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="RightPivotArm">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+
   </ros2_control>
 
   <gazebo>
@@ -780,6 +858,12 @@
         <joint_name>R2_Pitch</joint_name>
         <joint_name>R3_Yaw</joint_name>
         <joint_name>R4_Pitch</joint_name>
+        <joint_name>ServoGear</joint_name>
+        <joint_name>LeftGripper</joint_name>
+        <joint_name>LeftPivotArm</joint_name>
+        <joint_name>PassifGear</joint_name>
+        <joint_name>RightGripper</joint_name>
+        <joint_name>RightPivotArm</joint_name>
     </plugin> 
   </gazebo>
 

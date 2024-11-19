@@ -8,17 +8,17 @@ default_acceleration_scaling_factor: 0.1
 # Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
 # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
 joint_limits:
-  IdolGearB:
-    has_velocity_limits: true
-    max_velocity: 1.0
-    has_acceleration_limits: false
-    max_acceleration: 0.0
   LeftGripper:
     has_velocity_limits: true
     max_velocity: 1.0
     has_acceleration_limits: false
     max_acceleration: 0.0
   LeftPivotArm:
+    has_velocity_limits: true
+    max_velocity: 1.0
+    has_acceleration_limits: false
+    max_acceleration: 0.0
+  PassifGear:
     has_velocity_limits: true
     max_velocity: 1.0
     has_acceleration_limits: false
@@ -58,7 +58,7 @@ joint_limits:
     max_velocity: 1.0
     has_acceleration_limits: false
     max_acceleration: 0.0
-  ServoGearB:
+  ServoGear:
     has_velocity_limits: true
     max_velocity: 1.0
     has_acceleration_limits: false

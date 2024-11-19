@@ -5,9 +5,9 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/armr5.srdf
   package_settings:
-    author_name: mcg+eliott
+    author_name: Eliott_Matthieu
     author_email: mail@mail.com
-    generated_timestamp: 1731062418
+    generated_timestamp: 1732010071
   control_xacro:
     command:
       - position

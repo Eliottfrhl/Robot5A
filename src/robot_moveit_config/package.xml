@@ -6,7 +6,7 @@
   <description>
      An automatically generated package with all the configuration and launch files for using the armr5 with the MoveIt Motion Planning Framework
   </description>
-  <maintainer email="mail@mail.com">mcg+eliott</maintainer>
+  <maintainer email="mail@mail.com">Eliott_Matthieu</maintainer>
 
   <license>BSD</license>
 
@@ -14,7 +14,7 @@
   <url type="bugtracker">https://github.com/ros-planning/moveit2/issues</url>
   <url type="repository">https://github.com/ros-planning/moveit2</url>
 
-  <author email="mail@mail.com">mcg+eliott</author>
+  <author email="mail@mail.com">Eliott_Matthieu</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
