@@ -19,18 +19,9 @@
 
 /**
  * @brief A GUI class to control a robotic arm and gripper using MoveIt.
- *
- * This class provides a graphical user interface to control a robotic arm and gripper.
- * It allows the user to move the robot to predefined positions, random poses,
- * positions based on TF frames, and control the gripper.
  */
 class MoveItControlGui : public QWidget {
 public:
-  /**
-   * @brief Constructor to initialize the MoveItControlGui class.
-   *
-   * @param node Shared pointer to an rclcpp::Node instance.
-   */
   MoveItControlGui(rclcpp::Node::SharedPtr node)
       : node_(node),
         move_group_interface_(node_, "arm"),
@@ -52,15 +43,12 @@ public:
     QPushButton *move_to_tf_btn = new QPushButton("Move to TF Position", this);
     QPushButton *refresh_frames_btn = new QPushButton("Refresh TF Frames", this);
 
-    // Gripper control buttons
     QPushButton *open_gripper_btn = new QPushButton("Open Gripper", this);
     QPushButton *close_gripper_btn = new QPushButton("Close Gripper", this);
 
-    // Dropdown to select TF frames
     tf_frame_selector_ = new QComboBox(this);
     layout->addWidget(tf_frame_selector_);
 
-    // Add status label to show the result of the planning
     status_label_ = new QLabel("Status: Waiting for action", this);
     layout->addWidget(status_label_);
 
@@ -69,44 +57,22 @@ public:
     layout->addWidget(move_to_random_pose_btn);
     layout->addWidget(move_to_tf_btn);
     layout->addWidget(refresh_frames_btn);
-
-    // Add gripper control buttons to the layout
     layout->addWidget(open_gripper_btn);
     layout->addWidget(close_gripper_btn);
 
-    // Connect buttons to respective actions
-    connect(move_to_home_btn, &QPushButton::clicked, this, [this]() {
-      moveToPosition(0.006755, 0.000006, 0.777373, 0.0, 0.0, 1.0,
-                     0.0); // Home position
-    });
-
-    connect(move_to_predefined_btn, &QPushButton::clicked, this, [this]() {
-      moveToPosition(0.298652, 0.020795, 0.166739, 0.684743, 0.728771,
-                     -0.001997, -0.004029); // Predefined position
-    });
-
-    connect(move_to_random_pose_btn, &QPushButton::clicked, this,
-            &MoveItControlGui::moveToRandomPose);
-    connect(move_to_tf_btn, &QPushButton::clicked, this,
-            &MoveItControlGui::moveToTf);
-    connect(refresh_frames_btn, &QPushButton::clicked, this,
-            &MoveItControlGui::refreshTfFrames);
-
-    // Connect gripper buttons to gripper control functions
+    connect(move_to_home_btn, &QPushButton::clicked, this, &MoveItControlGui::moveToHomePosition);
+    connect(move_to_predefined_btn, &QPushButton::clicked, this, &MoveItControlGui::moveToPredefinedPosition);
+    connect(move_to_random_pose_btn, &QPushButton::clicked, this, &MoveItControlGui::moveToRandomPose);
+    connect(move_to_tf_btn, &QPushButton::clicked, this, &MoveItControlGui::moveToTf);
+    connect(refresh_frames_btn, &QPushButton::clicked, this, &MoveItControlGui::refreshTfFrames);
     connect(open_gripper_btn, &QPushButton::clicked, this, &MoveItControlGui::openGripper);
     connect(close_gripper_btn, &QPushButton::clicked, this, &MoveItControlGui::closeGripper);
 
     setLayout(layout);
-
-    // Refresh frames on startup
-    refreshTfFrames();
+    refreshTfFrames(); // Refresh frames on startup
   }
 
-  /**
-   * @brief Destructor to clean up resources.
-   */
   ~MoveItControlGui() {
-    // Shutdown the executor
     executor_->cancel();
     if (executor_thread_.joinable()) {
       executor_thread_.join();
@@ -114,36 +80,26 @@ public:
   }
 
 private:
-  rclcpp::Node::SharedPtr node_; ///< Shared pointer to the ROS node
-  moveit::planning_interface::MoveGroupInterface
-      move_group_interface_;  ///< Interface to control the robot arm
-  moveit::planning_interface::MoveGroupInterface
-      gripper_move_group_;    ///< Interface to control the gripper
-  tf2_ros::Buffer tf_buffer_; ///< Buffer to store TF transforms
-  tf2_ros::TransformListener
-      tf_listener_;              ///< Listener to receive TF transforms
-  QComboBox *tf_frame_selector_; ///< Dropdown to select TF frames
-  QLabel *status_label_;         ///< Label to display the status of the robot
+  rclcpp::Node::SharedPtr node_;
+  moveit::planning_interface::MoveGroupInterface move_group_interface_;
+  moveit::planning_interface::MoveGroupInterface gripper_move_group_;
+  tf2_ros::Buffer tf_buffer_;
+  tf2_ros::TransformListener tf_listener_;
+  QComboBox *tf_frame_selector_;
+  QLabel *status_label_;
+  rclcpp::executors::SingleThreadedExecutor::SharedPtr executor_;
+  std::thread executor_thread_;
 
-  rclcpp::executors::SingleThreadedExecutor::SharedPtr
-      executor_;                ///< Executor to manage ROS callbacks
-  std::thread executor_thread_; ///< Thread to run the executor
+  void moveToHomePosition() {
+    moveToPosition(0.006755, 0.000006, 0.777373, 0.0, 0.0, 1.0, 0.0);
+  }
 
-  /**
-   * @brief Moves the robot to a specified position.
-   *
-   * @param x X-coordinate of the target position.
-   * @param y Y-coordinate of the target position.
-   * @param z Z-coordinate of the target position.
-   * @param qx X-component of the orientation quaternion.
-   * @param qy Y-component of the orientation quaternion.
-   * @param qz Z-component of the orientation quaternion.
-   * @param qw W-component of the orientation quaternion.
-   */
-  void moveToPosition(double x, double y, double z, double qx, double qy,
-                      double qz, double qw) {
-    RCLCPP_INFO(node_->get_logger(),
-                "Moving to position: x=%.3f, y=%.3f, z=%.3f", x, y, z);
+  void moveToPredefinedPosition() {
+    moveToPosition(0.298652, 0.020795, 0.166739, 0.684743, 0.728771, -0.001997, -0.004029);
+  }
+
+  void moveToPosition(double x, double y, double z, double qx, double qy, double qz, double qw) {
+    RCLCPP_INFO(node_->get_logger(), "Moving to position: x=%.3f, y=%.3f, z=%.3f", x, y, z);
 
     geometry_msgs::msg::Pose target_pose;
     target_pose.position.x = x;
@@ -154,13 +110,11 @@ private:
     target_pose.orientation.z = qz;
     target_pose.orientation.w = qw;
 
-    move_group_interface_.setPoseTarget(target_pose, "R5A_link5");
+    move_group_interface_.setPoseTarget(target_pose);
     move_group_interface_.setStartStateToCurrentState();
 
     moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-    bool success = (move_group_interface_.plan(my_plan) ==
-                    moveit::core::MoveItErrorCode::SUCCESS);
-    if (success) {
+    if (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
       RCLCPP_INFO(node_->get_logger(), "Plan successful! Executing...");
       status_label_->setText("Status: Plan successful! Executing...");
       move_group_interface_.execute(my_plan);
@@ -170,9 +124,6 @@ private:
     }
   }
 
-  /**
-   * @brief Moves the robot to a position based on a selected TF frame.
-   */
   void moveToTf() {
     QString selected_frame = tf_frame_selector_->currentText();
     if (selected_frame.isEmpty()) {
@@ -181,17 +132,10 @@ private:
       return;
     }
 
-    RCLCPP_INFO(node_->get_logger(),
-                "Moving to position from TF broadcaster: %s",
-                selected_frame.toStdString().c_str());
+    RCLCPP_INFO(node_->get_logger(), "Moving to position from TF broadcaster: %s", selected_frame.toStdString().c_str());
 
     try {
-      geometry_msgs::msg::TransformStamped transformStamped =
-          tf_buffer_.lookupTransform(
-              "base_link",                  // Target frame
-              selected_frame.toStdString(), // Source frame from dropdown
-              tf2::TimePointZero);
-
+      geometry_msgs::msg::TransformStamped transformStamped = tf_buffer_.lookupTransform("base_link", selected_frame.toStdString(), tf2::TimePointZero);
       moveToPosition(transformStamped.transform.translation.x,
                      transformStamped.transform.translation.y,
                      transformStamped.transform.translation.z,
@@ -205,20 +149,12 @@ private:
     }
   }
 
-  /**
-   * @brief Moves the robot to a random reachable pose.
-   */
   void moveToRandomPose() {
     RCLCPP_INFO(node_->get_logger(), "Moving to a random reachable pose...");
-
-    // Set a random valid joint configuration
     move_group_interface_.setRandomTarget();
 
-    // Plan and execute
     moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-    bool success = (move_group_interface_.plan(my_plan) ==
-                    moveit::core::MoveItErrorCode::SUCCESS);
-    if (success) {
+    if (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
       RCLCPP_INFO(node_->get_logger(), "Plan successful! Executing...");
       status_label_->setText("Status: Plan successful! Executing...");
       move_group_interface_.execute(my_plan);
@@ -228,13 +164,8 @@ private:
     }
   }
 
-  /**
-   * @brief Refreshes the list of available TF frames.
-   */
   void refreshTfFrames() {
     RCLCPP_INFO(node_->get_logger(), "Refreshing list of TF frames...");
-
-    // Get all frames from the TF buffer
     std::vector<std::string> frame_list = tf_buffer_.getAllFrameNames();
     tf_frame_selector_->clear();
 
@@ -247,36 +178,18 @@ private:
       status_label_->setText("Status: No TF frames found.");
     } else {
       RCLCPP_INFO(node_->get_logger(), "TF frames updated.");
-      status_label_->setText("Status: TF frames updated.");
+      status_label_->setText("Status: TF frames updated .");
     }
   }
 
-  /**
-   * @brief Opens the gripper by setting the gripper joints to the open position.
-   */
   void openGripper() {
     RCLCPP_INFO(node_->get_logger(), "Opening gripper...");
-
-    // Create a map to hold the target joint values
     std::map<std::string, double> target_joint_values;
-
-    // Set the gripper joints to the open position
-    // Adjust these values based on your gripper's URDF joint limits
-    target_joint_values["LeftGripper"] = 0.02;       // Open position value
-    target_joint_values["RightGripper"] = 0.02;      // Open position value
-    target_joint_values["LeftPivotArm"] = 0.01;
-    target_joint_values["RightPivotArm"] = 0.01;
-    target_joint_values["IdolGearB"] = 0.05;
-    target_joint_values["ServoGearB"] = 0.05;
+    target_joint_values["ServoGear"] = 0.00; // Adjust based on your gripper's URDF joint limits
 
     gripper_move_group_.setJointValueTarget(target_joint_values);
-
-    // Plan and execute
     moveit::planning_interface::MoveGroupInterface::Plan gripper_plan;
-    bool success = (gripper_move_group_.plan(gripper_plan) ==
-                    moveit::core::MoveItErrorCode::SUCCESS);
-
-    if (success) {
+    if (gripper_move_group_.plan(gripper_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
       RCLCPP_INFO(node_->get_logger(), "Gripper opened successfully.");
       status_label_->setText("Status: Gripper opened successfully.");
       gripper_move_group_.execute(gripper_plan);
@@ -286,32 +199,14 @@ private:
     }
   }
 
-  /**
-   * @brief Closes the gripper by setting the gripper joints to the closed position.
-   */
   void closeGripper() {
     RCLCPP_INFO(node_->get_logger(), "Closing gripper...");
-
-    // Create a map to hold the target joint values
     std::map<std::string, double> target_joint_values;
-
-    // Set the gripper joints to the closed position
-    // Adjust these values based on your gripper's URDF joint limits
-    target_joint_values["LeftGripper"] = 0.0;        // Closed position value
-    target_joint_values["RightGripper"] = 0.0;       // Closed position value
-    target_joint_values["LeftPivotArm"] = 0.0;
-    target_joint_values["RightPivotArm"] = 0.0;
-    target_joint_values["IdolGearB"] = 0.0;
-    target_joint_values["ServoGearB"] = 0.0;
+    target_joint_values["ServoGear"] = 0.99; // Adjust based on your gripper's URDF joint limits
 
     gripper_move_group_.setJointValueTarget(target_joint_values);
-
-    // Plan and execute
     moveit::planning_interface::MoveGroupInterface::Plan gripper_plan;
-    bool success = (gripper_move_group_.plan(gripper_plan) ==
-                    moveit::core::MoveItErrorCode::SUCCESS);
-
-    if (success) {
+    if (gripper_move_group_.plan(gripper_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
       RCLCPP_INFO(node_->get_logger(), "Gripper closed successfully.");
       status_label_->setText("Status: Gripper closed successfully.");
       gripper_move_group_.execute(gripper_plan);
@@ -332,19 +227,13 @@ private:
  */
 int main(int argc, char *argv[]) {
   rclcpp::init(argc, argv);
-
-  auto node = std::make_shared<rclcpp::Node>(
-      "moveit_control_gui",
-      rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(
-          true));
+  auto node = std::make_shared<rclcpp::Node>("moveit_control_gui", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
 
   QApplication app(argc, argv);
   MoveItControlGui gui(node);
   gui.show();
 
   int result = app.exec();
-
-  // Shutdown ROS after the GUI application exits
   rclcpp::shutdown();
   return result;
 }

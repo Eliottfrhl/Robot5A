@@ -60,143 +60,84 @@
     <passive_joint name="LeftGripper"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperLeft_Link2" reason="Adjacent"/>
+    <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperLeft_Link3" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperRight_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperRight_Link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperRight_Link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_link1" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_link3" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_link4" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_link5" reason="Adjacent"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_0" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_1" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_10" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_11" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_12" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_13" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_14" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_15" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_4" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_5" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_6" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_7" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_8" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link1" link2="aruco_plane_9" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="base_link" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="camera_link2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_GripperLeft_Link3" reason="Default"/>
+
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_GripperLeft_Link1" reason="Adjacent"/>
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_GripperLeft_Link3" reason="Adjacent"/>
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_GripperRight_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_GripperRight_Link2" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_GripperRight_Link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_link1" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_link3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_0" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_1" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_10" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_11" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_12" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_13" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_14" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_15" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_4" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_5" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_6" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_7" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_8" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link2" link2="aruco_plane_9" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_link4" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="R5A_link5" reason="Adjacent"/>
     <disable_collisions link1="R5A_GripperLeft_Link2" link2="base_link" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link2" link2="camera_link2" reason="Never"/>
+
+    <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_GripperLeft_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_GripperLeft_Link2" reason="Adjacent"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_GripperRight_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_GripperRight_Link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_GripperRight_Link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_link1" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_link4" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="R5A_link5" reason="Adjacent"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_0" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_1" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_10" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_11" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_12" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_13" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_14" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_15" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_4" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_5" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_6" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_7" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_8" reason="Never"/>
-    <disable_collisions link1="R5A_GripperLeft_Link3" link2="aruco_plane_9" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="base_link" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link3" link2="camera_link2" reason="Never"/>
+
+    <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_GripperLeft_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_GripperLeft_Link2" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_GripperLeft_Link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_GripperRight_Link2" reason="Adjacent"/>
+    <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_GripperRight_Link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_link1" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_link3" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_link4" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link1" link2="R5A_link5" reason="Adjacent"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_0" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_1" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_10" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_11" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_12" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_13" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_14" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_15" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_4" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_5" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_6" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_7" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_8" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link1" link2="aruco_plane_9" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link1" link2="base_link" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link1" link2="camera_link2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_GripperRight_Link3" reason="Default"/>
+
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_GripperLeft_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_GripperLeft_Link2" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_GripperLeft_Link3" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_GripperRight_Link1" reason="Adjacent"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_GripperRight_Link3" reason="Adjacent"/>
     <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_link1" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_link3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_0" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_1" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_10" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_11" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_12" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_13" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_14" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_15" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_4" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_5" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_6" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_7" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_8" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link2" link2="aruco_plane_9" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_link4" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="R5A_link5" reason="Adjacent"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="base_link" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link2" link2="camera_link2" reason="Never"/>
+
+    <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_GripperLeft_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_GripperLeft_Link2" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_GripperLeft_Link3" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_GripperRight_Link1" reason="Never"/>
+    <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_GripperRight_Link2" reason="Adjacent"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_link1" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_link2" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_link4" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="R5A_link5" reason="Adjacent"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_0" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_1" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_10" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_11" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_12" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_13" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_14" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_15" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_2" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_3" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_4" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_5" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_6" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_7" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_8" reason="Never"/>
-    <disable_collisions link1="R5A_GripperRight_Link3" link2="aruco_plane_9" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="base_link" reason="Never"/>
     <disable_collisions link1="R5A_GripperRight_Link3" link2="camera_link2" reason="Never"/>
- 
-     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="R5A_link1" link2="R5A_link2" reason="Adjacent"/>
     <disable_collisions link1="R5A_link1" link2="R5A_link3" reason="Never"/>
     <disable_collisions link1="R5A_link1" link2="R5A_link4" reason="Never"/>
