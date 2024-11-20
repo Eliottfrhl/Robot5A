@@ -33,3 +33,6 @@ ament_tools/
 Thumbs.db
 *.swp
 *~
+
+# Python analysis virtual environnement
+src/robot_test/data_analysis/venv/  
