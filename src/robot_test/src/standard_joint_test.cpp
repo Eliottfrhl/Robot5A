@@ -14,27 +14,36 @@ int main(int argc, char** argv)
   rclcpp::init(argc, argv);
   auto node = rclcpp::Node::make_shared("standard_joint_test_node");
 
+  // Declare and get the joint positions parameter
+  node->declare_parameter<std::vector<double>>("joint_positions", std::vector<double>());
+  std::vector<double> joint_positions_flat = node->get_parameter("joint_positions").as_double_array();
+
+  // Check if the parameter is empty
+  if (joint_positions_flat.empty())
+  {
+    RCLCPP_ERROR(node->get_logger(), "Parameter 'joint_positions' is empty or not set.");
+    return 1;
+  }
+
+  // Assuming the robot has 5 joints
+  const size_t num_joints = 5;
+  if (joint_positions_flat.size() % num_joints != 0)
+  {
+    RCLCPP_ERROR(node->get_logger(), "Parameter 'joint_positions' size is not a multiple of %zu.", num_joints);
+    return 1;
+  }
+
+  // Convert the flat vector into a vector of joint configurations
+  std::vector<std::vector<double>> joint_goals;
+  for (size_t i = 0; i < joint_positions_flat.size(); i += num_joints)
+  {
+    std::vector<double> joint_values(joint_positions_flat.begin() + i, joint_positions_flat.begin() + i + num_joints);
+    joint_goals.push_back(joint_values);
+  }
+
   // Create the MoveGroupInterface for controlling the robot arm
   static const std::string PLANNING_GROUP = "arm";
   moveit::planning_interface::MoveGroupInterface move_group(node, PLANNING_GROUP);
-
-  // Define the sequence of joint configurations
-  // Each vector contains joint values for all the joints in the "arm" planning group
-  std::vector<std::vector<double>> joint_goals = {
-    {0.0, 0.0, 0.0, 0.0, 0.0},  // Home position
-    {0.5, 0.0, 0.0, 0.0, 0.0},
-    {0.0, 0.5, 0.0, 0.0, 0.0},
-    {0.0, 0.0, 0.5, 0.0, 0.0},
-    {0.0, 0.0, 0.0, 0.5, 0.0},
-    {0.0, 0.0, 0.0, 0.0, 0.5},
-    {-0.5, 0.0, 0.0, 0.0, 0.0},
-    {0.0, -0.5, 0.0, 0.0, 0.0},
-    {0.0, 0.0, -0.5, 0.0, 0.0},
-    {0.0, 0.0, 0.0, -0.5, 0.0},
-    {0.0, 0.0, 0.0, 0.0, -0.5},
-    {0.25, 0.25, 0.25, 0.25, 0.25},
-    {-0.25, -0.25, -0.25, -0.25, -0.25}
-  };
 
   // Iterate over the joint configurations
   for (size_t i = 0; i < joint_goals.size(); ++i)

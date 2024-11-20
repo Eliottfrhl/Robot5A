@@ -43,6 +43,17 @@ def generate_launch_description():
     robot_description_config = xacro.process_file(xacro_file)  # Process the XACRO file
     robot_description = {"robot_description": robot_description_config.toxml()}  # Convert to XML format
 
+    # Joint positions parameter (Define your joint positions here)
+    joint_positions = [
+        0.0, 0.0, 0.0, 0.0, 0.0,  # Home position
+        0.5, 0.0, 0.0, 0.0, 0.0,
+        0.0, 0.5, 0.0, 0.0, 0.0,
+        # Add more positions as needed
+    ]
+
+    # Test type parameter
+    test_type = "standard joint test"
+
     # Robot State Publisher Node
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
@@ -136,6 +147,7 @@ def generate_launch_description():
             moveit_config.to_dict(),
             {"use_sim_time": True},
             {"moveit_current_state_monitor.joint_state_qos": "sensor_data"},
+            {"joint_positions": joint_positions},
         ],
     )
 
@@ -144,7 +156,11 @@ def generate_launch_description():
         package="robot_test",
         executable="aruco_error_logger_node",
         output="screen",
-        parameters=[{"use_sim_time": True}],
+        parameters=[
+            {"use_sim_time": True},
+            {"joint_positions": joint_positions},
+            {"test_type": test_type},
+        ],
     )
 
     # Object Detector Node

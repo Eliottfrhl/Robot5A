@@ -17,9 +17,13 @@ moveit_simple_controller_manager:
       - R2_Pitch
       - R3_Yaw
       - R4_Pitch
+    action_ns: follow_joint_trajectory
+    default: true
   gripper_controller:
     type: FollowJointTrajectory
     action_ns: follow_joint_trajectory
     default: true
     joints:
       - ServoGear
+    action_ns: follow_joint_trajectory
+    default: true
