@@ -109,7 +109,9 @@ def analyze_and_generate_report(folder_path, error_file, detection_file, report_
     if error_stats:
         for marker_id, stats in error_stats.items():
             pdf.set_font("Arial", size=10)
-            pdf.cell(200, 10, txt=f"Marker {marker_id}: Mean={stats['mean'].values}, Std={stats['std'].values}", ln=True)
+            pdf.cell(200, 10, txt=f"Marker {marker_id}: ", ln=True)
+            pdf.cell(200, 10, txt=f"     Mean={stats['mean'].values}", ln=True)
+            pdf.cell(200, 10, txt=f"     Std={stats['std'].values}", ln=True)
     else:
         pdf.cell(200, 10, txt="No markers detected.", ln=True)
 
