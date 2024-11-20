@@ -1,0 +1,12 @@
+Informations:
+
+Test: standard joint test
+
+Positions reached:
+- [0, 0, 0, 0, 0]
+- [0.5, 0, 0, 0, 0]
+- [0, 0.5, 0, 0, 0]
+
+Conditions:
+
+Initial correct test, 1 camera, full light, matthieu
