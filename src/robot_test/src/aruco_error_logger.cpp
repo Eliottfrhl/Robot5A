@@ -18,12 +18,22 @@ public:
   ArucoErrorLogger()
       : Node("aruco_error_logger"), tf_buffer_(this->get_clock()), tf_listener_(tf_buffer_) {
 
-    // Get the home directory
-    std::string home_directory = std::getenv("HOME");
+    // Define the base directory as 'src/robot_test/data_analysis/logs'
+    fs::path base_directory = fs::current_path() / "src" / "robot_test" / "data_analysis" / "logs";
+
+    // Create the base directory if it doesn't exist
+    try {
+      if (!fs::exists(base_directory)) {
+        fs::create_directories(base_directory);
+      }
+    } catch (const std::exception &e) {
+      RCLCPP_ERROR(this->get_logger(), "Failed to create base directory: %s", e.what());
+      throw;
+    }
 
     // Get the current time for the folder name
-    auto now = std::chrono::system_clock::now();
-    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    auto now_time = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now_time);
 
     std::stringstream ss;
     ss << "Test_";
@@ -31,14 +41,14 @@ public:
 
     std::string folder_name = ss.str();
 
-    // Construct the full path to the test data folder in the user's home directory
-    fs::path data_folder = fs::path(home_directory) / "robot_test_data" / folder_name;
+    // Construct the full path to the test data folder inside the base directory
+    fs::path data_folder = base_directory / folder_name;
 
-    // Create the directory
+    // Create the test data directory
     try {
       fs::create_directories(data_folder);
     } catch (const std::exception &e) {
-      RCLCPP_ERROR(this->get_logger(), "Failed to create directory: %s", e.what());
+      RCLCPP_ERROR(this->get_logger(), "Failed to create data directory: %s", e.what());
       throw;
     }
 
@@ -61,6 +71,56 @@ public:
     // Write headers
     error_file_ << "timestamp,marker_id,dx,dy,dz,rx,ry,rz\n";
     count_file_ << "timestamp,detected_marker_ids\n";
+
+    // Create the information file
+    fs::path info_file_path = data_folder / "test_information.txt";
+    info_file_.open(info_file_path);
+    if (!info_file_.is_open()) {
+      RCLCPP_ERROR(this->get_logger(), "Failed to open information file: %s", info_file_path.c_str());
+      throw std::runtime_error("Failed to open information file");
+    }
+
+    // Get the 'test_type' parameter
+    this->declare_parameter<std::string>("test_type", "");
+    std::string test_type = this->get_parameter("test_type").as_string();
+
+    if (test_type.empty()) {
+      RCLCPP_ERROR(this->get_logger(), "Parameter 'test_type' is not set or empty.");
+      throw std::runtime_error("Parameter 'test_type' is required.");
+    }
+
+    // Get the 'joint_positions' parameter
+    this->declare_parameter<std::vector<double>>("joint_positions", std::vector<double>());
+    std::vector<double> joint_positions_flat = this->get_parameter("joint_positions").as_double_array();
+
+
+    // Write information to the file
+    info_file_ << "Informations:\n\n";
+    info_file_ << "Test: " << test_type << "\n\n";
+    info_file_ << "Positions reached:\n";
+
+    // Assuming the robot has 5 joints
+    const size_t num_joints = 5;
+    if (!joint_positions_flat.empty() && joint_positions_flat.size() % num_joints == 0) {
+      for (size_t i = 0; i < joint_positions_flat.size(); i += num_joints) {
+        info_file_ << "- [";
+        for (size_t j = 0; j < num_joints; ++j) {
+          info_file_ << joint_positions_flat[i + j];
+          if (j != num_joints - 1) {
+            info_file_ << ", ";
+          }
+        }
+        info_file_ << "]\n";
+      }
+    } else {
+      info_file_ << "No positions provided or incorrect format.\n";
+    }
+
+    info_file_ << "\nConditions:\n";
+    info_file_ << "[Please fill in any test conditions or notes here]\n";
+
+    // Close the information file
+    info_file_.close();
 
     timer_ = this->create_wall_timer(
         std::chrono::milliseconds(100),
@@ -183,6 +243,7 @@ private:
   tf2_ros::TransformListener tf_listener_;
   std::ofstream error_file_;
   std::ofstream count_file_;
+  std::ofstream info_file_;
 };
 
 int main(int argc, char *argv[]) {
