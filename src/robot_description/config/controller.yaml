@@ -6,6 +6,9 @@ controller_manager:
     arm_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
+    gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
@@ -40,6 +43,30 @@ arm_controller:
       R2_Pitch: {p: 100.0, i: 0.01, d: 1.0}
       R3_Yaw: {p: 100.0, i: 0.01, d: 1.0}
       R4_Pitch: {p: 100.0, i: 0.01, d: 1.0}
+
+gripper_controller:
+  ros__parameters:
+    joints:
+      - ServoGear
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity    
+
+    state_publish_rate: 50.0 # Defaults to 50
+    action_monitor_rate: 20.0 # Defaults to 20
+
+    allow_partial_joints_goal: true # Defaults to false
+    hardware_state_has_offset: true
+    deduce_states_from_derivatives: true
+    
+    constraints:
+      stopped_velocity_tolerance: 0.01 # Defaults to 0.01
+      goal_time: 0.0 # Defaults to 0.0 (start immediately)
+    
+    gains:
+      ServoGear: {p: 100.0, i: 0.01, d: 1.0}
 
 
 

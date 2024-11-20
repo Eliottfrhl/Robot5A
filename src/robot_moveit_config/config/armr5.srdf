@@ -58,7 +58,7 @@
     <passive_joint name="RightGripper"/>
     <passive_joint name="RightPivotArm"/>
     <passive_joint name="LeftGripper"/>
-    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+<!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperLeft_Link2" reason="Adjacent"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperLeft_Link3" reason="Never"/>
     <disable_collisions link1="R5A_GripperLeft_Link1" link2="R5A_GripperRight_Link1" reason="Never"/>

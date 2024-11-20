@@ -140,6 +140,19 @@ def generate_launch_description():
         output="screen",
     )
 
+    load_gripper_controller = ExecuteProcess(
+
+        cmd=[
+            "ros2",
+            "control",
+            "load_controller",
+            "--set-state",
+            "active",
+            "gripper_controller",
+        ],
+        output="screen",
+
+    )
     # Launch the GUI Node
     gui_node = Node(
         package="robot_control",  # Package name containing the GUI node
@@ -187,7 +200,8 @@ def generate_launch_description():
             RegisterEventHandler(
                 event_handler=OnProcessExit(
                     target_action=load_arm_controller,
-                    on_exit=[move_group_node],
+                    on_exit=[load_gripper_controller, move_group_node],  # Load gripper controller before move group
+
                 )
             ),
             RegisterEventHandler(
