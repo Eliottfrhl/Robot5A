@@ -1,0 +1,11 @@
+Informations:
+
+Test: standard joint test
+
+Positions reached:
+- [0, 0, 0, 0, 0]
+- [0.5, 0, 0, 0, 0]
+- [0, 0.5, 0, 0, 0]
+
+Conditions:
+Initial log, gazebo not functionning
