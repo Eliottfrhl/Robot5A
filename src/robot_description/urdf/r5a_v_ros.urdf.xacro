@@ -391,8 +391,8 @@
     <axis
       xyz="0 -0.006066039941515 -0.99998160141046" />
     <limit
-      lower="-1.5"
-      upper="1.5"
+      lower="-0.01"
+      upper="1.0"
       effort="5"
       velocity="1" />
   </joint>
@@ -449,8 +449,8 @@
     <axis
       xyz="0 -0.00606603994152109 -0.99998160141046" />
     <limit
-      lower="-1.5"
-      upper="1.5"
+      lower="-1.0"
+      upper="0.01"
       effort="5"
       velocity="1" />
     <mimic joint="ServoGear" multiplier="-1"/>
@@ -508,8 +508,8 @@
     <axis
       xyz="0 -0.006066 -0.99998" />
     <limit
-      lower="-1.5"
-      upper="1.5"
+      lower="-1.0"
+      upper="0.01"
       effort="5"
       velocity="1" />
     <mimic joint="ServoGear" multiplier="-1"/>  
@@ -567,8 +567,8 @@
     <axis
       xyz="0 -0.00606603994152205 -0.99998160141046" />
     <limit
-      lower="-1.5"
-      upper="1.5"
+      lower="-0.01"
+      upper="1.0"
       effort="5"
       velocity="1" />
     <mimic joint="ServoGear" multiplier="1"/>
@@ -626,8 +626,8 @@
     <axis
       xyz="0 0.00606603994152107 0.99998160141046" />
     <limit
-      lower="-1.5"
-      upper="1.5"
+      lower="-1.0"
+      upper="0.01"
       effort="5"
       velocity="1" />
     <mimic joint="ServoGear" multiplier="-1"/>
@@ -685,8 +685,8 @@
     <axis
       xyz="0 -0.00606603994152203 -0.99998160141046" />
     <limit
-      lower="-1.5"
-      upper="1.5"
+      lower="-1.0"
+      upper="0.01"
       effort="5"
       velocity="1" />
     <mimic joint="ServoGear" multiplier="-1"/>

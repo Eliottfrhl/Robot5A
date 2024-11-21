@@ -190,7 +190,35 @@ private:
         RCLCPP_INFO(node_->get_logger(), "Closing gripper...");
         moveGripperToPosition(0.99); // Closed position
     }
+/**
+    void moveGripperToPosition(double x, double y, double z, double qx, double qy, double qz, double qw) {
+        RCLCPP_INFO(node_->get_logger(), "Moving to position: x=%.3f, y=%.3f, z=%.3f", x, y, z);
 
+        geometry_msgs::msg::Pose target_pose;
+        target_pose.position.x = x;
+        target_pose.position.y = y;
+        target_pose.position.z = z;
+        target_pose.orientation.x = qx;
+        target_pose.orientation.y = qy;
+        target_pose.orientation.z = qz;
+        target_pose.orientation.w = qw;
+
+        move_group_interface_.setPoseTarget(target_pose);
+        move_group_interface_.setStartStateToCurrentState();
+
+        moveit::planning_interface::MoveGroupInterface::Plan my_plan;
+        if (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
+            RCLCPP_INFO(node_->get_logger(), "Plan successful! Executing...");
+            status_label_->setText("Status: Plan successful! Executing...");
+            move_group_interface_.execute(my_plan);
+        } else {
+            RCLCPP_ERROR(node_->get_logger(), "Planning failed!");
+            status_label_->setText("Status: Planning failed!");
+        }
+    }
+
+
+*/
     void moveGripperToPosition(double position) {
         RCLCPP_INFO(node_->get_logger(), "Moving gripper to position: %.2f", position);
 
