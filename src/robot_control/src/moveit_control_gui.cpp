@@ -181,60 +181,49 @@ private:
         }
     }
 
+    // Constants for gripper positions
+    const double GRIPPER_OPEN_POSITION = 0.0;
+    const double GRIPPER_CLOSED_POSITION = 0.99;
+
     void openGripper() {
         RCLCPP_INFO(node_->get_logger(), "Opening gripper...");
-        moveGripperToPosition(0.0); // Open position
+        moveGripperToPosition(GRIPPER_OPEN_POSITION);
     }
 
     void closeGripper() {
         RCLCPP_INFO(node_->get_logger(), "Closing gripper...");
-        moveGripperToPosition(0.99); // Closed position
-    }
-/**
-    void moveGripperToPosition(double x, double y, double z, double qx, double qy, double qz, double qw) {
-        RCLCPP_INFO(node_->get_logger(), "Moving to position: x=%.3f, y=%.3f, z=%.3f", x, y, z);
-
-        geometry_msgs::msg::Pose target_pose;
-        target_pose.position.x = x;
-        target_pose.position.y = y;
-        target_pose.position.z = z;
-        target_pose.orientation.x = qx;
-        target_pose.orientation.y = qy;
-        target_pose.orientation.z = qz;
-        target_pose.orientation.w = qw;
-
-        move_group_interface_.setPoseTarget(target_pose);
-        move_group_interface_.setStartStateToCurrentState();
-
-        moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-        if (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_INFO(node_->get_logger(), "Plan successful! Executing...");
-            status_label_->setText("Status: Plan successful! Executing...");
-            move_group_interface_.execute(my_plan);
-        } else {
-            RCLCPP_ERROR(node_->get_logger(), "Planning failed!");
-            status_label_->setText("Status: Planning failed!");
-        }
+        moveGripperToPosition(GRIPPER_CLOSED_POSITION);
     }
 
-
-*/
     void moveGripperToPosition(double position) {
+        // Clamp the position to ensure it is within bounds (assuming 0.0 is open and 1.0 is closed)
+        position = std::clamp(position, 0.0, 1.0);
         RCLCPP_INFO(node_->get_logger(), "Moving gripper to position: %.2f", position);
 
-        // Set the gripper's joint target position
-        std::vector<double> joint_positions = {position}; // Assuming one joint for the gripper
-        gripper_move_group_.setJointValueTarget(joint_positions);
+        // Set the target position for the ServoGear joint
+        std::vector<std::string> joint_names = {"ServoGear"}; // Only the ServoGear joint
+        std::vector<double> joint_positions = {position}; // Position to move to
 
-        moveit::planning_interface::MoveGroupInterface::Plan gripper_plan;
-        if (gripper_move_group_.plan(gripper_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_INFO(node_->get_logger(), "Gripper plan successful! Executing...");
-            status_label_->setText("Status: Gripper plan successful! Executing...");
-            gripper_move_group_.execute(gripper_plan);
+        // Set the joint value target for the gripper
+        gripper_move_group_.setJointValueTarget(joint_names, joint_positions);
+
+        // Execute the plan for moving the gripper
+        if (executeGripperPlan()) {
+            RCLCPP_INFO(node_->get_logger(), "Gripper moved to position: %.2f", position);
+            status_label_->setText(QString("Status: Gripper moved to position: %1").arg(position));
         } else {
             RCLCPP_ERROR(node_->get_logger(), "Gripper planning failed!");
             status_label_->setText("Status: Gripper planning failed!");
         }
+    }
+    bool executeGripperPlan() {
+        moveit::planning_interface::MoveGroupInterface::Plan gripper_plan;
+        if (gripper_move_group_.plan(gripper_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
+            RCLCPP_INFO(node_->get_logger(), "Gripper plan successful! Executing...");
+            gripper_move_group_.execute(gripper_plan);
+            return true;
+        }
+        return false;
     }
 };
 
