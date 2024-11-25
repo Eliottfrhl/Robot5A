@@ -7,3 +7,8 @@ initial_positions:
   R3_Yaw: 0.0
   R4_Pitch: 0.0
   ServoGear: 0.0
+  LeftGripper: 0.0
+  LeftPivotArm: 0.0
+  PassifGear: 0.0
+  RightGripper: 0.0
+  RightPivotArm: 0.0
