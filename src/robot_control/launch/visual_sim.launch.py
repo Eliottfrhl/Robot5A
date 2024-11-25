@@ -184,6 +184,15 @@ def generate_launch_description():
     # Return the LaunchDescription
     return LaunchDescription(
         [
+
+
+            Node(
+                package='joint_state_publisher',
+                executable='joint_state_publisher',
+                output='screen',
+                parameters=[{'use_sim_time': True}]
+            ),
+
             SetParameter(name="use_sim_time", value=True),  # Enable simulation time
             RegisterEventHandler(
                 event_handler=OnProcessExit(

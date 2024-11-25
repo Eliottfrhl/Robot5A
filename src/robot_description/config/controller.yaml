@@ -48,6 +48,11 @@ gripper_controller:
   ros__parameters:
     joints:
       - ServoGear
+      - LeftGripper
+      - LeftPivotArm
+      - PassifGear
+      - RightGripper
+      - RightPivotArm
     command_interfaces:
       - position
     state_interfaces:
@@ -67,6 +72,11 @@ gripper_controller:
     
     gains:
       ServoGear: {p: 100.0, i: 0.01, d: 1.0}
+      LeftGripper: {p: 100.0, i: 0.01, d: 1.0}
+      LeftPivotArm: {p: 100.0, i: 0.01, d: 1.0}
+      PassifGear: {p: 100.0, i: 0.01, d: 1.0}
+      RightGripper: {p: 100.0, i: 0.01, d: 1.0}
+      RightPivotArm: {p: 100.0, i: 0.01, d: 1.0}
 
 
 

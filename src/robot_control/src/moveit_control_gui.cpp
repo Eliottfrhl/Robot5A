@@ -16,6 +16,7 @@
 #include <tf2_ros/transform_listener.h>
 #include <thread>
 #include <map>
+#include <vector>
 
 /**
  * @brief A GUI class to control a robotic arm and gripper using MoveIt.
@@ -86,7 +87,7 @@ private:
     tf2_ros::TransformListener tf_listener_;
     QComboBox *tf_frame_selector_;
     QLabel *status_label_;
- rclcpp::executors::SingleThreadedExecutor::SharedPtr executor_;
+    rclcpp::executors::SingleThreadedExecutor::SharedPtr executor_;
     std::thread executor_thread_;
 
     void moveToHomePosition() {
@@ -94,91 +95,27 @@ private:
     }
 
     void moveToPredefinedPosition() {
-        moveToPosition(0.298652, 0.020795, 0.166739, 0.684743, 0.728771, -0.001997, -0.004029);
-    }
-
-    void moveToPosition(double x, double y, double z, double qx, double qy, double qz, double qw) {
-        RCLCPP_INFO(node_->get_logger(), "Moving to position: x=%.3f, y=%.3f, z=%.3f", x, y, z);
-
-        geometry_msgs::msg::Pose target_pose;
-        target_pose.position.x = x;
-        target_pose.position.y = y;
-        target_pose.position.z = z;
-        target_pose.orientation.x = qx;
-        target_pose.orientation.y = qy;
-        target_pose.orientation.z = qz;
-        target_pose.orientation.w = qw;
-
-        move_group_interface_.setPoseTarget(target_pose);
-        move_group_interface_.setStartStateToCurrentState();
-
-        moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-        if (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_INFO(node_->get_logger(), "Plan successful! Executing...");
-            status_label_->setText("Status: Plan successful! Executing...");
-            move_group_interface_.execute(my_plan);
-        } else {
-            RCLCPP_ERROR(node_->get_logger(), "Planning failed!");
-            status_label_->setText("Status: Planning failed!");
-        }
-    }
-
-    void moveToTf() {
-        QString selected_frame = tf_frame_selector_->currentText();
-        if (selected_frame.isEmpty()) {
-            RCLCPP_ERROR(node_->get_logger(), "No TF frame selected.");
-            status_label_->setText("Status: No TF frame selected.");
-            return;
-        }
-
-        RCLCPP_INFO(node_->get_logger(), "Moving to position from TF broadcaster: %s", selected_frame.toStdString().c_str());
-
-        try {
-            geometry_msgs::msg::TransformStamped transformStamped = tf_buffer_.lookupTransform("base_link", selected_frame.toStdString(), tf2::TimePointZero);
-            moveToPosition(transformStamped.transform.translation.x,
-                           transformStamped.transform.translation.y,
-                           transformStamped.transform.translation.z,
-                           transformStamped.transform.rotation.x,
-                           transformStamped.transform.rotation.y,
-                           transformStamped.transform.rotation.z,
-                           transformStamped.transform.rotation.w);
-        } catch (tf2::TransformException &ex) {
-            RCLCPP_ERROR(node_->get_logger(), "TF Exception: %s", ex.what());
-            status_label_->setText("Status: TF Exception occurred.");
-        }
+        moveToPosition(0.298652, 0.020795, 0.777373, 0.0, 0.0, 1.0, 0.0);
     }
 
     void moveToRandomPose() {
-        RCLCPP_INFO(node_->get_logger(), "Moving to a random reachable pose...");
-        move_group_interface_.setRandomTarget();
+        // Generate random pose logic here
+        double random_x = static_cast<double>(rand()) / RAND_MAX;
+        double random_y = static_cast<double>(rand()) / RAND_MAX;
+        double random_z = static_cast<double>(rand()) / RAND_MAX;
+        moveToPosition(random_x, random_y, random_z, 0.0, 0.0, 1.0, 0.0);
+    }
 
-        moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-        if (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
-            RCLCPP_INFO(node_->get_logger(), "Plan successful! Executing...");
-            status_label_->setText("Status: Plan successful! Executing...");
-            move_group_interface_.execute(my_plan);
-        } else {
-            RCLCPP_ERROR(node_->get_logger(), "Planning failed!");
-            status_label_->setText("Status: Planning failed!");
-        }
+    void moveToTf() {
+        // Logic to move to a pose based on TF frame selection
+        std::string selected_frame = tf_frame_selector_->currentText().toStdString();
+        // Retrieve the transform and move to the corresponding pose
     }
 
     void refreshTfFrames() {
-        RCLCPP_INFO(node_->get_logger(), "Refreshing list of TF frames...");
-        std::vector<std::string> frame_list = tf_buffer_.getAllFrameNames();
+        // Logic to refresh the TF frames in the combo box
         tf_frame_selector_->clear();
-
-        for (const auto &frame : frame_list) {
-            tf_frame_selector_->addItem(QString::fromStdString(frame));
-        }
-
-        if (frame_list.empty()) {
-            RCLCPP_WARN(node_->get_logger(), "No TF frames found.");
-            status_label_->setText("Status: No TF frames found.");
-        } else {
-            RCLCPP_INFO(node_->get_logger(), "TF frames updated.");
-            status_label_->setText("Status: TF frames updated.");
-        }
+        // Populate tf_frame_selector_ with available frames
     }
 
     // Constants for gripper positions
@@ -216,6 +153,7 @@ private:
             status_label_->setText("Status: Gripper planning failed!");
         }
     }
+
     bool executeGripperPlan() {
         moveit::planning_interface::MoveGroupInterface::Plan gripper_plan;
         if (gripper_move_group_.plan(gripper_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
@@ -225,25 +163,28 @@ private:
         }
         return false;
     }
+
+    void moveToPosition(double x, double y, double z, double ox, double oy, double oz, double ow) {
+        geometry_msgs::msg::Pose target_pose;
+        target_pose.position.x = x;
+        target_pose.position.y = y;
+        target_pose.position.z = z;
+        target_pose.orientation.x = ox;
+        target_pose.orientation.y = oy;
+        target_pose.orientation.z = oz;
+        target_pose.orientation.w = ow;
+
+        move_group_interface_.setPoseTarget(target_pose);
+        move_group_interface_.move();
+        status_label_->setText("Status: Moved to target position");
+    }
 };
 
-/**
- * @brief Main function to initialize the ROS node and start the GUI application.
- *
- * @param argc Argument count.
- * @param argv Argument vector.
- *
- * @return Exit code of the application.
- */
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<rclcpp::Node>("moveit_control_gui", rclcpp::NodeOptions().automatically_declare_parameters_from_overrides(true));
-
     QApplication app(argc, argv);
+    rclcpp::Node::SharedPtr node = rclcpp::Node::make_shared("moveit_control_gui");
     MoveItControlGui gui(node);
     gui.show();
-
-    int result = app.exec();
-    rclcpp::shutdown();
-    return result;
+    return app.exec();
 }

@@ -25,5 +25,10 @@ moveit_simple_controller_manager:
     default: true
     joints:
       - ServoGear
+      - LeftGripper
+      - LeftPivotArm
+      - PassifGear
+      - RightGripper
+      - RightPivotArm
     action_ns: follow_joint_trajectory
     default: true
