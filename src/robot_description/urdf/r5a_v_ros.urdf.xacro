@@ -453,7 +453,6 @@
       upper="0.01"
       effort="5"
       velocity="1" />
-    <mimic joint="ServoGear" multiplier="-1"/>
   </joint>
   <link
     name="R5A_GripperRight_Link1">
@@ -512,7 +511,6 @@
       upper="0.01"
       effort="5"
       velocity="1" />
-    <mimic joint="ServoGear" multiplier="-1"/>  
   </joint>
   <link
     name="R5A_GripperRight_Link2">
@@ -571,7 +569,6 @@
       upper="1.0"
       effort="5"
       velocity="1" />
-    <mimic joint="ServoGear" multiplier="1"/>
   </joint>
   <link
     name="R5A_GripperLeft_Link3">
@@ -630,7 +627,6 @@
       upper="0.01"
       effort="5"
       velocity="1" />
-    <mimic joint="ServoGear" multiplier="-1"/>
   </joint>
   <link
     name="R5A_GripperRight_Link3">
@@ -689,7 +685,6 @@
       upper="0.01"
       effort="5"
       velocity="1" />
-    <mimic joint="ServoGear" multiplier="-1"/>
   </joint>
   <gazebo reference="base_link">                                                                
     <material>Gazebo/White</material>
