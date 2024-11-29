@@ -202,6 +202,8 @@ private:
         move_group_interface_.move();
         status_label_->setText("Status: Moved to target position");
     }
+    
+
 };
 
 int main(int argc, char **argv) {
