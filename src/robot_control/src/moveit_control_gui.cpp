@@ -95,7 +95,7 @@ private:
     }
 
     void moveToPredefinedPosition() {
-        moveToPosition(0.298652, 0.020795, 0.777373, 0.0, 0.0, 1.0, 0.0);
+        moveToPosition(0.37441, 0.12162, 0.51234, 0.61579, 0.77367, 0.072197, 0.13048);
     }
 
     void moveToRandomPose() {
