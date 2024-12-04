@@ -6,7 +6,6 @@ from fpdf import FPDF
 # Set the logs directory
 LOGS_DIR = "logs"
 
-
 def process_logs():
     # Iterate through all folders in the logs directory
     for folder in os.listdir(LOGS_DIR):

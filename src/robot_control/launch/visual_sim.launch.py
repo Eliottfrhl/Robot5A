@@ -140,6 +140,19 @@ def generate_launch_description():
         output="screen",
     )
 
+    load_gripper_controller = ExecuteProcess(
+
+        cmd=[
+            "ros2",
+            "control",
+            "load_controller",
+            "--set-state",
+            "active",
+            "gripper_controller",
+        ],
+        output="screen",
+
+    )
     # Launch the GUI Node
     gui_node = Node(
         package="robot_control",  # Package name containing the GUI node
@@ -171,6 +184,15 @@ def generate_launch_description():
     # Return the LaunchDescription
     return LaunchDescription(
         [
+
+
+            Node(
+                package='joint_state_publisher',
+                executable='joint_state_publisher',
+                output='screen',
+                parameters=[{'use_sim_time': True}]
+            ),
+
             SetParameter(name="use_sim_time", value=True),  # Enable simulation time
             RegisterEventHandler(
                 event_handler=OnProcessExit(
@@ -187,7 +209,8 @@ def generate_launch_description():
             RegisterEventHandler(
                 event_handler=OnProcessExit(
                     target_action=load_arm_controller,
-                    on_exit=[move_group_node],
+                    on_exit=[load_gripper_controller, move_group_node],  # Load gripper controller before move group
+
                 )
             ),
             RegisterEventHandler(
