@@ -114,7 +114,7 @@ private:
     cv::Ptr<cv::aruco::DetectorParameters> detectorParams =
         cv::aruco::DetectorParameters::create();
     cv::Ptr<cv::aruco::Dictionary> dictionary =
-        cv::aruco::getPredefinedDictionary(cv::aruco::DICT_4X4_50);
+        cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
     cv::aruco::detectMarkers(frame, dictionary, markerCorners, markerIds,
                              detectorParams, rejectedCandidates);
 

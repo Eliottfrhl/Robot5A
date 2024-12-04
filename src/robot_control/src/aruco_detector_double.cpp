@@ -147,7 +147,7 @@ ArucoDetectorDouble::ArucoDetectorDouble()
   }
 
   // Initialize ArUco dictionary and detector parameters
-  dictionary_ = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_4X4_50);
+  dictionary_ = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
   detectorParams_ = cv::aruco::DetectorParameters::create();
 
   // Initialize subscribers and synchronizer
