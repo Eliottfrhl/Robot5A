@@ -1,0 +1,20 @@
+Informations:
+
+Test: standard joint test
+
+Positions reached:
+- [0, 0, 0, 0, 0]
+- [0.5, 0, 0, 0, 0]
+- [0, 0.5, 0, 0, 0]
+- [0, 0, 0.5, 0, 0]
+- [0, 0, 0, 0.5, 0]
+- [0, 0, 0, 0, 0.5]
+- [0.25, 0.25, 0.25, 0.25, 0.25]
+- [-0.25, -0.25, -0.25, -0.25, -0.25]
+- [0.5, -0.5, 0.5, -0.5, 0.5]
+- [1.5, -1.5, 0, 0, 0]
+
+Conditions:
+[Please fill in any test conditions or notes here]
+
+1 camera
