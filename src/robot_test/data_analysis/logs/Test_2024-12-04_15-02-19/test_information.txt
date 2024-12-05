@@ -15,4 +15,4 @@ Positions reached:
 - [1.5, -1.5, 0, 0, 0]
 
 Conditions:
-[Please fill in any test conditions or notes here]
+1 caméra
