@@ -1,9 +1,14 @@
 camera:
-  - id: 0
+  - id: 1
     transform: # Transformation matrix for the camera in the base frame
       - [0.0, 0.0, -1.0, 1.2]  # X-axis is rotated and translated
       - [1.0, 0.0, 0.0, 0.0]         # Y-axis is flipped
       - [0.0, -1.0, 0.0, 0.45]   # Z-axis is rotated and translated
       - [0.0, 0.0, 0.0, 1.0]          # Homogeneous coordinate
-
+  - id: 2
+    transform: 
+      - [0.0, 0.0, -1.0, -0.5]  
+      - [1.0, 0.0, 0.0, 0.5]        
+      - [0.0, -1.0, 0.0, 1.0]   
+      - [0.0, 0.0, 0.0, 1.0]          
 
