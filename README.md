@@ -84,7 +84,7 @@ This project simulates and controls a robotic arm using **ROS2 Humble**, **Gazeb
 4. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/Eliottfrhl/Robot5A-Simulation.git
+    git clone https://github.com/ABMI-software/Robot5A-Simulation.git
     ```
 
 5. **Build the Workspace**
