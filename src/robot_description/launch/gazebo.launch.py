@@ -7,21 +7,22 @@ and starts the necessary nodes and controllers for the robot operation.
 """
 
 import os
+
+import xacro
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.actions import Node
+
 from launch import LaunchDescription
 from launch.actions import (
+    ExecuteProcess,
     IncludeLaunchDescription,
     RegisterEventHandler,
-    ExecuteProcess,
 )
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
-import xacro
 
 
 def generate_launch_description():
-
     """
     @brief Generates the launch description for the robot simulation.
 
@@ -33,9 +34,6 @@ def generate_launch_description():
 
     # Specify the name of the package and path to xacro file within the package
     pkg_name = "robot_description"  # Name of the robot description package
-    file_subpath = (
-        "urdf/r5a_v_ros.urdf.xacro"  # Path to the XACRO file within the package
-    )
 
     share_dir = get_package_share_directory(
         pkg_name
@@ -82,26 +80,6 @@ def generate_launch_description():
         ),
     )
 
-    # Joint State Publisher Node
-    node_joint_state_publisher = Node(
-        name="joint_state_publisher",  # Name of the node
-        package="joint_state_publisher",  # Package containing the node
-        executable="joint_state_publisher",  # Executable name
-        output="screen",
-    )
-
-    # Controller manager node
-    ros2_control_node = Node(
-        package="controller_manager",  # Package containing the node
-        executable="ros2_control_node",  # Executable name
-        parameters=[
-            os.path.join(
-                get_package_share_directory(pkg_name), "config", "controllers.yaml"
-            ),
-        ],  # Parameters including path to controllers configuration
-        output="screen",
-    )
-
     # Commands to load and start controllers after spawning the robot
     load_joint_states_controller = ExecuteProcess(
         cmd=[
@@ -125,7 +103,6 @@ def generate_launch_description():
         ],  # Command to load and activate arm_controller
         output="screen",
     )
-
 
     # Return the LaunchDescription with all the nodes and event handlers
     return LaunchDescription(

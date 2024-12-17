@@ -39,7 +39,6 @@ jobs:
       - name: Run clang-format
         run: |
           find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format --dry-run --Werror
-          find src/robot_control/src -name "*.cpp" -o -name "*.h" | xargs clang-format -i
 
   # Python Linter job using flake8
   lint_python:
@@ -67,9 +66,11 @@ jobs:
         run: |
           black --check src/robot_description/launch
           black --check src/robot_moveit_config/launch
+          black --check src/robot_control/launch
 
       # Run flake8 on the Python source directories
       - name: Run flake8
         run: |
           flake8 src/robot_description/launch
           flake8 src/robot_moveit_config/launch
+          flake8 src/robot_control/launch

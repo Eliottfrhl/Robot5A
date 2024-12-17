@@ -8,18 +8,20 @@ for the robot operation.
 """
 
 import os
+
+import xacro
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.actions import Node
+from moveit_configs_utils import MoveItConfigsBuilder
+
 from launch import LaunchDescription
 from launch.actions import (
+    ExecuteProcess,
     IncludeLaunchDescription,
     RegisterEventHandler,
-    ExecuteProcess,
 )
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
-import xacro
-from moveit_configs_utils import MoveItConfigsBuilder
 
 
 def generate_launch_description():
@@ -33,10 +35,6 @@ def generate_launch_description():
 
     # Specify the name of the package and path to xacro file within the package
     pkg_name = "robot_description"  # Name of the robot description package
-    file_subpath = (
-        "urdf/r5a_v_ros.urdf.xacro"  # Path to the XACRO file within the package
-    )
-
     share_dir = get_package_share_directory(
         pkg_name
     )  # Get the share directory of the package

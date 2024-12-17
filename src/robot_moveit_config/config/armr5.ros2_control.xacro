@@ -43,6 +43,48 @@
                 </state_interface>
                 <state_interface name="velocity"/>
             </joint>
+            <joint name="ServoGear">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['ServoGear']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+            </joint>
+            <joint name="LeftGripper">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['LeftGripper']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+            </joint>
+            <joint name="LeftPivotArm">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['LeftPivotArm']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+            </joint>
+            <joint name="PassifGear">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['PassifGear']}</param>
+                </state_interface>
+                <state_ interface name="velocity"/>
+            </joint>
+            <joint name="RightGripper">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['RightGripper']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+            </joint>
+            <joint name="RightPivotArm">
+                <command_interface name="position"/>
+                <state_interface name="position">
+                  <param name="initial_value">${initial_positions['RightPivotArm']}</param>
+                </state_interface>
+                <state_interface name="velocity"/>
+            </joint>
 
         </ros2_control>
     </xacro:macro>
