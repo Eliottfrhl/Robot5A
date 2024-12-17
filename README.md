@@ -84,13 +84,13 @@ This project simulates and controls a robotic arm using **ROS2 Humble**, **Gazeb
 4. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/Eliottfrhl/Robot5A.git
+    git clone https://github.com/Eliottfrhl/Robot5A-Simulation.git
     ```
 
 5. **Build the Workspace**
 
     ```bash
-    cd ~/Robot5A
+    cd ~/Robot5A-Simulation
     source /opt/ros/humble/setup.bash
     colcon build
     ```
@@ -98,7 +98,7 @@ This project simulates and controls a robotic arm using **ROS2 Humble**, **Gazeb
 6. **Source the Workspace**
 
     ```bash
-    source ~/Robot5A/install/setup.bash
+    source ~/Robot5A-Simulation/install/setup.bash
     ```
 
 ## Setup
