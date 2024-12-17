@@ -214,7 +214,7 @@ All C++ nodes created under robot control package are documented using Doxygen c
 
 ## License
 
-This project is licensed under the [ABMI](https://abmi-engineering.com/fr).
+This project is licensed under the MIT License.
 
 ---
 
