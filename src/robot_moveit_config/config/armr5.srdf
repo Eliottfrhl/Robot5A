@@ -419,18 +419,11 @@
 
 
     <!-- Cameras -->
-    <disable_collisions link1="camera_link1" link2="R5A_link1" reason="Camera"/>
-    <disable_collisions link1="camera_link1" link2="R5A_link2" reason="Camera"/>
-    <disable_collisions link1="camera_link1" link2="R5A_link3" reason="Camera"/>
-    <disable_collisions link1="camera_link1" link2="R5A_link4" reason="Camera"/>
-    <disable_collisions link1="camera_link1" link2="R5A_link5" reason="Camera"/>
-  
     <disable_collisions link1="camera_link2" link2="R5A_link1" reason="Camera"/>
     <disable_collisions link1="camera_link2" link2="R5A_link2" reason="Camera"/>
     <disable_collisions link1="camera_link2" link2="R5A_link3" reason="Camera"/>
     <disable_collisions link1="camera_link2" link2="R5A_link4" reason="Camera"/>
     <disable_collisions link1="camera_link2" link2="R5A_link5" reason="Camera"/>
-
     <disable_collisions link1="camera_link2" link2="aruco_plane_0" reason="Camera"/>
     <disable_collisions link1="camera_link2" link2="aruco_plane_1" reason="Camera"/>
     <disable_collisions link1="camera_link2" link2="aruco_plane_2" reason="Camera"/>

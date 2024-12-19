@@ -101,36 +101,20 @@ private:
         moveToPosition(0.37441, 0.12162, 0.51234, 0.61579, 0.77367, 0.072197, 0.13048);
     }
 
-void moveToRandomPose() {
-    // Seed the random number generator
-    static bool seeded = false;
-    if (!seeded) {
-        srand(static_cast<unsigned int>(time(0))); // Seed with current time
-        seeded = true;
+    void moveToRandomPose() {
+        RCLCPP_INFO(node_->get_logger(), "Moving to a random reachable pose...");
+        move_group_interface_.setRandomTarget();
+
+        moveit::planning_interface::MoveGroupInterface::Plan my_plan;
+        if (move_group_interface_.plan(my_plan) == moveit::core::MoveItErrorCode::SUCCESS) {
+            RCLCPP_INFO(node_->get_logger(), "Plan successful! Executing...");
+            status_label_->setText("Status: Plan successful! Executing...");
+            move_group_interface_.execute(my_plan);
+        } else {
+            RCLCPP_ERROR(node_->get_logger(), "Planning failed!");
+            status_label_->setText("Status: Planning failed!");
+        }
     }
-    // Define limits for random pose generation
-    double x_min = 0.3; // Minimum x position
-    double x_max = 0.8;  // Maximum x position
-    double y_min = 0.3; // Minimum y position
-    double y_max = 0.8;  // Maximum y position
-    double z_min = 0.3;  // Minimum z position (e.g., ground level)
-    double z_max = 0.8;  // Maximum z position (e.g., above ground)
-
-    // Generate random pose within specified limits
-    double random_x = x_min + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (x_max - x_min)));
-    double random_y = y_min + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (y_max - y_min)));
-    double random_z = z_min + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (z_max - z_min)));
-    
-    // Define a random orientation (roll, pitch, yaw)
-    double random_roll = static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (2.0 * M_PI))); // You can generate random values if needed
-    double random_pitch = static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (2.0 * M_PI))); // You can generate random values if needed
-    double random_yaw = static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (2.0 * M_PI))); // Random yaw between 0 and 2π
-    double random_w = static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (2.0 * M_PI))); // Random yaw between 0 and 2π
-    
-
-    // Move to the generated random pose
-    moveToPosition(random_x, random_y, random_z, random_roll, random_pitch, random_yaw, random_w);
-}
 
     void moveToTf() {
         // Logic to move to a pose based on TF frame selection
