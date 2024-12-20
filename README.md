@@ -218,7 +218,7 @@ This project is licensed under the MIT License.
 
 ---
 
-*Developed by [Eliott & Omar](https://github.com/Eliottfrhl)*
+*Developed by [Eliott & Omar](https://github.com/Eliottfrhl)  [& Matthieu](https://github.com/CotsaftisGarnierMatthieu)*
 
 # Notes to myself
 
